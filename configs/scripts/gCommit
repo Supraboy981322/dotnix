@@ -1,0 +1,50 @@
+#!/bin/bash
+
+if [ -e ~/.config/gCommit/git_user.txt ];then
+	user="$(cat ~/.config/gCommit/git_user.txt)"
+	printf "commiting as user:\n  \033[34m${user}\033[0m\n"
+else
+	printf "user not configured\n"
+	printf "it appears that this is the first time this user is using gCommit\n"
+	printf "what is your github username?\n"
+	printf "  (used in \`.git\` url for committing to a repo)\n"
+	printf "\033[32mgithub  user:\033[0m  "
+	read user
+	if [ ! -e ~/.config ]; then
+		mkdir ~/.config
+	fi ; if [ ! -e ~/.config/gCommit ]; then
+		mkdir ~/.config/gCommit
+	fi ; if [ ! -e ~/.config/gCommit/git_user.txt ]; then
+		printf "${user}" > ~/.config/gCommit/git_user.txt
+	fi
+fi
+
+case "$1" in
+     "-h")
+        printf "\`gCommit \"comment\"\`\n"
+        printf "to commit to a repo"
+        printf "\`gCreate -c \"repo_name\""
+        printf "to create a repo using local dir"
+        printf "run in the directory of your local repo copy.\n"
+        printf "ignore stupidities with this, I wrote this after doing 9 straight fucking hours of pre-calculus in college and I have dyscalulia (which makes it harder). I am very exhausted.\n"
+        ;;
+    "-c")
+	git init
+        printf "using \`gh\` command, rewrite the script if you don't want to\n"
+        gh repo create --public "$2"
+        git remote add origin https://github.com/${user}/${2}.git
+        git remote -v
+	git branch --set-upstream-to=origin/master
+	git config pull.rebase false
+        ;;
+    "-p")
+	git pull
+	;;
+    *)
+        printf "committing\n"
+        git add .
+        git commit -m "$1"
+        git push origin master
+        ;;
+esac
+printf "done.\n"
