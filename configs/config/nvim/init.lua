@@ -272,23 +272,3 @@ require'nvim-treesitter.configs'.setup {
         enable = true,
     },
 }
-
-vim.api.nvim_create_user_command(
-  "Di",
-  function(opts)
-    if opts.args and opts.args ~= "" then
-      local res = vim.fn.system({
-        'curl',
-        '-sX', 'POST',
-        '-d', opts.args,
-        'https://d.my-lan.dev'
-      })
-      print(res)
-    else
-      print("input empty")
-    end
-  end,
-  {
-    desc = "journal entry",
-  }
-)
