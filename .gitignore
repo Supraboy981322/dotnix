@@ -1,5 +1,4 @@
 .secrets/
 configs/home/config/Supraboy981322/
 scripts/
-!scripts/
-!scripts/start-hypr.sh
+!start-hypr.sh
