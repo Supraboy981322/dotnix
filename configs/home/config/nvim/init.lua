@@ -260,7 +260,8 @@ require'nvim-treesitter.configs'.setup {
         "jsdoc",
         "markdown",
         "query",
-        "dart"
+        "dart",
+        "java"
     },
     sync_install = false,
 
