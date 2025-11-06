@@ -124,8 +124,12 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-  
+  nixpkgs.config = {
+    allowUnfree = true;
+    chromium = {
+      commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+    };
+  };
   programs = {
     firefox = {
       enable = true;
@@ -191,6 +195,7 @@
     enableAllTerminfo = true;
     systemPackages = with pkgs; [
       vim
+      chromium #gross, I know, my school requires it
       tailscale
       wl-clipboard
       hyprland-protocols
