@@ -143,6 +143,8 @@ alias :q="exit"
 alias ls="eza"
 alias :Q="exit"
 alias CURDIR="basename \"${PWD}\""
+alias d="nix-alien -s ~/scripts/d"
+alias pN="nix-alien -s ~/scripts/pN"
 
 ############################
 #     ever-so-slightly     #
