@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+  nix-alien-pkgs = import (
+    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+  ) { };
 in
 {
   imports = [
@@ -11,67 +14,78 @@ in
     home = {
       stateVersion = "18.09";
       file = {
-        ".config" = {
+        ".config/nvim" = {
       	  force = true;
       	  enable = true;
       	  recursive = true;
-      	  source = ./configs/config;
-      	};
-      	".bashrc" = {
-      	  enable = true;
-      	  source = ./configs/home/bashrc;
-      	};
-      	".mkps1.sh" = {
-      	  executable = true;
-      	  enable = true;
-      	  source = ./configs/home/mkps1.sh;
+      	  source = ./configs/home/config/nvim;
       	};
       };
     };
   };
 
   home-manager.users.super = {
-    programs.firefox = {
-      enable = true;
-    };
     home = {
       stateVersion = "18.09";
+      packages = with nix-alien-pkgs; [
+        nix-alien
+      ];
+      pointerCursor = {
+        gtk.enable = true;
+        x11.enable = true;
+        package = pkgs.bibata-cursors;
+        name = "Bibata-Modern-Ice";
+        size = 22;
+      };
       file = {
+        "machines" = {
+          recursive = true;
+          enable = true;
+          force = true;
+          source = ./configs/home/machines;
+        };
+        "scripts" = {
+          source = ./scripts;
+          force = true;
+          enable = true;
+          recursive = true;
+          executable = true;
+        };
+        ".gtkrc-2.0" = {
+          force = true;
+          enable = true;
+          source = ./configs/home/gtkrc-2.0;
+        };
         ".config" = {
       	  force = true;
-          enable = true;
-      	  recursive = true;
-          source = ./configs/config;
-      	};
-      	".local" = {
       	  enable = true;
       	  recursive = true;
-      	  source = ./configs/local;
+      	  source = ./configs/home/config;
+        };
+      	".local" = {
+      	  enable = true;
+          recursive = true;
+          source = ./configs/home/local;
       	};
       	"Pictures" = {
       	  enable = true;
       	  recursive = true;
-      	  source = ./configs/Pictures;
+      	  source = ./configs/home/Pictures;
       	};
-      	".bashrc" = {
+        ".bashrc" = {
       	  enable = true;
       	  source = ./configs/home/bashrc;
       	};
       	".mkps1.sh" = {
-      	  executable = true;
       	  enable = true;
+      	  executable = true;
       	  source = ./configs/home/mkps1.sh;
       	};
       	".profile" = {
       	  enable = true;
       	  source = ./configs/home/profile;
-      	};
-        "zen-mods-export.json" = {
-          enable = true;
-          source = ./configs/home/zen-mods-export.json;
-        };
+       	};
       };
     };
-    #rest of home-manager config
   };
 }

@@ -1,0 +1,6 @@
+{
+    "_tailscale": true,
+    "webbox": {
+        "remote_dir": "/home/webbox"
+    }
+}
