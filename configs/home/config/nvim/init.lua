@@ -261,7 +261,8 @@ require'nvim-treesitter.configs'.setup {
         "markdown",
         "query",
         "dart",
-        "java"
+        "java",
+        "nix"
     },
     sync_install = false,
 

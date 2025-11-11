@@ -22,8 +22,8 @@
   "modules-right": [
     "wlr/taskbar",
     "custom/nix_icon",
-    "clock",
-    "custom/calendar"
+    "custom/clock"/*,
+    "custom/calendar"*/
   ],
   /* === Modules Left === */
   "custom/nix_icon": {
@@ -31,10 +31,14 @@
     "on-click": "wofi --show drun",
     "tooltip": false
   },
-  "clock": {
+  "custom/clock": {
     "timezone": "America/Chicago",
-    "format": "{:%I:%M}",
+/*    "format": "{:%I:%M%p | %b %d}",*/
+    "format": "{}",
+    "exec": "date '+%_I:%M%P | %h %m'",
+    "tooltip": true,
     "tooltip-format": "{calendar}",
+    "interval": 60,
     "calendar": {
       "mode": "month"
     }
@@ -50,24 +54,19 @@
     }
   },
   "cpu": {
-    "format": "{usage}% ",
+    "format": "{usage}%  |",
     "tooltip": true,
-    "tooltip-format": "Uso de CPU: {usage}%\nNúcleos: {cores}"
+    "tooltip-format": "CPU usage: {usage}%\nNúcleos: {cores}"
   },
   "memory": {
-    "format": "{}% 󰍛",
+    "format": "{}% 󰍛 |",
     "tooltip": true,
-    "tooltip-format": "RAM en uso: {used} / {total} ({percentage}%)"
+    "tooltip-format": "RAM usage: {used} / {total} ({percentage}%)"
   },
-/*  "disk": {
-    "format": "{percentage_free}% ",
-    "tooltip": true,
-    "tooltip-format": "Espacio libre: {free} / {total} ({percentage_free}%)"
-  },*/
   "temperature": {
     "format": "{temperatureC}°C {icon}",
     "tooltip": true,
-    "tooltip-format": "Temperatura actual: {temperatureC}°C\nCrítico si > 80°C",
+    "tooltip-format": "Actual tempurature: {temperatureC}°C\nCritical temp. > 80°C",
     "format-icons": [
       ""
     ]
@@ -99,7 +98,7 @@
     ]
   },
   "idle_inhibitor": {
-    "format": "{icon}",
+    "format": "{icon}  | ",
     "format-icons": {
       "activated": "",
       "deactivated": ""
@@ -112,7 +111,7 @@
     "tooltip": false
   },
   "pulseaudio": {
-    "format": "{volume}% {icon}",
+    "format": "{volume}% {icon} | ",
     "format-muted": " {format_source}",
     "format-icons": {
       "default": [

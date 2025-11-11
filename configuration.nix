@@ -74,6 +74,12 @@
     blueman.enable = true;
     displayManager = {
       enable = true;
+      cosmic-greeter.enable = false;
+    };
+    desktopManager = {
+      cosmic = {
+        enable = false;
+      };
     };
     tailscale = {
       enable = true;
@@ -117,7 +123,19 @@
   users.users.super = {
     isNormalUser = true;
     description = "zane";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" "docker" ];
+    subUidRanges = [
+      {
+        count = 65536;
+        startUid = 100000;
+      }
+    ];
+    subGidRanges = [
+      {
+        count = 65536;
+        startGid = 100000;
+      }
+    ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -133,6 +151,10 @@
   programs = {
     firefox = {
       enable = true;
+      preferences = {
+        # disable libadwaita theming for Firefox
+        "widget.gtk.libadwaita-colors.enabled" = false;
+      };
     };
     chromium = {
       enable = true;
@@ -153,7 +175,7 @@
     };
     hyprland = {
       enable = true;
-      xwayland.enable = true;
+      xwayland.enable =  true;
     };
     dconf.profiles.user.databases = [
       {
@@ -166,6 +188,13 @@
         };
       }
     ];
+  };
+
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
   };
 
   fonts = {
@@ -192,11 +221,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment = {
+    sessionVariables = {
+      XDG_CURRENT_DESKTOP = "sway";
+    };
     enableAllTerminfo = true;
     systemPackages = with pkgs; [
       vim
       chromium #gross, I know, my school requires it
+      distrobox
       tailscale
+      sshfs
       wl-clipboard
       hyprland-protocols
       hyprpicker
@@ -219,8 +253,11 @@
       jq
       bun
       go
+      wev
       wofi
-      jdk23
+      xdotool
+      ffmpeg
+      jdk23 #for school, I swear
       discord-canary
       ruby
       gnumake
@@ -230,9 +267,12 @@
       python3
       yt-dlp
       gh
+      vlc
       wget
       kitty
+      zenity
       libxcrypt
+      tor-browser
       bibata-cursors
       kdePackages.gwenview
       kdePackages.kate
@@ -241,10 +281,9 @@
       kdePackages.kio-extras
       kdePackages.qtsvg
       kdePackages.dolphin
+      (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
     ];
   };
-
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
