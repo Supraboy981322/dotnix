@@ -16,7 +16,7 @@
       experimental-features = [ "nix-command" "flakes" ];
     };
   };
-  
+
   hardware = {
     bluetooth.enable = true;
     graphics = {
@@ -268,6 +268,8 @@
       yt-dlp
       gh
       vlc
+      mpv
+      loupe
       wget
       kitty
       zenity
@@ -281,6 +283,7 @@
       kdePackages.kio-extras
       kdePackages.qtsvg
       kdePackages.dolphin
+      kdePackages.kde-cli-tools
       (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
     ];
   };
