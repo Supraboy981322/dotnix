@@ -22,7 +22,7 @@
   "modules-right": [
     "wlr/taskbar",
     "custom/nix_icon",
-    "custom/clock"/*,
+    "clock"/*,
     "custom/calendar"*/
   ],
   /* === Modules Left === */
@@ -31,14 +31,14 @@
     "on-click": "wofi --show drun",
     "tooltip": false
   },
-  "custom/clock": {
+  "clock": {
     "timezone": "America/Chicago",
-/*    "format": "{:%I:%M%p | %b %d}",*/
-    "format": "{}",
-    "exec": "date '+%_I:%M%P | %h %m'",
-    "tooltip": true,
+    "format": "{:%I:%M%p | %b %d}",
+//    "format": "{}",
+//    "exec": "date '+%_I:%M%P'",
+//    "tooltip": true,
     "tooltip-format": "{calendar}",
-    "interval": 60,
+//    "interval": 5,
     "calendar": {
       "mode": "month"
     }
@@ -66,7 +66,7 @@
   "temperature": {
     "format": "{temperatureC}°C {icon}",
     "tooltip": true,
-    "tooltip-format": "Actual tempurature: {temperatureC}°C\nCritical temp. > 80°C",
+    "tooltip-format": "temp: {temperatureC}°C\nCritical > 80°C",
     "format-icons": [
       ""
     ]
@@ -132,6 +132,8 @@
   "hyprland/language": {
     "format": "{} ",
     "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
-    "format-en": "ENG"
+    "format-en": "ENG",
+    "tooltip": true,
+    "tooltip-format": "language"
   }
 }

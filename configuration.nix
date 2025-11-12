@@ -17,6 +17,15 @@
     };
   };
 
+  fileSystems."/mnt/Games" = {
+    device = "/dev/disk/by-uuid/8a6b2cd0-0d95-4a57-a8b0-b55661cdfa66";
+    fsType = "ext4";
+    options = [
+      "users"
+      "nofail"
+    ];
+  };
+
   hardware = {
     bluetooth.enable = true;
     graphics = {
@@ -71,6 +80,10 @@
   };
 
   services = {
+    udisks2 = {
+      enable = true;
+      mountOnMedia = true;
+    };
     blueman.enable = true;
     displayManager = {
       enable = true;
@@ -242,6 +255,7 @@
       hyprwayland-scanner
       libdrm
       libcap
+      udisks2
       sdbus-cpp
       wayland-protocols
       hyprpaper
