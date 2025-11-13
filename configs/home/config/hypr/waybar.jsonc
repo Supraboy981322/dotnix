@@ -10,11 +10,11 @@
   "modules-left": [
     "cpu",
     "memory",
-    "temperature",
+//    "temperature",
     "idle_inhibitor",
     "pulseaudio/slider",
-    "pulseaudio",
-    "hyprland/language"
+    "pulseaudio"//,
+//    "hyprland/language"
   ],
   "modules-center": [
     "hyprland/workspaces"
@@ -59,7 +59,7 @@
     "tooltip-format": "CPU usage: {usage}%\nNúcleos: {cores}"
   },
   "memory": {
-    "format": "{}% 󰍛 |",
+    "format": "{}% 󰍛",
     "tooltip": true,
     "tooltip-format": "RAM usage: {used} / {total} ({percentage}%)"
   },
@@ -111,7 +111,7 @@
     "tooltip": false
   },
   "pulseaudio": {
-    "format": "{volume}% {icon} | ",
+    "format": "{volume}% {icon}",
     "format-muted": " {format_source}",
     "format-icons": {
       "default": [
