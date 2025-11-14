@@ -10,6 +10,7 @@
   "modules-left": [
     "cpu",
     "memory",
+    "battery",
 //    "temperature",
     "idle_inhibitor",
     "pulseaudio/slider",
@@ -62,6 +63,10 @@
     "format": "{}% 󰍛",
     "tooltip": true,
     "tooltip-format": "RAM usage: {used} / {total} ({percentage}%)"
+  },
+  "battery": {
+    "format": "| {capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
   },
   "temperature": {
     "format": "{temperatureC}°C {icon}",

@@ -16,7 +16,7 @@ window#waybar.hidden {
 
 /* ==== General rules for visible modules ==== */
 #custom-nix_icon, #clock, #custom-calendar, #cpu, #memory,
-#disk, #temperature, #idle_inhibitor, #pulseaudio,
+#disk, #battery, #idle_inhibitor, #pulseaudio,
 #pulseaudio-slider, #network, #language {
   color: #b0ceff;
   background: rgba(0, 0, 0, 0.5);
@@ -36,7 +36,7 @@ window#waybar.hidden {
 }
 
 /* Separation to the right */
-#clock, #memory, #pulseaudio {
+#clock, #battery, #pulseaudio {
   margin-right: 5px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -80,18 +80,18 @@ window#waybar.hidden {
 
 #memory {
   padding-left: 0;
-  padding-right: 11px;
+  padding-right: 5px;
   border-top: solid 0.2em #89B4FA;
   border-bottom: solid 0.2em #89B4FA;
-  border-right: solid 0.2em #89B4FA;
 }
 
 #disk {
   background: #ffffff;
 }
 
-#temperature {
-  padding-left: 0;
+#battery {
+  padding-left: 5;
+  padding-right: 16px;
   border-top: solid 0.2em #89B4FA;
   border-right: solid 0.2em #89B4FA;
   border-bottom: solid 0.2em #89B4FA;
