@@ -299,6 +299,7 @@
       wget
       zenity
       libxcrypt
+      brightnessctl
       tor-browser
       bibata-cursors
       kdePackages.gwenview
