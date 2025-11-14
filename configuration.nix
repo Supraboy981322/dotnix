@@ -30,6 +30,12 @@
     bluetooth.enable = true;
     graphics = {
       enable = true;
+      enable32Bit = true;
+
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
     };
     nvidia = {
       modesetting.enable = true;
@@ -110,6 +116,9 @@
         lightdm.enable = false;
         gdm.enable = true;
       };
+      excludePackages = with pkgs; [
+        xterm
+      ];
       xkb = {
         layout = "us";
         variant = "";
@@ -260,6 +269,7 @@
       sdbus-cpp
       wayland-protocols
       hyprpaper
+      ripgrep
       waybar
       neovim 
       git
@@ -280,13 +290,13 @@
       zig
       clang
       python3
+      libva
       yt-dlp
       gh
       vlc
       mpv
       loupe
       wget
-      kitty
       zenity
       libxcrypt
       tor-browser

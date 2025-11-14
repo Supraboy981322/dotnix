@@ -93,9 +93,14 @@
     "tooltip-format": "{name}",
     "on-click": "activate",
     "on-click-middle": "close",
+    "on-click-right": "minimize",
     "ignore-list": [
-      "rofi"
-    ]
+      "rofi",
+      "wofi"
+    ],
+    "rewrite": {
+      "Konsole": "Terminal"
+    }
   },
   "idle_inhibitor": {
     "format": "{icon}  | ",
