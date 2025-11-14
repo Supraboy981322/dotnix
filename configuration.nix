@@ -252,6 +252,7 @@
       hyprlang
       gdm
       hyprutils
+      hyprshot
       hyprwayland-scanner
       libdrm
       libcap
