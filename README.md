@@ -14,9 +14,9 @@ I recently switched to NixOS, and these are my current dotfiles..... that's abou
 - Firefox (backup browser)
 - Chromium (my school requires it)
 - Tor Browser (for finding Linux ISOs)
-- Tailscale
-- Nvidia open drivers
-- NeoVim
+- Tailscale 
+- Nvidia open drivers (Nvidia sucks, I don't have money to buy a new GPU) 
+- NeoVim (the superior code editor)
 - Waybar
 - Distrobox
 - Konsole (just a preference)
@@ -28,7 +28,7 @@ I recently switched to NixOS, and these are my current dotfiles..... that's abou
 
 ## Screenshots
 
-desktop:
+Desktop:
 ![desktop screenshot](images/desktop.png)
 
 NeoVim in Konsole:
