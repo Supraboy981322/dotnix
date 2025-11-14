@@ -33,3 +33,6 @@ Desktop:
 
 NeoVim in Konsole:
 ![screenshot of NeoVim in Console](images/konsole-neovim.png)
+
+Wofi
+![screenshot of wofi on the desktop](images/wofi.png)
