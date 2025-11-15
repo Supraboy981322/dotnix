@@ -262,7 +262,8 @@ require'nvim-treesitter.configs'.setup {
         "query",
         "dart",
         "java",
-        "nix"
+        "nix",
+        "hyprlang"
     },
     sync_install = false,
 
