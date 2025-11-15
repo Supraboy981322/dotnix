@@ -11,6 +11,7 @@ I recently switched to NixOS, and these are my current dotfiles..... that's abou
 ## Details
 - NixOS (obviously)
 - Hyprland
+- Zen Browser (not part of config, only `.desktop` file for now)
 - Firefox (backup browser)
 - Chromium (my school requires it)
 - Tor Browser (for finding Linux ISOs)
