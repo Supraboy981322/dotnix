@@ -92,6 +92,12 @@
     rtkit.enable = true;
   };
 
+  systemd = {
+    services = {
+      tailscale.serviceConfig.TimeoutStopSec = "1s";
+    };
+  };
+
   services = {
     udisks2 = {
       enable = true;
