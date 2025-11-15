@@ -1,0 +1,6 @@
+max-history=25
+background-color=#00000080
+border-size=3
+border-color=#89B4FAFF
+border-radius=10
+default-timeout=10000
