@@ -80,7 +80,7 @@ window#waybar.hidden {
 
 #memory {
   padding-left: 0;
-  padding-right: 5px;
+  padding-right: 10px;
   border-top: solid 0.2em #89B4FA;
   border-bottom: solid 0.2em #89B4FA;
 }

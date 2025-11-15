@@ -57,12 +57,12 @@
   "cpu": {
     "format": "{usage}%  |",
     "tooltip": true,
-    "tooltip-format": "CPU usage: {usage}%\nNúcleos: {cores}"
+    "tooltip-format": "CPU usage: {usage}%\nCores: {cores}"
   },
   "memory": {
-    "format": "{}% 󰍛",
+    "format": "{}% ",
     "tooltip": true,
-    "tooltip-format": "RAM usage: {used} / {total} ({percentage}%)"
+    "tooltip-format": "RAM usage (GiB): {used} / {total} ({percentage}%)\nSwap usage (GiB): {swapUsed} / {swapTotal} ({swapPercentage})%"
   },
   "battery": {
     "format": "| {capacity}% {icon}",
