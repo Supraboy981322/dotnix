@@ -44,14 +44,14 @@
         libvdpau-va-gl
       ];
     };
-/*    nvidia = {
+    nvidia = {
       modesetting.enable = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
       open = true;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };*/
+    };
   };
 
   # Bootloader.
@@ -124,7 +124,7 @@
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
-#      videoDrivers = ["nvidia"];
+      videoDrivers = ["nvidia"];
       displayManager = {
         lightdm.enable = false;
         gdm.enable = true;
