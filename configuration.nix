@@ -14,7 +14,7 @@
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-    };
+   };
   };
 
   fileSystems."/mnt/Games" = {
@@ -129,6 +129,7 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+      wireplumber.enable = true;
       # If you want to use JACK applications, uncomment this
       #jack.enable = true;
   
@@ -286,6 +287,7 @@
       discord-canary
       ruby
       gnumake
+      alsa-utils
       libgcc
       zig
       clang
@@ -299,6 +301,7 @@
       wget
       zenity
       libxcrypt
+      fastfetch
       brightnessctl
       tor-browser
       bibata-cursors
