@@ -9,8 +9,8 @@
   /* === Modules Order === */
   "modules-left": [
     "cpu",
-    "memory",
     "battery",
+    "memory",
 //    "temperature",
     "idle_inhibitor",
     "pulseaudio/slider",
@@ -55,17 +55,17 @@
     }
   },
   "cpu": {
-    "format": "{usage}%  |",
+    "format": "{usage}% ",
     "tooltip": true,
     "tooltip-format": "CPU usage: {usage}%\nCores: {cores}"
   },
   "memory": {
-    "format": "{}% ",
+    "format": "| {}% ",
     "tooltip": true,
     "tooltip-format": "RAM usage (GiB): {used} / {total} ({percentage}%)\nSwap usage (GiB): {swapUsed} / {swapTotal} ({swapPercentage})%"
   },
   "battery": {
-    "format": "| {capacity}% {icon}",
+    "format": "| {capacity}% {icon} ",
     "format-icons": ["", "", "", "", ""],
     "format-time": "{H}h{M}m",
     "format-charging": "| {capacity}% ",

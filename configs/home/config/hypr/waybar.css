@@ -36,7 +36,7 @@ window#waybar.hidden {
 }
 
 /* Separation to the right */
-#clock, #battery, #pulseaudio {
+#clock, #memory, #pulseaudio {
   margin-right: 5px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -79,9 +79,10 @@ window#waybar.hidden {
 }
 
 #memory {
-  padding-left: 0;
-  padding-right: 10px;
+  padding-right: 16px;
+  padding-left: 5px;
   border-top: solid 0.2em #89B4FA;
+  border-right: solid 0.2em #89B4FA;
   border-bottom: solid 0.2em #89B4FA;
 }
 
@@ -90,10 +91,9 @@ window#waybar.hidden {
 }
 
 #battery {
-  padding-left: 5;
-  padding-right: 16px;
+  padding-left: 0;
+  padding-right: 5px;
   border-top: solid 0.2em #89B4FA;
-  border-right: solid 0.2em #89B4FA;
   border-bottom: solid 0.2em #89B4FA;
 }
 
