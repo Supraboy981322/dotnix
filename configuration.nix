@@ -213,6 +213,12 @@
       enable = true;
       xwayland.enable =  true;
     };
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
+    };
     dconf.profiles.user.databases = [
       {
         settings."org/gnome/desktop/interface" = {
@@ -281,6 +287,7 @@
       libcap
       udisks2
       sdbus-cpp
+      bc
       wayland-protocols
       hyprpaper
       ripgrep
@@ -316,6 +323,8 @@
       loupe
       wget
       zenity
+      nodejs
+      libnotify
       libxcrypt
       fastfetch
       brightnessctl
