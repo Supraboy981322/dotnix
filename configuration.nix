@@ -193,7 +193,7 @@
       };
     };
     chromium = {
-      enable = true;
+      enable = false;
     };
     nix-ld = {
       enable = true;

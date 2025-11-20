@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 filename="$(date "+%y%_m%_d_%H%M%S").png"
-filepath="/home/super/IMG/Screen/${filename}"
+filepath="/home/super/Pictures/Screenshots/${filename}"
 
 if [[ "$1" == "select" ]]; then
   hyprshot \

@@ -27,6 +27,12 @@ in
   home-manager.users.super = {
     home = {
       stateVersion = "18.09";
+      activation = {
+        createScreensLink = ''
+          mkdir -p "$HOME/IMG"
+          ln -sfn "$HOME/Pictures/Screenshots" "$HOME/IMG/Screens"
+        '';
+      };
       packages = with nix-alien-pkgs; [
         nix-alien
       ];
