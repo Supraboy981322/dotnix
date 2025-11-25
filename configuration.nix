@@ -17,13 +17,23 @@
    };
   };
 
-  fileSystems."/mnt/Games" = {
-    device = "/dev/disk/by-uuid/8a6b2cd0-0d95-4a57-a8b0-b55661cdfa66";
-    fsType = "ext4";
-    options = [
-      "users"
-      "nofail"
-    ];
+  fileSystems = {
+    "/mnt/nfs" = {
+      device = "100.98.9.96:/mnt";
+      fsType = "nfs";
+      options = [
+        "x-systemd.automount"
+        "noauto"
+      ];
+    };
+    "/mnt/Games" = {
+      device = "/dev/disk/by-uuid/8a6b2cd0-0d95-4a57-a8b0-b55661cdfa66";
+      fsType = "ext4";
+      options = [
+        "users"
+        "nofail"
+      ];
+    };
   };
 
   swapDevices = [
@@ -60,6 +70,17 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    initrd = {
+      supportedFilesystems = [
+        "nfs"
+      ];
+      kernelModules = [
+        "nfs"
+      ];
+    };
+    supportedFilesystems = [
+      "nfs"
+    ];
   };
   
   networking = {
@@ -70,7 +91,10 @@
   };
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time = {
+    timeZone = "America/Chicago";
+    hardwareClockInLocalTime = false;
+  };
 
   # Select internationalisation properties.
   i18n = {
@@ -219,6 +243,9 @@
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
     };
+    tmux = {          #wanted to try-out tmux
+      enable = false; #  suddenly don't have time
+    };                #    may come back to this later
     dconf.profiles.user.databases = [
       {
         settings."org/gnome/desktop/interface" = {
@@ -268,75 +295,79 @@
     };
     enableAllTerminfo = true;
     systemPackages = with pkgs; [
-      vim
-      chromium #gross, I know, my school requires it
-      distrobox
-      tailscale
-      sshfs
-      wl-clipboard
-      hyprland-protocols
-      hyprpicker
-      swww
-      hyprland
-      hyprlang
-      gdm
-      hyprutils
-      hyprshot
-      hyprwayland-scanner
-      libdrm
-      libcap
-      udisks2
-      sdbus-cpp
-      bc
-      wayland-protocols
-      hyprpaper
-      ripgrep
-      waybar
-      neovim 
-      git
-      ghostty
-      eza
-      jq
-      bun
-      go
-      wev
-      wofi
-      xdotool
-      ffmpeg
-      jdk23 #for school, I swear
-      discord-canary
-      ruby
-      gnumake
-      alsa-utils
-      playerctl
-      libgcc
-      mako
-      meson
-      zig
-      clang
-      python3
-      libva
-      yt-dlp
       gh
+      go
+      jq
+      bc
+      vim
+      gdm
+      git
+      eza
+      bun
+      wev
+      zig
       vlc
       mpv
-      loupe
       wget
+      swww
+      wofi
+      ruby
+      gimp
+      mako
+      loupe
+      socat
+      libva
+      sshfs
+      meson
+      clang
+      jdk23
+      nitch
+      yt-dlp
       zenity
       nodejs
+      libgcc
+      libdrm
+      libcap
+      waybar
+      neovim 
+      ffmpeg
+      udisks2
+      ripgrep
+      ghostty
+      xdotool
+      python3
+      gnumake
+      hyprshot
+      chromium #gross, I know, my school requires it
+      hyprland
+      hyprlang
+      nfs-utils
+      distrobox
+      tailscale
+      hyprutils
+      sdbus-cpp
+      hyprpaper
+      playerctl
       libnotify
       libxcrypt
       fastfetch
-      brightnessctl
+      alsa-utils
+      hyprpicker
       tor-browser
+      wl-clipboard
+      brightnessctl
       bibata-cursors
-      kdePackages.gwenview
+      discord-canary
       kdePackages.kate
+      kdePackages.qtsvg
+      wayland-protocols
+      hyprland-protocols
+      kdePackages.dolphin
       kdePackages.konsole
+      hyprwayland-scanner
+      kdePackages.gwenview
       kdePackages.kio-fuse
       kdePackages.kio-extras
-      kdePackages.qtsvg
-      kdePackages.dolphin
       kdePackages.kde-cli-tools
       (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
     ];

@@ -34,17 +34,17 @@ vim.cmd("set smartcase")   --override ignorcase if search has uppercase
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-    if vim.v.shell_error ~= 0 then
-        vim.api.nvim_echo({
-            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-            { out, "WarningMsg" },
-            { "\nPress any key to exit..." },
-        }, true, {})
-        vim.fn.getchar()
-        os.exit(1)
-    end
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -56,116 +56,126 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 require("lazy").setup({
-    spec = {
-        {   --color theme
-            "catppuccin/nvim",
-            name = "catppuccin",
-            priority = 999,
-        },
-        {
-            "vhyrro/luarocks.nvim",
-            priority = 9999, -- Very high priority is required
-            config = true,
-        },
-        {
-            "nvim-neo-tree/neo-tree.nvim",
-            branch = "v3.x",
-            dependencies = {
-                "nvim-lua/plenary.nvim",
-                "MunifTanjim/nui.nvim",
-                "nvim-tree/nvim-web-devicons",
-            },
-            lazy = false
-        },
-        {
-            "vim-airline/vim-airline",
-                lazy = false,
-                priority = 1000,
-                dependencies = {
-                        {"vim-airline/vim-airline-themes"},
-                        {"ryanoasis/vim-devicons"}, 
-                }
-        },
-        {
-            "romgrk/barbar.nvim",
-            dependencies = {
-                "lewis6991/gitsigns.nvim",
-                "nvim-tree/nvim-web-devicons",
-            },
-            init = function() vim.g.barbar_auto_setup = false end,
-            opts = {
-                exclude_name = {
-                    "rightpad",
-                    "leftpad",
-                },
-            },
-            version = "^1.0.0",
-        },
-        {
-            "smithbm2316/centerpad.nvim",
-            cmd = "Centerpad",
-        },
-        {
-            "nvim-treesitter/nvim-treesitter",
-            branch = 'master',
-            lazy = false,
-            build = ":TSUpdate"
-        },
-        {
-            "nvim-tree/nvim-web-devicons",
-            opts = {}
-        },
-        {
-            "rmagatti/auto-session",
-            lazy = false,
-            ---enables autocomplete for opts
-            ---@module "auto-session"
-            ---@type AutoSession.Config
-            opts = {
-                suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-                -- log_level = 'debug',
-            },
-        },
+  spec = {
+    {   --color theme
+      "catppuccin/nvim",
+      name = "catppuccin",
+      priority = 999,
     },
-    -- automatically check for plugin updates
-    checker = { enabled = true },
+    {
+      "vhyrro/luarocks.nvim",
+      priority = 9999, -- Very high priority is required
+      config = true,
+    },
+    {
+      "nvim-neo-tree/neo-tree.nvim",
+      branch = "v3.x",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+        "nvim-tree/nvim-web-devicons",
+      },
+      lazy = false
+    },
+    {
+      "vim-airline/vim-airline",
+      lazy = false,
+      priority = 1000,
+      dependencies = {
+        {"vim-airline/vim-airline-themes"},
+        {"ryanoasis/vim-devicons"}, 
+      }
+    },
+    {
+      "romgrk/barbar.nvim",
+      dependencies = {
+        "lewis6991/gitsigns.nvim",
+        "nvim-tree/nvim-web-devicons",
+      },
+      init = function() vim.g.barbar_auto_setup = false end,
+      opts = {
+        exclude_name = {
+          "rightpad",
+          "leftpad",
+        },
+      },
+      version = "^1.0.0",
+    },
+    {
+      "smithbm2316/centerpad.nvim",
+      cmd = "Centerpad",
+    },
+    {
+      "nvim-treesitter/nvim-treesitter",
+      branch = 'master',
+      lazy = false,
+      build = ":TSUpdate"
+    },
+    {
+      "nvim-tree/nvim-web-devicons",
+      opts = {}
+    },
+    {
+      "rmagatti/auto-session",
+      lazy = false,
+      ---enables autocomplete for opts
+      ---@module "auto-session"
+      ---@type AutoSession.Config
+      opts = {
+        suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+        -- log_level = 'debug',
+      },
+    },
+  },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
 })
 
 vim.api.nvim_create_user_command(
-    "Reorder",
-    function()
-        vim.cmd("BufferOrderByBufferNumber")
-    end,
-    { desc = "dup of :BufferOrderByBufferNumber" }
+  "Reorder",
+  function()
+    vim.cmd("BufferOrderByBufferNumber")
+  end,
+  { desc = "dup of :BufferOrderByBufferNumber" }
 )
 
 vim.api.nvim_create_user_command(
-    "Redo",
-    function()
-        vim.cmd("redo")
-    end,
-    { desc = "dup of :redo" }
+  "Redo",
+  function()
+    vim.cmd("redo")
+  end,
+  { desc = "dup of :redo" }
 )
 
 vim.api.nvim_create_user_command(
-    "W",
-    function()
-        vim.cmd("write")
-        print("buffer saved")
-    end,
-    { desc = "dup of :w", }
+  "W",
+  function()
+    vim.cmd("write")
+    print("buffer saved")
+  end,
+  { desc = "dup of :w", }
 )
 
 vim.api.nvim_create_user_command(
-    "Q",
-    function()
-        if opts.bang then
-            vim.cmd("quit!")
-        else
-            vim.cmd("quit")
-        end
-    end,
-    { bang = true, desc = "quit neovim" }
+  "Q",
+  function()
+    if opts.bang then
+      vim.cmd("quit!")
+    else
+      vim.cmd("quit")
+    end
+  end,
+  { bang = true, desc = "quit neovim" }
+)
+
+--make `d` not yank
+vim.api.nvim_set_keymap(
+  'n', 'd', '"_d', 
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  'v', 'd', '"_d',
+  { noremap = true, silent = false }
 )
 
 --i don't remember what this does,
@@ -175,9 +185,9 @@ vim.g.loaded_netrwPlugin = 1
 
 --once fully started, run fn
 vim.api.nvim_create_autocmd("VimEnter", {
-    callback = function()
-        vim.cmd("BufferOrderByBufferNumber")
-    end,
+  callback = function()
+    vim.cmd("BufferOrderByBufferNumber")
+  end,
 })
 
 --set `<leader>` key
@@ -186,50 +196,50 @@ vim.g.maplocalleader = "\\"
 
 --`<leader>`+`e` for file tree
 vim.keymap.set(
-    "n",
-    "<leader>e",
-    ":Neotree<CR>",
-    { silent = true }
+  "n",
+  "<leader>e",
+  ":Neotree<CR>",
+  { silent = true }
 )
 
 --`ctrl+s` to save
 vim.keymap.set(
-    {"v", "i", "n", "x"},
-    "<C-s>",
-    "<Cmd>w<CR>",
-    { noremap = true, silent = true }
+  {"v", "i", "n", "x"},
+  "<C-s>",
+  "<Cmd>w<CR>",
+  { noremap = true, silent = true }
 )
 
 --`alt`+`del` to delete chunk after
 vim.keymap.set(
-    "i",
-    "<M-del>",
-    '<Cmd>normal! "_dw<CR>',
-    { noremap = true, silent = true }
+  "i",
+  "<M-del>",
+  '<Cmd>normal! "_dw<CR>',
+  { noremap = true, silent = true }
 )
 
 --`alt`+`bs` to delete chunk before
 vim.keymap.set(
-    "i",
-    "<M-BS>",
-    '<Cmd>normal! "_db<CR>',
-    { noremap = true, silent = true }
+  "i",
+  "<M-BS>",
+  '<Cmd>normal! "_db<CR>',
+  { noremap = true, silent = true }
 )
 
 --`alt`+`;` to enter normal mode 
 --  (from any mode, including term)
 vim.keymap.set(
-    {"v", "i", "n", "x", "t"},
-    "<M-;>", "<C-\\><C-n>", 
-    { noremap = true, silent = true }
+  {"v", "i", "n", "x", "t"},
+  "<M-;>", "<C-\\><C-n>", 
+  { noremap = true, silent = true }
 )
 
 --`alt`+`p` to center buffer
 vim.keymap.set(
-    {"v", "i", "n", "x"},
-    "<M-p>",
-    "<Cmd>Centerpad<CR>",
-    { noremap = true, silent = true }
+  {"v", "i", "n", "x"},
+  "<M-p>",
+  "<Cmd>Centerpad<CR>",
+  { noremap = true, silent = true }
 )
 
 --catppuccin color scheme with no bg
@@ -240,38 +250,49 @@ vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'Pmenu', { bg = 'none' })
 
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = {
-        "c",
-        "cpp",
-        "lua",
-        "vim",
-        "vimdoc",
-        "python",
-        "javascript",
-        "typescript",
-        "go",
-        "html",
-        "css",
-        "json",
-        "rust",
-        "zig",
-        "ocaml",
-        "bash",
-        "jsdoc",
-        "markdown",
-        "query",
-        "dart",
-        "java",
-        "nix",
-        "hyprlang"
-    },
-    sync_install = false,
+  ensure_installed = {
+    "c",
+    "cpp",
+    "lua",
+    "vim",
+    "vimdoc",
+    "python",
+    "javascript",
+    "typescript",
+    "go",
+    "html",
+    "xml",
+    "css",
+    "json",
+    "rust",
+    "zig",
+    "ocaml",
+    "bash",
+    "jsdoc",
+    "markdown",
+    "query",
+    "dart",
+    "java",
+    "nix",
+    "hyprlang"
+  },
+  sync_install = false,
 
-    highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-    },
-    indent = {
-        enable = true,
-    },
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+    enable = true,
+  },
 }
+
+vim.filetype.add({
+  extension = {
+    elh = "html",
+    bhtm = "html",
+    bhtml = "html",
+  },
+})
+
+vim.treesitter.language.register('html', { 'elh', 'bhtm', 'bhtml' })
