@@ -2,8 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
+let
+  unstable = import <nixos-unstable> {
+    config = { allowUnfree = true; };
+  };
+in
 {
   imports =
     [
@@ -52,6 +57,7 @@
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
+        libva-vdpau-driver
       ];
     };
     nvidia = {
@@ -118,6 +124,7 @@
 
   systemd = {
     services = {
+      tailscaled.enable = true;
       tailscaled.serviceConfig.TimeoutStopSec = "1s";
     };
   };
@@ -139,6 +146,7 @@
     };
     tailscale = {
       enable = true;
+      useRoutingFeatures = "both";
     };
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -202,10 +210,12 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config = {
-    allowUnfree = true;
-    chromium = {
-      commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      chromium = {
+        commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
+      };
     };
   };
   programs = {
@@ -294,7 +304,7 @@
       XDG_CURRENT_DESKTOP = "sway";
     };
     enableAllTerminfo = true;
-    systemPackages = with pkgs; [
+    systemPackages = (with pkgs; [
       gh
       go
       jq
@@ -333,7 +343,6 @@
       ffmpeg
       udisks2
       ripgrep
-      ghostty
       xdotool
       python3
       gnumake
@@ -343,7 +352,6 @@
       hyprlang
       nfs-utils
       distrobox
-      tailscale
       hyprutils
       sdbus-cpp
       hyprpaper
@@ -369,8 +377,11 @@
       kdePackages.kio-fuse
       kdePackages.kio-extras
       kdePackages.kde-cli-tools
+      #inputs.ghostty.packages.${pkgs.system}.ghostty
+      unstable.ghostty
+      unstable.tailscale
       (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
-    ];
+    ]);
   };
 
   # This value determines the NixOS release from which the default
