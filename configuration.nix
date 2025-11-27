@@ -2,11 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
+/*NOTE: RUN THE FOLLOWING COMMANDS TO PREVENT `nixos-unstable` err:
+ *```sh
+ *sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
+ *sudo nix-channel --update
+ *```
+ *<sub>yeah, md in my configuration.nix comments</sub>
+ */
+
 { config, pkgs, lib, inputs, ... }:
 
 let
   unstable = import <nixos-unstable> {
-    config = { allowUnfree = true; };
+   config = { allowUnfree = true; };
   };
 in
 {
@@ -150,8 +158,11 @@ in
     };
     # Enable CUPS to print documents.
     printing.enable = true;
-    # Enable sound with pipewire.
-    pulseaudio.enable = false;
+    # Enable sound with pulseaudio.
+    pulseaudio = {
+      enable = false;
+      support32Bit = false;
+    };
     # Configure keymap in X11
     xserver = {
       # Enable the X11 windowing system.
@@ -171,8 +182,10 @@ in
     };
     pipewire = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
       pulse.enable = true;
       wireplumber.enable = true;
       # If you want to use JACK applications, uncomment this
@@ -191,7 +204,13 @@ in
   users.users.super = {
     isNormalUser = true;
     description = "zane";
-    extraGroups = [ "networkmanager" "wheel" "podman" "docker" ];
+    extraGroups = [ 
+      "networkmanager"
+      "wheel"
+      "podman"
+      "docker"
+      "audio"
+    ];
     subUidRanges = [
       {
         count = 65536;
@@ -279,14 +298,14 @@ in
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
-      noto-fonts-emoji
-      noto-fonts-color-emoji
       fira-code
-      nerd-fonts.fira-code
+      noto-fonts-emoji
       nerd-fonts._0xproto
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+      noto-fonts-color-emoji
       nerd-fonts.symbols-only
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.droid-sans-mono
     ];
     fontconfig = {
       enable = true;
@@ -305,6 +324,7 @@ in
     };
     enableAllTerminfo = true;
     systemPackages = (with pkgs; [
+      #STABLE PKGS
       gh
       go
       jq
@@ -339,7 +359,6 @@ in
       libdrm
       libcap
       waybar
-      neovim 
       ffmpeg
       udisks2
       ripgrep
@@ -377,9 +396,14 @@ in
       kdePackages.kio-fuse
       kdePackages.kio-extras
       kdePackages.kde-cli-tools
-      #inputs.ghostty.packages.${pkgs.system}.ghostty
+
+      #UNSTABLE PKGS
+      unstable.neovim 
+      unstable.makemkv
       unstable.ghostty
       unstable.tailscale
+
+      #WRAPPERS
       (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
     ]);
   };

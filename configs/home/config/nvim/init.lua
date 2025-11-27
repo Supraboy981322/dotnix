@@ -19,7 +19,7 @@ vim.cmd("set number")                -- Show absolute line number for the curren
 vim.cmd("set autoindent")            -- Enable auto-indentation
 vim.cmd("set tabstop=2")             -- Number of spaces a tab counts for
 vim.cmd("set shiftwidth=2")          -- Number of spaces to use for each step of (auto)indent
-vim.cmd("set expandtab")             -- Use spaces instead of tabs
+vim.cmd("set expandtab")             -- Use spaces instead of tabs (doesn't work for some reason)
 vim.cmd("set smartindent")           -- Smart auto-indenting for C-like languages
 vim.cmd("set mouse=")                -- Enable mouse support in all modes
 vim.cmd("set clipboard=unnamedplus") -- Use system clipboard for copy/paste

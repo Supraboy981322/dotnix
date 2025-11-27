@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=/run/current-system/sw/bin/ghostty %u
+Name=Konsole
+Icon=/home/super/Pictures/appIcons/ghostty2.png
+Comment=Mitchell Hashimoto's terminal emulator
