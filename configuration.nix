@@ -2,12 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-/*NOTE: RUN THE FOLLOWING COMMANDS TO PREVENT `nixos-unstable` err:
- *```sh
- *sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
- *sudo nix-channel --update
- *```
- *<sub>yeah, md in my configuration.nix comments</sub>
+/* >[!NOTE]
+ * >RUN THE FOLLOWING COMMANDS TO PREVENT `nixos-unstable` err:
+ * ```sh
+ * sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
+ * sudo nix-channel --update
+ * ```
+ * 
+ * Also, make sure to rebuild with `--impure`
+ * ```sh
+ * sudo nixos-rebuild switch --impure
+ * ```
+ * 
+ * <sub>yeah, md in my configuration.nix comments</sub>
  */
 
 { config, pkgs, lib, inputs, ... }:
