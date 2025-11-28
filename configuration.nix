@@ -402,7 +402,85 @@ in
       unstable.ffmpeg
       unstable.makemkv
       unstable.ghostty
+      unstable.tailscale      #STABLE PKGS
+      gh
+      jq
+      bc
+      vim
+      gdm
+      git
+      eza
+      wev
+      wget
+      swww
+      wofi
+      ruby
+      gimp
+      mako
+      loupe
+      libva
+      sshfs
+      meson
+      clang
+      jdk23
+      nitch
+      yt-dlp
+      zenity
+      nodejs
+      libdrm
+      libcap
+      waybar
+      udisks2
+      ripgrep
+      xdotool
+      python3
+      gnumake
+      hyprshot
+      chromium #gross, I know, my school requires it
+      hyprland
+      hyprlang
+      nfs-utils
+      hyprutils
+      sdbus-cpp
+      hyprpaper
+      playerctl
+      libnotify
+      libxcrypt
+      fastfetch
+      alsa-utils
+      hyprpicker
+      tor-browser
+      wl-clipboard
+      brightnessctl
+      bibata-cursors
+      discord-canary
+      kdePackages.kate
+      kdePackages.qtsvg
+      wayland-protocols
+      hyprland-protocols
+      kdePackages.dolphin
+      kdePackages.konsole
+      hyprwayland-scanner
+      kdePackages.gwenview
+      kdePackages.kio-fuse
+      kdePackages.kio-extras
+      kdePackages.kde-cli-tools
+
+      #UNSTABLE PKGS
+      unstable.go
+      unstable.gcc
+      unstable.zig
+      unstable.bun
+      unstable.vlc
+      unstable.mpv
+      unstable.socat
+      unstable.libgcc
+      unstable.neovim 
+      unstable.ffmpeg
+      unstable.makemkv
+      unstable.ghostty
       unstable.tailscale
+      unstable.distrobox
 
       #WRAPPERS
       (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
