@@ -298,14 +298,14 @@ in
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
-      fira-code
       noto-fonts-emoji
-      nerd-fonts._0xproto
-      nerd-fonts.fira-code
       noto-fonts-color-emoji
-      nerd-fonts.symbols-only
-      nerd-fonts.jetbrains-mono
+      fira-code
+      nerd-fonts.fira-code
+      nerd-fonts._0xproto
       nerd-fonts.droid-sans-mono
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
     ];
     fontconfig = {
       enable = true;
@@ -326,18 +326,13 @@ in
     systemPackages = (with pkgs; [
       #STABLE PKGS
       gh
-      go
       jq
       bc
       vim
       gdm
       git
       eza
-      bun
       wev
-      zig
-      vlc
-      mpv
       wget
       swww
       wofi
@@ -345,7 +340,6 @@ in
       gimp
       mako
       loupe
-      socat
       libva
       sshfs
       meson
@@ -355,11 +349,9 @@ in
       yt-dlp
       zenity
       nodejs
-      libgcc
       libdrm
       libcap
       waybar
-      ffmpeg
       udisks2
       ripgrep
       xdotool
@@ -398,7 +390,16 @@ in
       kdePackages.kde-cli-tools
 
       #UNSTABLE PKGS
+      unstable.go
+      unstable.gcc
+      unstable.zig
+      unstable.bun
+      unstable.vlc
+      unstable.mpv
+      unstable.socat
+      unstable.libgcc
       unstable.neovim 
+      unstable.ffmpeg
       unstable.makemkv
       unstable.ghostty
       unstable.tailscale
