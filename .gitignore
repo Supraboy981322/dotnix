@@ -3,3 +3,4 @@ configs/home/config/Supraboy981322/
 scripts/
 !scripts/start-hypr.sh
 !scripts/screenshot.sh
+!scritps/batteryWarning

@@ -69,7 +69,8 @@
     "format-icons": ["", "", "", "", ""],
     "format-time": "{H}h{M}m",
     "format-charging": "| {capacity}% ",
-    "interval": 30 
+    "signal": 8,
+    "interval": 30
   },
   "temperature": {
     "format": "{temperatureC}°C {icon}",

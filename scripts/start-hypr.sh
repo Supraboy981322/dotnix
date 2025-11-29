@@ -51,8 +51,13 @@ HyprCTL() {
     setcursor Bibata-Modern-Ice 12
 }
 
+batWarn() {
+  batteryWarning
+}
+
 wayBar \
   & hyprPaper \
   & confDisplay \
   & startMako \
-  & hyprCTL
+  & hyprCTL \
+  & batWarn \
