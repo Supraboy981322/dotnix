@@ -52,7 +52,7 @@ HyprCTL() {
 }
 
 batWarn() {
-  batteryWarning
+  /home/super/scripts/batteryWarning
 }
 
 wayBar \
@@ -60,4 +60,4 @@ wayBar \
   & confDisplay \
   & startMako \
   & hyprCTL \
-  & batWarn \
+  & batWarn 
