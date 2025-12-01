@@ -62,6 +62,17 @@ require("lazy").setup({
       name = "catppuccin",
       priority = 999,
     },
+    {   --alternative color scheme
+      "navarasu/onedark.nvim",
+      name = "onedark",
+      priority = 999,
+      config = function()
+        require('onedark').setup {
+          style = 'darker'
+        }
+        require('onedark').load()
+      end
+    },
     {
       "vhyrro/luarocks.nvim",
       priority = 9999, -- Very high priority is required

@@ -138,6 +138,7 @@ export PATH=$VITASDK/bin:$PATH
 #############################
 alias mkcd='. /home/super/scripts/mkcd'
 alias cls="clear"
+alias clsls="clear;ls"
 alias gettail="getTail"
 alias :q="exit"
 alias ls="eza"

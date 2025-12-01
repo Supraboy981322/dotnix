@@ -402,6 +402,8 @@ in
       unstable.bun
       unstable.vlc
       unstable.mpv
+      unstable.rustc
+      unstable.cargo
       unstable.socat
       unstable.libgcc
       unstable.neovim 
