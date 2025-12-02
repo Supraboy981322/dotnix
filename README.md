@@ -31,7 +31,7 @@ Desktop:
 ![desktop screenshot](images/desktop.png)
 
 NeoVim in Konsole:
-![screenshot of NeoVim in Console](images/konsole-neovim.png)
+![screenshot of NeoVim in Console](images/ghostty-neovim.png)
 
 Wofi
 ![screenshot of wofi on the desktop](images/wofi.png)
