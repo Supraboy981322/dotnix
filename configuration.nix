@@ -296,9 +296,16 @@ in
   };
 
   virtualisation = {
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
     podman = {
       enable = true;
-      dockerCompat = true;
+      #      dockerCompat = true;
     };
   };
 
@@ -343,6 +350,7 @@ in
       wget
       swww
       wofi
+      nmap
       ruby
       gimp
       mako
@@ -353,12 +361,16 @@ in
       clang
       jdk23
       nitch
+      dialog
       yt-dlp
       zenity
       nodejs
       libdrm
       libcap
       waybar
+      docker
+      podman
+      freerdp
       udisks2
       ripgrep
       xdotool
@@ -368,6 +380,8 @@ in
       chromium #gross, I know, my school requires it
       hyprland
       hyprlang
+      iproute2
+      libnotify
       nfs-utils
       hyprutils
       sdbus-cpp
