@@ -4,3 +4,5 @@ scripts/
 !scripts/start-hypr.sh
 !scripts/screenshot.sh
 !scritps/batteryWarning
+configs/home/docker/winapps/
+configs/home/config/winapps/
