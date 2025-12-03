@@ -413,7 +413,6 @@ in
       unstable.go
       unstable.gcc
       unstable.zig
-      unstable.bun
       unstable.vlc
       unstable.mpv
       unstable.rustc
