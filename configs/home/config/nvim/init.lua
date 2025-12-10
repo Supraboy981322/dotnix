@@ -213,11 +213,27 @@ vim.keymap.set(
   { silent = true }
 )
 
---`ctrl+s` to save
+--`ctrl`+`s` to save
 vim.keymap.set(
   {"v", "i", "n", "x"},
   "<C-s>",
   "<Cmd>w<CR>",
+  { noremap = true, silent = true }
+)
+
+--`alt`+`n` to move to next buffer
+vim.keymap.set(
+  "n",
+  "<M-n>",
+  "<Cmd>bn<CR>",
+  { noremap = true, silent = true }
+)
+
+--`alt`+`b` to move to previous buffer
+vim.keymap.set(
+  "n",
+  "<M-b>",
+  "<Cmd>bp<CR>",
   { noremap = true, silent = true }
 )
 
