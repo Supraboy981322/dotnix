@@ -42,7 +42,7 @@
           zig_0_15 = zig;
         })
       ];
-      nixosConfigurations.zane-desktop-pc = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.dontnix = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           {
