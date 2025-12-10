@@ -429,6 +429,7 @@ in
       unstable.ghostty
       unstable.tailscale
       unstable.distrobox
+      unstable.tree-sitter
       unstable.prismlauncher
 
       #WRAPPERS
