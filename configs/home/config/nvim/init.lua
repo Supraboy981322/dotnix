@@ -169,11 +169,11 @@ vim.api.nvim_create_user_command(
 
 vim.api.nvim_create_user_command(
   "Q",
-  function()
+  function(opts)
     if opts.bang then
-      vim.cmd("quit!")
+      vim.cmd("q!")
     else
-      vim.cmd("quit")
+      vim.cmd("q")
     end
   end,
   { bang = true, desc = "quit neovim" }
