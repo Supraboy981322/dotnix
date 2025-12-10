@@ -104,7 +104,7 @@ __mkps1_user_prompt() {
 }
 
 __mkps1() {
-    local ps1="\n$(__mkps1_box_top)$(__mkps1_debian_chroot)$(__mkps1_time)$(__mkps1_username)$(__mkps1_arrows) $(__mkps1_workdir)\n$(__mkps1_box_bottom)$(__mkps1_user_prompt)";
+  local ps1="\n$(__mkps1_box_top)$(__mkps1_debian_chroot)$(__mkps1_time)$(__mkps1_username)$(__mkps1_arrows) $(__mkps1_workdir)\n$(__mkps1_box_bottom)$(__mkps1_user_prompt)";
 
     echo "$ps1";
 }

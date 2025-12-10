@@ -106,7 +106,7 @@ in
   
   networking = {
     # Define hostname.
-    hostName = "zane-desktop-pc";
+    hostName = "dont_nix";
     networkmanager.enable = true;
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   };
@@ -210,7 +210,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.super = {
     isNormalUser = true;
-    description = "zane";
+    description = "don't";
     extraGroups = [ 
       "networkmanager"
       "wheel"
@@ -351,9 +351,12 @@ in
       swww
       wofi
       nmap
+      file
       ruby
       gimp
       mako
+      glib
+      glibc
       loupe
       libva
       sshfs
@@ -393,6 +396,7 @@ in
       alsa-utils
       hyprpicker
       tor-browser
+      libglibutil
       wl-clipboard
       brightnessctl
       bibata-cursors
@@ -418,6 +422,7 @@ in
       unstable.rustc
       unstable.cargo
       unstable.socat
+      unstable.lutris
       unstable.libgcc
       unstable.neovim 
       unstable.ffmpeg
@@ -425,9 +430,22 @@ in
       unstable.ghostty
       unstable.tailscale
       unstable.distrobox
+      unstable.prismlauncher
 
       #WRAPPERS
-      (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {})
+      (pkgs.wrapFirefox
+        (pkgs.firefox-unwrapped.override {
+          pipewireSupport = true;
+        }) 
+      {})
+      (lutris.override {
+        extraLibraries = pkgs: [
+          #add missing libs here
+        ];
+        extraPkgs = pkgs: [
+          #missing package deps here
+        ];
+      })
     ]);
   };
 
