@@ -367,7 +367,6 @@ in
       dialog
       yt-dlp
       zenity
-      nodejs
       libdrm
       libcap
       waybar
