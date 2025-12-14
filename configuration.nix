@@ -400,13 +400,16 @@ in
       brightnessctl
       bibata-cursors
       discord-canary
-      kdePackages.kate
-      kdePackages.qtsvg
       wayland-protocols
       hyprland-protocols
+      hyprwayland-scanner
+      gnome-system-monitor
+
+      #stuff I prefer from KDE
+      kdePackages.kate
+      kdePackages.qtsvg
       kdePackages.dolphin
       kdePackages.konsole
-      hyprwayland-scanner
       kdePackages.gwenview
       kdePackages.kio-fuse
       kdePackages.kio-extras
@@ -414,6 +417,8 @@ in
 
       #UNSTABLE PKGS
       unstable.go
+      unstable.zip
+      unstable.bun
       unstable.gcc
       unstable.zig
       unstable.vlc
@@ -425,6 +430,8 @@ in
       unstable.libgcc
       unstable.neovim 
       unstable.ffmpeg
+      unstable.busybox
+      unstable.openvpn
       unstable.makemkv
       unstable.ghostty
       unstable.tailscale

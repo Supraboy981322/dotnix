@@ -6,3 +6,4 @@ scripts/
 !scritps/batteryWarning
 configs/home/docker/winapps/
 configs/home/config/winapps/
+hardware-configuration.nix
