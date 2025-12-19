@@ -8,3 +8,4 @@ background-image-opacity = 0.005
 background-blur = true
 working-directory = home
 shell-integration-features = ssh-terminfo,ssh-env
+keybind = ctrl+enter=unbind

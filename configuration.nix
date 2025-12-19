@@ -378,6 +378,7 @@ in
       xdotool
       python3
       gnumake
+      obsidian
       hyprshot
       chromium #gross, I know, my school requires it
       hyprland
@@ -417,15 +418,19 @@ in
 
       #UNSTABLE PKGS
       unstable.go
+      unstable.lua
       unstable.zip
       unstable.bun
       unstable.gcc
       unstable.zig
       unstable.vlc
       unstable.mpv
+      unstable.wine
       unstable.rustc
       unstable.cargo
       unstable.socat
+      unstable.samba
+      unstable.wine64
       unstable.lutris
       unstable.libgcc
       unstable.neovim 
@@ -434,10 +439,13 @@ in
       unstable.openvpn
       unstable.makemkv
       unstable.ghostty
+      unstable.luarocks
       unstable.tailscale
       unstable.distrobox
       unstable.tree-sitter
       unstable.prismlauncher
+      unstable.wine64Packages.waylandFull
+      unstable.wineWow64Packages.waylandFull
 
       #WRAPPERS
       (pkgs.wrapFirefox
