@@ -62,8 +62,7 @@ __mkps1_arrows() {
     local red=`tput setaf 1`;
     local green=`tput setaf 34`;
     local reset=`tput sgr0`;
-    echo "\[${bold}${red}\]>>\[${green}\]>\[${reset}\]";
-    #echo "\[${bold}${red}\]🮥🮥\[${green}\]🮥\[${reset}\]";
+    echo "\[${bold}${red}\]-->\[${reset}\]";
 }
 
 __mkps1_workdir() {
