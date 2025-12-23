@@ -10,3 +10,5 @@ background-blur = true
 working-directory = home
 shell-integration-features = ssh-terminfo,ssh-env
 keybind = ctrl+enter=unbind
+window-padding-x = 0
+window-padding-y = 0

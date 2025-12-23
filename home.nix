@@ -14,6 +14,10 @@ in
     home = {
       stateVersion = "18.09";
       file = {
+        ".bashrc" = {
+      	  enable = true;
+      	  source = ./configs/root/bashrc;
+      	};
         ".config/nvim" = {
       	  force = true;
       	  enable = true;
@@ -81,11 +85,6 @@ in
         ".bashrc" = {
       	  enable = true;
       	  source = ./configs/home/bashrc;
-      	};
-      	".mkps1.sh" = {
-      	  enable = true;
-      	  executable = true;
-      	  source = ./configs/home/mkps1.sh;
       	};
       	".profile" = {
       	  enable = true;
