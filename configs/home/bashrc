@@ -136,7 +136,6 @@ export PATH=$VITASDK/bin:$PATH
 #############################
 #          aliases          #
 #############################
-alias mkcd='. /home/super/scripts/mkcd'
 alias cls="clear"
 alias clsls="clear;ls"
 alias gettail="getTail"
@@ -159,6 +158,11 @@ getTail() {
 }
 cdls() {
   cd "$1"
+  eza ${@:2}
+}
+mkcd() {
+  mkdir "${1}"
+  cd "${1}"
   eza ${@:2}
 }
 

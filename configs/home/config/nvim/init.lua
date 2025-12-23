@@ -74,6 +74,25 @@ require("lazy").setup({
       end
     },
     {
+      "sphamba/smear-cursor.nvim",
+      opts = {
+        --smear when switching buffers and windows
+        smear_between_buffers = true;
+
+        --smear when moving within line or to nearby lines
+        smear_between_neighbor_lines = true;
+
+        --draw smear in buffer instead of screen on scroll
+        scroll_buffer_space = true;
+
+        --smear in insert mode
+        smear_insert_mode = true;
+
+        --set color to match ghostty cursor
+        cursor_color = "#21f6bc";
+      },
+    },
+    {
       "vhyrro/luarocks.nvim",
       priority = 9999, -- Very high priority is required
       config = true,
@@ -86,6 +105,10 @@ require("lazy").setup({
         "MunifTanjim/nui.nvim",
         "nvim-tree/nvim-web-devicons",
       },
+      lazy = false
+    },
+    {
+      "xiyaowong/transparent.nvim",
       lazy = false
     },
     {
@@ -117,6 +140,12 @@ require("lazy").setup({
       cmd = "Centerpad",
     },
     {
+      "folke/tokyonight.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
+    },
+    {
       "nvim-treesitter/nvim-treesitter",
       branch = 'master',
       lazy = false,
@@ -140,6 +169,19 @@ require("lazy").setup({
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
+})
+
+--require("transparent").setup({
+--  groups = {
+--    
+--  },
+--})
+
+require("smear_cursor").setup({
+  cursor_color = "#21f6bc",
+  stiffness = 0.8,
+  trailing_stiffness = 0.5,
+  distance_stop_animating = 0.5,
 })
 
 vim.api.nvim_create_user_command(
@@ -198,6 +240,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     vim.cmd("BufferOrderByBufferNumber")
+    vim.cmd("TransparentEnable")
   end,
 })
 
@@ -270,7 +313,8 @@ vim.keymap.set(
 )
 
 --catppuccin color scheme with no bg
-vim.cmd.colorscheme "catppuccin"
+vim.cmd[[colorscheme tokyonight-moon]]
+--vim.cmd[[colorscheme catppuccin]]
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'FloatBorder', { bg = 'none' })
@@ -322,4 +366,6 @@ vim.filetype.add({
   },
 })
 
-vim.treesitter.language.register('html', { 'elh', 'bhtm', 'bhtml' })
+vim.treesitter.language.register(
+  'html', { 'elh', 'bhtm', 'bhtml' }
+)

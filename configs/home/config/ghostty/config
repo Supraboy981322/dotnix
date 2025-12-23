@@ -1,4 +1,5 @@
-font-family = FiraCode Nerd Font Mono
+font-family = "JetBrainsMono Nerd Font Mono"
+font-synthetic-style = true
 theme = Cyberpunk
 background = #0a1124
 background-image = /home/super/Pictures/Burger-King-Torture-Bliss.png

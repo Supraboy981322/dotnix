@@ -70,7 +70,7 @@ __mkps1_workdir() {
     local cyan=`tput setaf 45`;
     local reset=`tput sgr0`;
 
-    echo "\[${bold}${cyan}\]\w\[${reset}\]";
+    echo "\[${bold}$(tput setaf 70)\]\w\[${reset}\]";
 }
 
 __mkps1_git() {
