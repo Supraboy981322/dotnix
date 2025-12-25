@@ -57,12 +57,13 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    {   --color theme
-      "catppuccin/nvim",
-      name = "catppuccin",
-      priority = 999,
+    { --color scheme
+      "folke/tokyonight.nvim",
+      lazy = false,
+      priority = 1000,
+      opts = {},
     },
-    {   --alternative color scheme
+    { --alternative color scheme
       "navarasu/onedark.nvim",
       name = "onedark",
       priority = 999,
@@ -78,16 +79,12 @@ require("lazy").setup({
       opts = {
         --smear when switching buffers and windows
         smear_between_buffers = true;
-
         --smear when moving within line or to nearby lines
         smear_between_neighbor_lines = true;
-
         --draw smear in buffer instead of screen on scroll
         scroll_buffer_space = true;
-
         --smear in insert mode
         smear_insert_mode = true;
-
         --set color to match ghostty cursor
         cursor_color = "#21f6bc";
       },
@@ -136,16 +133,6 @@ require("lazy").setup({
       version = "^1.0.0",
     },
     {
-      "smithbm2316/centerpad.nvim",
-      cmd = "Centerpad",
-    },
-    {
-      "folke/tokyonight.nvim",
-      lazy = false,
-      priority = 1000,
-      opts = {},
-    },
-    {
       "nvim-treesitter/nvim-treesitter",
       branch = 'master',
       lazy = false,
@@ -156,6 +143,10 @@ require("lazy").setup({
       opts = {}
     },
     {
+      "shortcuts/no-neck-pain.nvim",
+      version = "*"
+    },
+    {
       "rmagatti/auto-session",
       lazy = false,
       ---enables autocomplete for opts
@@ -163,19 +154,12 @@ require("lazy").setup({
       ---@type AutoSession.Config
       opts = {
         suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-        -- log_level = 'debug',
       },
     },
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-
---require("transparent").setup({
---  groups = {
---    
---  },
---})
 
 require("smear_cursor").setup({
   cursor_color = "#21f6bc",
@@ -308,7 +292,7 @@ vim.keymap.set(
 vim.keymap.set(
   {"v", "i", "n", "x"},
   "<M-p>",
-  "<Cmd>Centerpad<CR>",
+  "<Cmd>NoNeckPain<CR>",
   { noremap = true, silent = true }
 )
 
