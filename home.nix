@@ -90,6 +90,10 @@ in
       	  enable = true;
       	  source = ./configs/home/profile;
        	};
+        ".psh_rc" = {
+          enable = true;
+          source = ./configs/home/psh_rc;
+        };
       };
     };
   };

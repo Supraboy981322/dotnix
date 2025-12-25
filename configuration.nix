@@ -245,6 +245,12 @@ in
     };
   };
   programs = {
+    java = {
+      enable = true;
+      package = pkgs.jdk23.override {
+        enableJavaFX = true;
+      };
+    };
     firefox = {
       enable = true;
       preferences = {
@@ -356,6 +362,7 @@ in
       gimp
       mako
       glib
+      gtk3
       glibc
       loupe
       libva
@@ -393,6 +400,7 @@ in
       libnotify
       libxcrypt
       fastfetch
+      pkg-config
       alsa-utils
       hyprpicker
       tor-browser
@@ -405,6 +413,7 @@ in
       hyprland-protocols
       hyprwayland-scanner
       gnome-system-monitor
+      javaPackages.openjfx23
 
       #stuff I prefer from KDE
       kdePackages.kate

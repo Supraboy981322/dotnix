@@ -158,7 +158,7 @@ __mkps1() {
   
   #adjust printed dir based on term width 
   local term_width=$((`tput cols`-1))
-  local pre_line="  ╭ 00:00xx  ${HOSTNAME}@${USER}  --> "
+  local pre_line=" ╭ 00:00xx  ${HOSTNAME}@${USER}  --> "
   local pre_len=${#pre_line}
   #length of full first line
   local total_len=$((${#curDir}+${pre_len}))
@@ -173,14 +173,14 @@ __mkps1() {
   fi
 
   #build $PS1
-  PS1+="\n  "
+  PS1+="\n "
   PS1+="\[${cyan}\]╭\[${reset}\]"
   PS1+="\[${BG_GRAY}${white}\] ${timeStamp} \[${reset}\] "
   PS1+="\[${yellow}\]\h\[${reset}${magenta}\]"
   PS1+="@\[${reset}${cyan}\]\u\[${reset}\]"
   PS1+=" \[${bold}${red}\]-->\[${reset}\] "
   PS1+="\[${bold}${cyan}\]${curDir}\[${reset}\]"
-  PS1+="\n  " #start second line
+  PS1+="\n " #start second line
   PS1+="\[${cyan}\]╰\[${reset}\]"
   PS1+="\[${bold}${prompt_color}\]\$\[${reset}\] "
 
