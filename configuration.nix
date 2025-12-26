@@ -454,6 +454,9 @@ in
       unstable.distrobox
       unstable.tree-sitter
       unstable.prismlauncher
+      unstable.lua52Packages.cjson
+      unstable.lua52Packages.luasec
+      unstable.lua52Packages.luasocket
       unstable.wine64Packages.waylandFull
       unstable.wineWow64Packages.waylandFull
 

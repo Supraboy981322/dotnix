@@ -7,3 +7,4 @@ scripts/
 configs/home/docker/winapps/
 configs/home/config/winapps/
 hardware-configuration.nix
+configs/home/config/nvim/twitch
