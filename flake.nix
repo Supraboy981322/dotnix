@@ -1,5 +1,5 @@
 {
-  description = "nixos flakes suck";
+  description = "nix flakes suck";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
@@ -42,7 +42,7 @@
           zig_0_15 = zig;
         })
       ];
-      nixosConfigurations.dontnix = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.keepernix = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           {

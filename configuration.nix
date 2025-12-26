@@ -106,7 +106,7 @@ in
   
   networking = {
     # Define hostname.
-    hostName = "dont_nix";
+    hostName = "keeper_nix";
     networkmanager.enable = true;
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   };
@@ -210,7 +210,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.super = {
     isNormalUser = true;
-    description = "don't";
+    description = "keeper";
     extraGroups = [ 
       "networkmanager"
       "wheel"
@@ -378,6 +378,7 @@ in
       libcap
       waybar
       docker
+      espeak
       podman
       freerdp
       udisks2
