@@ -388,6 +388,7 @@ in
       gnumake
       obsidian
       hyprshot
+      libglvnd
       chromium #gross, I know, my school requires it
       hyprland
       hyprlang
@@ -405,11 +406,13 @@ in
       alsa-utils
       hyprpicker
       tor-browser
+      xorg.libX11
       libglibutil
       wl-clipboard
       brightnessctl
       bibata-cursors
       discord-canary
+      xorg.libX11.dev
       wayland-protocols
       hyprland-protocols
       hyprwayland-scanner
@@ -439,6 +442,7 @@ in
       unstable.rustc
       unstable.cargo
       unstable.socat
+      unstable.cmake
       unstable.samba
       unstable.wine64
       unstable.lutris
@@ -453,6 +457,7 @@ in
       unstable.tailscale
       unstable.distrobox
       unstable.tree-sitter
+      unstable.superTuxKart
       unstable.prismlauncher
       unstable.lua52Packages.cjson
       unstable.lua52Packages.luasec
