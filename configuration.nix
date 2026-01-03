@@ -68,7 +68,6 @@ in
     graphics = {
       enable = true;
       enable32Bit = true;
-
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
@@ -145,6 +144,25 @@ in
   };
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    printing = {
+      enable = true;
+      drivers = with pkgs; [
+        cups-filters
+        cups-browsed
+        gutenprint
+        gutenprintBin
+        hplip
+        brlaser
+        cnijfilter2
+        epson-escpr2
+        epson-escpr
+      ];
+    };
     udisks2 = {
       enable = true;
       mountOnMedia = true;
@@ -163,8 +181,6 @@ in
       enable = true;
       useRoutingFeatures = "both";
     };
-    # Enable CUPS to print documents.
-    printing.enable = true;
     # Enable sound with pulseaudio.
     pulseaudio = {
       enable = false;
@@ -370,6 +386,7 @@ in
       meson
       clang
       jdk23
+      hplip
       nitch
       dialog
       yt-dlp
@@ -386,9 +403,9 @@ in
       xdotool
       python3
       gnumake
+      libglvnd
       obsidian
       hyprshot
-      libglvnd
       chromium #gross, I know, my school requires it
       hyprland
       hyprlang
@@ -405,8 +422,8 @@ in
       pkg-config
       alsa-utils
       hyprpicker
-      tor-browser
       xorg.libX11
+      tor-browser
       libglibutil
       wl-clipboard
       brightnessctl
@@ -439,10 +456,10 @@ in
       unstable.vlc
       unstable.mpv
       unstable.wine
+      unstable.cmake
       unstable.rustc
       unstable.cargo
       unstable.socat
-      unstable.cmake
       unstable.samba
       unstable.wine64
       unstable.lutris

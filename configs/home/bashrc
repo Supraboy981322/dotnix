@@ -208,9 +208,10 @@ alias CURDIR="basename \"${PWD}\""
 #   more complex aliases   #
 ############################
 #get just ipv4 of tailscale machine
-getTail() {
+getTail() (
+  set -eou pipefail
   tailscale ip "${1}" | sed -n "1p"
-} #cd into dir then eza
+) #cd into dir then eza
 cdls() {
   cd "$1"
   eza ${@:2}
@@ -218,7 +219,21 @@ cdls() {
 mkcd() {
   mkdir "${1}"
   cd "${1}"
-}
+} #count lines of files from args
+countsLines() (
+  set -eou pipefail
+  local -i res=0
+  local files=$(ls -1 "${@}")
+  for fi in ${files}; do
+    local -i new=$(cat "${fi}" | wc -l)
+    ((res += new))
+  done
+  printf "%d\n" "${res}"
+) #printf to stderr
+errlog() (
+  set -eou pipefail
+  printf "${@}" 1>&2
+)
 
 
 #############################

@@ -292,7 +292,9 @@ vim.keymap.set(
 vim.keymap.set(
   {"v", "i", "n", "x"},
   "<M-p>",
-  "<Cmd>NoNeckPain<CR>",
+  function()
+    vim.cmd("NoNeckPain")
+  end,
   { noremap = true, silent = true }
 )
 
