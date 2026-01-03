@@ -4,7 +4,8 @@
 #used to get the name of a monitor
 #  which reports a different name
 #    at each boot
-getMonitorByDesc() {
+getMonitorByDesc() (
+  set -eou pipefail
   #get the monitors' data as JSON
   json="$(hyprctl monitors -j)"
 
@@ -22,7 +23,7 @@ getMonitorByDesc() {
 
   #return the value
   printf "${name}"
-}
+)
 
 wayBar() {
   waybar \
@@ -39,7 +40,6 @@ startMako() {
 }
 
 confDisplay() {
-
   xrandr \
     --output \
     $(getMonitorsByDesc "LG Electronics LG ULTRAGEAR 209NTNH3L775") \
@@ -52,7 +52,7 @@ HyprCTL() {
 }
 
 batWarn() {
-  /home/super/scripts/batteryWarning
+  /home/super/scripts/battery_notifier
 }
 
 wayBar \
