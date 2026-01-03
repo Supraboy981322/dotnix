@@ -4,6 +4,8 @@ scripts/
 !scripts/start-hypr.sh
 !scripts/screenshot.sh
 !scripts/battery_notifier
+!scripts/toggleWaybar.sh
+!scripts/minimizeWindow.sh
 configs/home/docker/winapps/
 configs/home/config/winapps/
 hardware-configuration.nix
