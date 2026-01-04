@@ -6,6 +6,11 @@ These are my current dotfiles for NixOS..... that's about it.
 
 ---
 
+>[!WARNING]
+>Some of the scripts in my setup are binaries, which may not run on all systems as I have them, so if you do use my setup, I recommend that you manually install the binaries (they're mostly written in Go, so you can just use `go install`). [see here for a list of the scripts used in this setup and their repo](##Scripts)
+
+---
+
 ## Details
 - NixOS (obviously)
 - Hyprland
@@ -35,3 +40,35 @@ NeoVim in Ghostty:
 
 Wofi
 ![screenshot of wofi on the desktop](images/wofi.png)
+
+## Scripts
+
+>[!NOTE]
+>Any scripts marked as a binary are highly recommended that you install yourself, and not use the ones from my config
+
+- [start-hypr.sh](scripts/start-hypr.sh) (Bash)
+  - A script that just runs my other scripts when Hyprland starts
+  - Startup tasks and dependencies
+    - `jq`
+    - `hyprctl`
+    - waybar
+    - hyprpaper
+    - mako
+    - `xrandr`
+    - [battery_notifier](https://github.com/Supraboy981322/misc-scripts/battery_notifier)
+- [screenshot.sh](scripts/screenshot.sh) (Bash)
+  - A script that I have my screenshot keybind mapped to.
+  - Dependencies
+    - hyprshot
+    - busybox
+- [battery_notifier](https://github.com/Supraboy981322/misc-scripts/battery_notifier) (Go binary)
+  - A daemon that watches the battery and AC power state to send a notification when low or unplugged/plugged-in
+  - Dependencies
+    - `notify-send`
+    - busybox
+- [toggleWaybar.sh](scripts/toggleWaybar.sh) (Bash)
+  - Mapped to a keybind so I can show/hide waybar
+- [minimizeWindow.sh](scripts/minimizeWindow.sh) (Bash)
+  - Mapped to a keybind so I can move a window to a different workspace without switching to it
+  - Dependencies
+    - `xdotool`
