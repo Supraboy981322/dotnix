@@ -7,7 +7,7 @@ These are my current dotfiles for NixOS..... that's about it.
 ---
 
 >[!WARNING]
->Some of the scripts in my setup are binaries, which may not run on all systems as I have them, so if you do use my setup, I recommend that you manually install the binaries (they're mostly written in Go, so you can just use `go install`). [see here for a list of the scripts used in this setup and their repo](##Scripts)
+>Some of the scripts in my setup are binaries, which may not run on all systems as I have them, so if you do use my setup, I recommend that you manually install the binaries (they're mostly written in Go, so you can just use `go install`). [see here for a list of the scripts used in this setup and their repo](#scripts)
 
 ---
 
@@ -55,13 +55,13 @@ Wofi
     - hyprpaper
     - mako
     - `xrandr`
-    - [battery_notifier](https://github.com/Supraboy981322/misc-scripts/battery_notifier)
+    - [battery_notifier](https://github.com/Supraboy981322/misc-scripts/tree/master/battery_notifier)
 - [screenshot.sh](scripts/screenshot.sh) (Bash)
   - A script that I have my screenshot keybind mapped to.
   - Dependencies
     - hyprshot
     - busybox
-- [battery_notifier](https://github.com/Supraboy981322/misc-scripts/battery_notifier) (Go binary)
+- [battery_notifier](https://github.com/Supraboy981322/misc-scripts/tree/master/battery_notifier) (Go binary)
   - A daemon that watches the battery and AC power state to send a notification when low or unplugged/plugged-in
   - Dependencies
     - `notify-send`
