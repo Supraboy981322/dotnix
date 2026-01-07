@@ -374,6 +374,7 @@ in
       wofi
       nmap
       file
+      zlib
       ruby
       gimp
       mako
@@ -403,6 +404,7 @@ in
       xdotool
       python3
       gnumake
+      #      mesa.dev
       libglvnd
       obsidian
       hyprshot
@@ -410,6 +412,9 @@ in
       hyprland
       hyprlang
       iproute2
+      zlib.dev
+      stdenv.cc
+      glibc.dev
       libnotify
       nfs-utils
       hyprutils
@@ -422,6 +427,7 @@ in
       pkg-config
       alsa-utils
       hyprpicker
+      openssl.dev
       xorg.libX11
       tor-browser
       libglibutil
@@ -429,6 +435,8 @@ in
       brightnessctl
       bibata-cursors
       discord-canary
+      ffmpeg.lib.dev
+      qt5.qtbase.dev
       xorg.libX11.dev
       wayland-protocols
       hyprland-protocols
@@ -468,7 +476,6 @@ in
       unstable.ffmpeg
       unstable.busybox
       unstable.openvpn
-      unstable.makemkv
       unstable.ghostty
       unstable.luarocks
       unstable.tailscale
