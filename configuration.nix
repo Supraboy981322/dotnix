@@ -403,6 +403,7 @@ in
       ripgrep
       xdotool
       python3
+      gparted
       gnumake
       #      mesa.dev
       libglvnd
@@ -413,6 +414,7 @@ in
       hyprlang
       iproute2
       zlib.dev
+      html-tidy
       stdenv.cc
       glibc.dev
       libnotify
@@ -472,17 +474,20 @@ in
       unstable.wine64
       unstable.lutris
       unstable.libgcc
-      unstable.neovim 
+      unstable.neovim
       unstable.ffmpeg
       unstable.busybox
       unstable.openvpn
       unstable.ghostty
+      unstable.prettier
       unstable.luarocks
       unstable.tailscale
       unstable.distrobox
+      unstable.rpi-imager
       unstable.tree-sitter
       unstable.superTuxKart
       unstable.prismlauncher
+      unstable.mullvad-browser 
       unstable.lua52Packages.cjson
       unstable.lua52Packages.luasec
       unstable.lua52Packages.luasocket
