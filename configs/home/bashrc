@@ -131,22 +131,27 @@ __mkps1() {
   PS1=""
 
   #define colors
-  local BG_GRAY=`tput setab 240`
-  local white=`tput setaf 7`
-  local yellow=`tput setaf 221`
+  local BG_GRAY="\033[48;2;75;75;75m"
+  local white="\033[38;2;255;255;255m"
+  #local yellow=`tput setaf 221`
+  local yellow="\033[38;2;255;216;171m"
   local magenta=`tput setaf 249`
-  local cyan=`tput setaf 45`
+  #local cyan=`tput setaf 45`
+  local cyan="\033[38;2;134;225;252m"
   local bold=`tput bold`
-  local red=`tput setaf 1`
-  local green=`tput setaf 34`
+  #local red=`tput setaf 1`
+  local red="\033[38;2;255;117;127m"
+  #local green=`tput setaf 34`
+  local green="\033[38;2;195;232;141m"
   local reset=`tput sgr0`
   local green2=`tput setaf 70`
   local timeStamp="$(date +%I:%M%P)"
-  local prompt_color=""
+  local prompt_color="${green}"
 
+  local p="?"
   #makes the prompt symbol red if bad return code 
   if [ ${EXIT_CODE} != 0 ]; then
-    prompt_color="${red}"
+    prompt_color="${red}" ; p="!"
   fi
   
   #get current dir
@@ -172,6 +177,9 @@ __mkps1() {
     fi
   fi
 
+  #PS1+=" ╭[09:03pm] keepernix@super --> ~/foo/bar/baz"
+  #PS1+=" ╰(?) "
+
   #build $PS1
   PS1+="\n "
   PS1+="\[${cyan}\]╭\[${reset}\]"
@@ -181,8 +189,9 @@ __mkps1() {
   PS1+=" \[${bold}${red}\]-->\[${reset}\] "
   PS1+="\[${bold}${cyan}\]${curDir}\[${reset}\]"
   PS1+="\n " #start second line
-  PS1+="\[${cyan}\]╰\[${reset}\]"
-  PS1+="\[${bold}${prompt_color}\]\$\[${reset}\] "
+  PS1+="\[${cyan}\]╰(\[${reset}\]"
+  PS1+="\[${bold}${prompt_color}\]${p}\[${reset}\]"
+  PS1+="\[${cyan}\])\[${reset}\] "
 
   true #attempt at reseting $? (doesn't work)
 }
