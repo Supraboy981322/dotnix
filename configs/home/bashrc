@@ -248,11 +248,12 @@ errlog() (
 #############################
 #        custom path        #
 #############################
-PATH=$PATH:/home/super/go/bin/:$PATH
-PATH=$PATH:/home/super/bin
-PATH=$PATH:/home/super/scripts
-PATH=$PATH:/home/super/.local/share/gem/ruby/3.3.0/bin
-PATH=$PATH:/home/super/.local/bin
+PATH="${PATH}:${HOME}/go/bin"
+PATH="${PATH}:${HOME}/bin"
+PATH="${PATH}:${HOME}/scripts"
+PATH="${PATH}:${HOME}/.local/share/gem/ruby/3.3.0/bin"
+PATH="${PATH}:${HOME}/.local/bin"
+PATH="${PATH}:${HOME}/.npm-packages/bin"
 
 
 #############################
@@ -260,10 +261,12 @@ PATH=$PATH:/home/super/.local/bin
 #############################
 #vitasdk (PS Vita homebew)
 export VITASDK=/usr/local/vitasdk
-export PATH=$VITASDK/bin:$PATH
+export PATH=$VITASDK/bin:${PATH}
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export BUN_INSTALL="${HOME}/.bun"
+export PATH="$BUN_INSTALL/bin:${PATH}"
+#go
+export GOBIN="${HOME}/go/bin"
 # make neovim the default
 export EDITOR='/usr/bin/nvim'
 export VISUAL='/usr/bin/nvim'

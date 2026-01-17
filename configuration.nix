@@ -465,12 +465,14 @@ in
       unstable.zig
       unstable.vlc
       unstable.mpv
+      unstable.nasm
       unstable.wine
       unstable.cmake
       unstable.rustc
       unstable.cargo
       unstable.socat
       unstable.samba
+      unstable.nodejs
       unstable.wine64
       unstable.lutris
       unstable.libgcc
