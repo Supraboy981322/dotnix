@@ -40,7 +40,7 @@ vim.api.nvim_create_user_command(
 
 --make `d` not yank
 vim.api.nvim_set_keymap(
-  'n', 'd', '"_d', 
+  'n', 'd', '"_d',
   { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
@@ -52,7 +52,7 @@ vim.api.nvim_set_keymap(
 vim.keymap.set(
   "n",
   "<leader>e",
-  ":Neotree<CR>",
+  ":Neotree<CR>", 
   { silent = true }
 )
 
@@ -68,7 +68,7 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "<M-n>",
-  "<Cmd>bn<CR>",
+  "<Cmd>bn<CR>", 
   { noremap = true, silent = true }
 )
 
@@ -100,7 +100,7 @@ vim.keymap.set(
 --  (from any mode, including term)
 vim.keymap.set(
   {"v", "i", "n", "x", "t"},
-  "<M-;>", "<C-\\><C-n>", 
+  "<M-;>", "<C-\\><C-n>",
   { noremap = true, silent = true }
 )
 
@@ -121,6 +121,22 @@ vim.keymap.set(
   "<M-d>",
   function()
     vim.diagnostic.open_float()
+  end,
+  { noremap = true, silent = true }
+)
+vim.keymap.set(
+  {"v", "i", "n", "x"},
+  "<M-]>",
+  function()
+    vim.diagnostic.goto_next()
+  end,
+  { noremap = true, silent = true }
+)
+vim.keymap.set(
+  {"v", "i", "n", "x"},
+  "<M-[>",
+  function()
+    vim.diagnostic.goto_prev()
   end,
   { noremap = true, silent = true }
 )
