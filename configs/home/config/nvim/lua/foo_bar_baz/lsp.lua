@@ -13,6 +13,24 @@ vim.diagnostic.config({
   update_in_insert = true,
 })
 
+vim.lsp.config('clangd', {
+  cmd = {
+    "/run/current-system/sw/bin/clangd",
+    "--background-index", "--clang-tidy",
+    "--log=verbose"
+  },
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  root_markers = {
+    ".git",
+  },
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp", "objc", "objcpp", },
+  callback = function()
+    vim.lsp.enable("clangd")
+  end,
+})
+
 vim.lsp.config('lua_ls', {
   cmd = { "lua-language-server" },
   filetypes = { "lua" },

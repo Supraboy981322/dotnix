@@ -125,6 +125,9 @@ require("lazy").setup({
           "zls",
           "tailwindcss",
         },
+        servers = {
+          clangd = { mason = false, },
+        },
       },
       dependencies = {
         "mason-org/mason.nvim",

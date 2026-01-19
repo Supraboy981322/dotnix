@@ -486,6 +486,7 @@ in
       unstable.tailscale
       unstable.distrobox
       unstable.rpi-imager
+      unstable.clang-tools
       unstable.tree-sitter
       unstable.superTuxKart
       unstable.prismlauncher
