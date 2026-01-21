@@ -490,6 +490,7 @@ in
       unstable.tree-sitter
       unstable.superTuxKart
       unstable.prismlauncher
+      unstable.signal-desktop
       unstable.mullvad-browser 
       unstable.lua52Packages.cjson
       unstable.lua52Packages.luasec
