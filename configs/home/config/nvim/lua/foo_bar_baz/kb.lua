@@ -146,7 +146,7 @@ vim.keymap.set(
   {"v", "n", "s", "i"},
   "<left>",
   function()
-    local cur = vim.fs.mode()
+    local cur = vim.fn.mode()
     local key = "h"
     local dir = "left"
     if cur == "i" then
@@ -162,7 +162,7 @@ vim.keymap.set(
   {"v", "n", "s", "i"},
   "<right>",
   function()
-    local cur = vim.fs.mode()
+    local cur = vim.fn.mode()
     local key = "l"
     local dir = "right"
     if cur == "i" then
@@ -178,7 +178,7 @@ vim.keymap.set(
   {"v", "n", "s", "i"},
   "<up>",
   function()
-    local cur = vim.fs.mode()
+    local cur = vim.fn.mode()
     local key = "k"
     local dir = "up"
     if cur == "i" then
@@ -194,7 +194,7 @@ vim.keymap.set(
   {"v", "n", "s", "i"},
   "<down>",
   function()
-    local cur = vim.fs.mode()
+    local cur = vim.fn.mode()
     local key = "j"
     local dir = "down"
     if cur == "i" then
