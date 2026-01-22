@@ -140,3 +140,95 @@ vim.keymap.set(
   end,
   { noremap = true, silent = true }
 )
+
+--disable arrow keys
+vim.keymap.set(
+  {"v", "n", "s", "i"},
+  "<left>",
+  function()
+    local cur = vim.fs.mode()
+    local key = "h"
+    local dir = "left"
+    if cur == "i" then
+      key = "<M-"..key..">"
+    else
+      key = "<"..key..">"
+    end
+    print("use "..key.." to move "..dir)
+  end,
+  { noremap = true, silent = false }
+)
+vim.keymap.set(
+  {"v", "n", "s", "i"},
+  "<right>",
+  function()
+    local cur = vim.fs.mode()
+    local key = "l"
+    local dir = "right"
+    if cur == "i" then
+      key = "<M-"..key..">"
+    else
+      key = "<"..key..">"
+    end
+    print("use "..key.." to move "..dir)
+  end,
+  { noremap = true, silent = false }
+)
+vim.keymap.set(
+  {"v", "n", "s", "i"},
+  "<up>",
+  function()
+    local cur = vim.fs.mode()
+    local key = "k"
+    local dir = "up"
+    if cur == "i" then
+      key = "<M-"..key..">"
+    else
+      key = "<"..key..">"
+    end
+    print("use "..key.." to move "..dir)
+  end,
+  { noremap = true, silent = false }
+)
+vim.keymap.set(
+  {"v", "n", "s", "i"},
+  "<down>",
+  function()
+    local cur = vim.fs.mode()
+    local key = "j"
+    local dir = "down"
+    if cur == "i" then
+      key = "<M-"..key..">"
+    else
+      key = "<"..key..">"
+    end
+    print("use "..key.." to move "..dir)
+  end,
+  { noremap = true, silent = false }
+)
+
+-- map 'ctrl'+['h', 'j', 'k', or 'l'] to normal mode motion
+vim.keymap.set(
+  {"v", "n", "s", "i"},
+  "<M-h>",
+  "<C-o>h",
+  { noremap = true, silent = true }
+)
+vim.keymap.set(
+  {"v", "n", "s", "i"},
+  "<M-j>",
+  "<C-o>j",
+  { noremap = true, silent = true }
+)
+vim.keymap.set(
+  {"v", "n", "s", "i"},
+  "<M-k>",
+  "<C-o>k",
+  { noremap = true, silent = true }
+)
+vim.keymap.set(
+  {"v", "n", "s", "i"},
+  "<M-l>",
+  "<C-o>l",
+  { noremap = true, silent = true }
+)

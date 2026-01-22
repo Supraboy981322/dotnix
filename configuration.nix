@@ -472,6 +472,7 @@ in
       unstable.cargo
       unstable.socat
       unstable.samba
+      unstable.emacs # might try this at some point
       unstable.nodejs
       unstable.wine64
       unstable.lutris
@@ -481,10 +482,12 @@ in
       unstable.busybox
       unstable.openvpn
       unstable.ghostty
+      unstable.qrencode
       unstable.prettier
       unstable.luarocks
       unstable.tailscale
       unstable.distrobox
+      unstable.signal-cli
       unstable.rpi-imager
       unstable.clang-tools
       unstable.tree-sitter
