@@ -379,7 +379,6 @@ in
       gimp
       mako
       glib
-      gtk3
       glibc
       loupe
       libva
