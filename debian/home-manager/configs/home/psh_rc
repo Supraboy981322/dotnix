@@ -1,0 +1,7 @@
+["PS1"] := ""
+["max history"] := 10
+["aliases"] := |
+  ["cls"] := "clear"
+  [":q"] := "exit"
+  ["ls"] := "eza"
+|

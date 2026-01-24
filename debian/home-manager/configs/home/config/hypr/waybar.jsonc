@@ -1,0 +1,153 @@
+{
+  "layer": "top",
+  "position": "top",
+  "autohide": true,
+  "autohide-blocked": false,
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  /* === Modules Order === */
+  "modules-left": [
+    "cpu",
+    "battery",
+    "memory",
+//    "temperature",
+    "idle_inhibitor",
+    "pulseaudio/slider",
+    "pulseaudio"//,
+//    "hyprland/language"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "wlr/taskbar",
+    "custom/nix_icon",
+    "clock"/*,
+    "custom/calendar"*/
+  ],
+  /* === Modules Left === */
+  "custom/nix_icon": {
+    "format": "",
+    "on-click": "wofi --show drun",
+    "tooltip": false
+  },
+  "clock": {
+    "timezone": "America/Chicago",
+    "format": "{:%I:%M%p | %b %d}",
+//    "format": "{}",
+//    "exec": "date '+%_I:%M%P'",
+//    "tooltip": true,
+    "tooltip-format": "{calendar}",
+//    "interval": 5,
+    "calendar": {
+      "mode": "month"
+    }
+  },
+  "custom/calendar": {
+    "format": "{}",
+    "interval": 3600,
+    "exec": "date +'%b %d'",
+    "tooltip": true,
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode": "month"
+    }
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": true,
+    "tooltip-format": "CPU usage: {usage}%\nCores: {cores}"
+  },
+  "memory": {
+    "format": "| {}% ",
+    "tooltip": true,
+    "tooltip-format": "RAM usage (GiB): {used} / {total} ({percentage}%)\nSwap usage (GiB): {swapUsed} / {swapTotal} ({swapPercentage})%"
+  },
+  "battery": {
+    "format": "| {capacity}% {icon} ",
+    "format-icons": ["", "", "", "", ""],
+    "format-time": "{H}h{M}m",
+    "format-charging": "| {capacity}% ",
+    "signal": 8,
+    "interval": 30
+  },
+  "temperature": {
+    "format": "{temperatureC}°C {icon}",
+    "tooltip": true,
+    "tooltip-format": "temp: {temperatureC}°C\nCritical > 80°C",
+    "format-icons": [
+      ""
+    ]
+  },
+  /* === Modules Center === */
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "active": ""
+    },
+    "persistent-workspaces": {
+      "*": 2
+    },
+    "disable-scroll": true,
+    "all-outputs": true,
+    "show-special": true
+  },
+  /* === Modules Right === */
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "all-outputs": true,
+    "active-first": true,
+    "tooltip-format": "{name}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "on-click-right": "minimize",
+    "ignore-list": [
+      "rofi",
+      "wofi"
+    ],
+    "rewrite": {
+      "Konsole": "Terminal"
+    }
+  },
+  "idle_inhibitor": {
+    "format": "{icon}  | ",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "pulseaudio/slider": {
+    "format": "{volume}%",
+    "format-muted": " MUTE",
+    "step": 5,
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": " {format_source}",
+    "format-icons": {
+      "default": [
+        "",
+        ""
+      ]
+    }
+  },
+  "network": {
+    "format": "{ifname}",
+    "format-ethernet": "{ifname} 󰈀",
+    "format-disconnected": " ",
+    "tooltip-format": " {ifname} via {gwaddr}",
+    "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50
+  },
+  "hyprland/language": {
+    "format": "{} ",
+    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
+    "format-en": "ENG",
+    "tooltip": true,
+    "tooltip-format": "language"
+  }
+}

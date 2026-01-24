@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=/run/current-system/sw/bin/konsole %u
+Name=Konsole
+Icon=/home/super/Pictures/appIcons/konsole.png
+Comment=The superior terminal emulator
