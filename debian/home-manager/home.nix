@@ -70,6 +70,7 @@ in
       git
       eza
       wev
+      jdk
       wget
       swww
       wofi
@@ -86,7 +87,6 @@ in
       sshfs
       meson
       #clang
-      #jdk23
       hplip
       nitch
       dialog
@@ -176,9 +176,10 @@ in
       nodejs
       #wine64
       lutris
+      gradle
       libgcc
       #neovim
-      ffmpeg
+      ffmpeg-full
       busybox
       openvpn
       ghostty
@@ -210,6 +211,9 @@ in
       nerd-fonts.droid-sans-mono
       nerd-fonts.jetbrains-mono
       nerd-fonts.symbols-only
+      (pkgs.ffmpeg-full.override {
+        withUnfree = true;
+      })
     ];
     activation = {
       createScreensLink = ''
