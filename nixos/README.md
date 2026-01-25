@@ -1,4 +1,7 @@
-# some dotfiles
+# some (NixOS) dotfiles
+
+>[!WARNING]
+>I am currently in the process of switching to Debian for school. For some of my classes, I need to be able to quickly install software at a whim without the setup required by NixOS.
 
 Not sure why you'd care, but these are my dotfiles
 
