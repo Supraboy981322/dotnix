@@ -27,8 +27,8 @@ getMonitorByDesc() (
 
 wayBar() {
   waybar \
-    --style ~/.config/hypr/waybar.css \
-    --config ~/.config/hypr/waybar.jsonc
+    --style /home/super/.config/hypr/waybar.css \
+    --config /home/super/.config/hypr/waybar.jsonc
 }
 
 hyprPaper() {
@@ -59,10 +59,10 @@ mute_volume() {
   wpctl set-volume @DEFAULT_AUDIO_SINK@ 0
 }
 
-wayBar \
-  & hyprPaper \
+hyprPaper \
   & confDisplay \
   & startMako \
   & HyprCTL \
   & batWarn \
-  & mute_volume
+  & mute_volume \
+  & wayBar

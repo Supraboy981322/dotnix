@@ -23,8 +23,7 @@
   "modules-right": [
     "wlr/taskbar",
     "custom/nix_icon",
-    "clock"/*,
-    "custom/calendar"*/
+    "custom/clock"
   ],
   /* === Modules Left === */
   "custom/nix_icon": {
@@ -32,24 +31,14 @@
     "on-click": "wofi --show drun",
     "tooltip": false
   },
-  "clock": {
-    "timezone": "America/Chicago",
-    "format": "{:%I:%M%p | %b %d}",
-//    "format": "{}",
-//    "exec": "date '+%_I:%M%P'",
-//    "tooltip": true,
-    "tooltip-format": "{calendar}",
-//    "interval": 5,
-    "calendar": {
-      "mode": "month"
-    }
-  },
-  "custom/calendar": {
+  "custom/clock": {
+//    "timezone": "America/Chicago",
+    //"format": "{:%I:%M%p | %b %d}",
     "format": "{}",
-    "interval": 3600,
-    "exec": "date +'%b %d'",
+    "exec": "date '+%I:%M%P | %b %d'",
     "tooltip": true,
     "tooltip-format": "{calendar}",
+    "interval": 5,
     "calendar": {
       "mode": "month"
     }
@@ -96,6 +85,7 @@
   },
   /* === Modules Right === */
   "wlr/taskbar": {
+    "layer": "bottom",
     "format": "{icon}",
     "all-outputs": true,
     "active-first": true,
@@ -108,7 +98,7 @@
       "wofi"
     ],
     "rewrite": {
-      "Konsole": "Terminal"
+      "Ghostty": "Terminal"
     }
   },
   "idle_inhibitor": {

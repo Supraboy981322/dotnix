@@ -123,6 +123,7 @@ require("lazy").setup({
           "gopls",
           "vtsls",
           "zls",
+          "clangd",
           "tailwindcss",
         },
         servers = {

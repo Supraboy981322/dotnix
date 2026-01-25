@@ -8,6 +8,8 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+export WLR_NO_HARDWARE_CURSORS=1
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -26,6 +28,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-	exec nixGL start-hyprland 
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then
+  exec nixGL start-hyprland
 fi
