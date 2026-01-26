@@ -45,7 +45,5 @@ let
       } // (lib.genAttrs (lib.drop 2 thing) (_: true));
     }) spec );
 in
-
-{
-  home.file = gen_stuff (expand stuff);
-}
+ 
+{ home.file = gen_stuff (expand stuff); }
