@@ -28,6 +28,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty2 ]]; then
+# only start hyprland if in tty1 or tty2
+#   (tty1 because my laptop has no DE installed)
+#     (and tty2 because tty1 is taken by GNOME on my desktop)
+#       (I had to install Debian with GNOME to fix some Nvidia driver crap)
+if [[ -z "$DISPLAY" ]] && ([[ $(tty) = /dev/tty2 ]] || [[ $(tty) = /dev/tty1 ]]); then
   exec nixGL start-hyprland
 fi
