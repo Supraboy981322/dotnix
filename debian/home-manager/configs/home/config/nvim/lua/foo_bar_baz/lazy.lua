@@ -121,8 +121,8 @@ require("lazy").setup({
         ensure_installed = {
           "lua_ls",
           "gopls",
-          "vtsls",
           "zls",
+          "ts_ls",
           "clangd",
           "tailwindcss",
         },

@@ -168,6 +168,7 @@ __mkps1() {
 #############################
 #          aliases          #
 #############################
+alias clear='printf "\033c"'
 alias cls="clear"
 alias clsls="clear;ls"
 alias gettail="getTail"

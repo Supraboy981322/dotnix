@@ -69,7 +69,6 @@ in
     libgcc
     dialog
     xrandr
-    yt-dlp
     zenity
     libdrm
     libcap
@@ -98,6 +97,7 @@ in
     hyprlang
     iproute2
     zlib.dev
+    inkscape
     html-tidy
     stdenv.cc
     glibc.dev
@@ -109,12 +109,14 @@ in
     playerctl
     libnotify
     libxcrypt
+    alacritty
     fastfetch
     distrobox
-    signal-cli
+    #signal-cli
     rpi-imager
     alsa-utils
     hyprpicker
+    pkg-config
     clang-tools
     tree-sitter
     openssl.dev
@@ -124,13 +126,16 @@ in
     superTuxKart
     wl-clipboard
     brightnessctl
+    cascadia-code
     prismlauncher
-    signal-desktop
+    #signal-desktop #reinstalled manually so I can modify it 
     bibata-cursors
     discord-canary
     qt5.qtbase.dev
     xorg.libX11.dev
     mullvad-browser 
+    github-linguist
+    nodePackages.asar
     wayland-protocols
     hyprland-protocols
     hyprwayland-scanner
