@@ -92,7 +92,6 @@ in
     libglvnd
     obsidian
     hyprshot
-    chromium #gross, I know, my school requires it;  TODO: delete it
     hyprland
     hyprlang
     iproute2
@@ -128,7 +127,7 @@ in
     brightnessctl
     cascadia-code
     prismlauncher
-    #signal-desktop #reinstalled manually so I can modify it 
+    signal-desktop
     bibata-cursors
     discord-canary
     qt5.qtbase.dev
@@ -146,6 +145,11 @@ in
     lua52Packages.luasocket
     nixgl.auto.nixGLDefault
 
+    # stuff my school forces me to use
+    # TODO: delete as soon as possible
+    chromium
+    jetbrains.idea-community
+    
     #stuff I prefer from KDE
     kdePackages.kate
     kdePackages.qtsvg

@@ -180,6 +180,8 @@ alias error="(exit 1)"
 alias goNoCache="GOPROXY=direct go"
 alias laR="eza -aR"
 alias CURDIR="basename \"${PWD}\""
+alias vimdiff="nvim -d"
+alias nvimdiff="nvim -d"
 
 
 ############################
