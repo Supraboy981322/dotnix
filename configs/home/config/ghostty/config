@@ -1,0 +1,14 @@
+font-family = "JetBrainsMono Nerd Font Mono"
+font-synthetic-style = true
+theme = Cyberpunk
+background = #0a1124
+background-image = /home/super/Pictures/themes/Burger-King-Torture-Bliss.png
+background-image-fit = cover
+background-image-position = center
+background-image-opacity = 0.005
+background-blur = true
+working-directory = home
+shell-integration-features = ssh-terminfo,ssh-env
+keybind = ctrl+enter=unbind
+window-padding-x = 0
+window-padding-y = 0
