@@ -150,6 +150,13 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" },
       opts = {},
     },
+    {
+      "nvim-telescope/telescope.nvim", version = "*",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      }
+    },
   },
   -- automatically check for plugin updates
   checker = { enabled = true },

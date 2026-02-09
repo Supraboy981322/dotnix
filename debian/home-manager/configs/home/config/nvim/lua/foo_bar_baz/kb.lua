@@ -2,13 +2,14 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.api.nvim_create_user_command(
-  "Reorder",
+  "Reorder", --think "I just typed this, what was the 'reorder' command? oh, wait."
   function()
     vim.cmd("BufferOrderByBufferNumber")
   end,
   { desc = "dup of :BufferOrderByBufferNumber" }
 )
 
+--think "whoops, held shift for too long"
 vim.api.nvim_create_user_command(
   "Redo",
   function()
@@ -17,6 +18,7 @@ vim.api.nvim_create_user_command(
   { desc = "dup of :redo" }
 )
 
+--think "whoops, held shift for too long"
 vim.api.nvim_create_user_command(
   "W",
   function()
@@ -26,6 +28,7 @@ vim.api.nvim_create_user_command(
   { desc = "dup of :w", }
 )
 
+--think "whoops, held shift for too long"
 vim.api.nvim_create_user_command(
   "Q",
   function(opts)
@@ -39,19 +42,17 @@ vim.api.nvim_create_user_command(
 )
 
 --make `d` not yank
-vim.api.nvim_set_keymap(
-  'n', 'd', '"_d',
+vim.keymap.set(
+  { 'n', 'v' },
+  'd',
+  '"_d',
   { noremap = true, silent = true }
-)
-vim.api.nvim_set_keymap(
-  'v', 'd', '"_d',
-  { noremap = true, silent = false }
 )
 
 --`<leader>`+`e` for file tree
 vim.keymap.set(
   "n",
-  "<leader>e",
+  "<leader>e", --I keep forgetting this exists, I don't use it, so I don't remember
   ":Neotree<CR>", 
   { silent = true }
 )
@@ -59,7 +60,7 @@ vim.keymap.set(
 --`ctrl`+`s` to save
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<C-s>",
+  "<C-s>", --think "save"
   "<Cmd>w<CR>",
   { noremap = true, silent = true }
 )
@@ -67,31 +68,31 @@ vim.keymap.set(
 --`alt`+`n` to move to next buffer
 vim.keymap.set(
   "n",
-  "<M-n>",
+  "<M-n>", --think "next"
   "<Cmd>bn<CR>", 
   { noremap = true, silent = true }
 )
 
 --`alt`+`b` to move to previous buffer
 vim.keymap.set(
-  "n",
-  "<M-b>",
+  { "n" },
+  "<M-b>", --think "b... previous"
   "<Cmd>bp<CR>",
   { noremap = true, silent = true }
 )
 
 --`alt`+`del` to delete chunk after
 vim.keymap.set(
-  "i",
-  "<M-del>",
+  { "i" },
+  "<M-del>", --think "more delete"
   '<Cmd>normal! "_dw<CR>',
   { noremap = true, silent = true }
 )
 
 --`alt`+`bs` to delete chunk before
 vim.keymap.set(
-  "i",
-  "<M-BS>",
+  { "i" },
+  "<M-BS>", --think "more backspace"
   '<Cmd>normal! "_db<CR>',
   { noremap = true, silent = true }
 )
@@ -100,14 +101,15 @@ vim.keymap.set(
 --  (from any mode, including term)
 vim.keymap.set(
   {"v", "i", "n", "x", "t"},
-  "<M-;>", "<C-\\><C-n>",
+  "<M-;>", --this one comes natural, no need to think
+  "<C-\\><C-n>",
   { noremap = true, silent = true }
 )
 
 --`alt`+`p` to center buffer
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<M-p>",
+  "<M-p>", --think "p... center"
   function()
     vim.cmd("NoNeckPain")
   end,
@@ -118,7 +120,7 @@ vim.keymap.set(
 --- lsp stuff ---
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<M-d>",
+  "<M-d>", --think "definition"
   function()
     vim.diagnostic.open_float()
   end,
@@ -126,7 +128,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<M-]>",
+  "<M-]>", --think "right is forward"
   function()
     vim.diagnostic.goto_next()
   end,
@@ -134,7 +136,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<M-[>",
+  "<M-[>", --think "left is back"
   function()
     vim.diagnostic.goto_prev()
   end,
@@ -210,25 +212,63 @@ vim.keymap.set(
 -- map 'ctrl'+['h', 'j', 'k', or 'l'] to normal mode motion
 vim.keymap.set(
   {"v", "n", "s", "i"},
-  "<M-h>",
+  "<M-h>", --think "'h' but more"
   "<C-o>h",
   { noremap = true, silent = true }
 )
 vim.keymap.set(
   {"v", "n", "s", "i"},
-  "<M-j>",
+  "<M-j>", --think "'j' but more"
   "<C-o>j",
   { noremap = true, silent = true }
 )
 vim.keymap.set(
   {"v", "n", "s", "i"},
-  "<M-k>",
+  "<M-k>", --think "'k' but more"
   "<C-o>k",
   { noremap = true, silent = true }
 )
 vim.keymap.set(
   {"v", "n", "s", "i"},
-  "<M-l>",
+  "<M-l>", --think "'l' but more"
   "<C-o>l",
   { noremap = true, silent = true }
+)
+
+--telescope
+vim.keymap.set(
+  { "v", "i", "n", "x" },
+  "<M-f>", --think "file"
+  ":Telescope find_files<CR>",
+  {
+    noremap = true, silent = true,
+    desc = "telescope find files"
+  }
+)
+vim.keymap.set(
+  { "v", "i", "n", "x" },
+  "<M-g>", --think "grep"
+  ":Telescope live_grep<CR>",
+  {
+    noremap = true, silent = true,
+    desc = "telescope live grep"
+  }
+)
+vim.keymap.set(
+  { "v", "i", "n", "x" },
+  "<M-/>",
+  ":Telescope buffers<CR>",
+  {
+    noremap = true, silent = true,
+    desc = "telescope buffers"
+  }
+)
+vim.keymap.set(
+  { "v", "i", "n", "x" },
+  "<M-'>", --think "say"
+  ":Telescope help_tags<CR>",
+  {
+    noremap = true, silent = true,
+    desc = "telescope help tags"
+  }
 )

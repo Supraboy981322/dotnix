@@ -19,13 +19,15 @@ let
 in
 
 {
+  # standard packages
   home.packages = with pkgs; [
-    # unstable pkgs
     go
     gh
     jq
     fd
+    xz
     bc
+    bat
     vim
     gdm
     git
@@ -50,6 +52,9 @@ in
     mako
     glib
     nasm
+    zpaq
+    less
+    delta
     cmake
     rustc
     cargo
@@ -62,7 +67,10 @@ in
     sshfs
     meson
     hplip
+    brave
+    steam
     nitch
+    brotli
     nodejs
     lutris
     gradle
@@ -76,6 +84,8 @@ in
     docker
     espeak
     podman
+    gnutar
+    libvirt
     freerdp
     udisks2
     ripgrep
@@ -85,7 +95,7 @@ in
     gnumake
     busybox
     openvpn
-    ghostty
+    #ghostty # just discovered Alacritty's Vi mode, might switch back to Ghostty if they add it an equivalent
     qrencode
     prettier
     luarocks
@@ -97,8 +107,11 @@ in
     iproute2
     zlib.dev
     inkscape
+    qemu_kvm
+    highlight
     html-tidy
     stdenv.cc
+    spice-gtk
     glibc.dev
     libnotify
     nfs-utils
@@ -122,6 +135,7 @@ in
     xorg.libX11
     tor-browser
     libglibutil
+    virt-manager
     superTuxKart
     wl-clipboard
     brightnessctl

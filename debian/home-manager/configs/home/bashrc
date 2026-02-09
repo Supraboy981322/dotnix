@@ -103,7 +103,7 @@ __mkps1() {
   local white="\033[38;2;255;255;255m"
   #local yellow=`tput setaf 221`
   local yellow="\033[38;2;255;216;171m"
-  local magenta=`tput setaf 249`
+  local grey=`tput setaf 249`
   #local cyan=`tput setaf 45`
   local cyan="\033[38;2;134;225;252m"
   local bold=`tput bold`
@@ -115,6 +115,7 @@ __mkps1() {
   local green2=`tput setaf 70`
   local timeStamp="$(date +%I:%M%P)"
   local prompt_color="${green}"
+  local italic="\033[3m"
 
   local p="?"
   #makes the prompt symbol red if bad return code 
@@ -131,7 +132,7 @@ __mkps1() {
   
   #adjust printed dir based on term width 
   local term_width=$((`tput cols`-1))
-  local pre_line=" ╭ 00:00xx  ${HOSTNAME}@${USER}  --> "
+  local pre_line=" ╭[00:00xx] ${HOSTNAME} {${SHLVL}} --> "
   local pre_len=${#pre_line}
   #length of full first line
   local total_len=$((${#curDir}+${pre_len}))
@@ -145,21 +146,33 @@ __mkps1() {
     fi
   fi
 
-  #PS1+=" ╭[09:03pm] keepernix@super --> ~/foo/bar/baz"
-  #PS1+=" ╰(?) "
+  # ╭[07:10pm] keeper {1} --> ~
+  # ╰(!):
+  # new PS1
+  PS1="\n"
+  PS1+=" \[${italic}${cyan}\]╭[\[${grey}\]"
+  PS1+="${timeStamp}\[${cyan}\]]\[${reset}${italic}\]"
+  PS1+=" \[${yellow}\]\h \[${grey}\]{"
+  PS1+="\[${cyan}\]${SHLVL}\[${grey}\]}\[${reset}${italic}\]"
+  PS1+=" \[${red}\]-->\[${reset}${italic}\] "
+  PS1+="\[${cyan}\]${curDir}\n\[${italic}${cyan}\]"
+  PS1+=" ╰(\[${reset}${italic}\]\[${prompt_color}\]${p}"
+  PS1+="\[${reset}${italic}${cyan}\]):\[${reset}\] "
 
+  # ╭ 07:10pm  keeper@super --> ~
+  # ╰(!):
   #build $PS1
-  PS1+="\n "
-  PS1+="\[${cyan}\]╭\[${reset}\]"
-  PS1+="\[${BG_GRAY}${white}\] ${timeStamp} \[${reset}\] "
-  PS1+="\[${yellow}\]\h\[${reset}${magenta}\]"
-  PS1+="@\[${reset}${cyan}\]\u\[${reset}\]"
-  PS1+=" \[${bold}${red}\]-->\[${reset}\] "
-  PS1+="\[${bold}${cyan}\]${curDir}\[${reset}\]"
-  PS1+="\n " #start second line
-  PS1+="\[${cyan}\]╰(\[${reset}\]"
-  PS1+="\[${bold}${prompt_color}\]${p}\[${reset}\]"
-  PS1+="\[${cyan}\])\[${reset}\] "
+  #PS1+="\n "
+  #PS1+="\[${cyan}\]╭\[${reset}\]"
+  #PS1+="\[${BG_GRAY}${white}\] ${timeStamp} \[${reset}\] "
+  #PS1+="\[${yellow}\]\h\[${reset}${magenta}\]"
+  #PS1+="@\[${reset}${cyan}\]\u\[${reset}\]"
+  #PS1+=" \[${bold}${red}\]-->\[${reset}\] "
+  #PS1+="\[${bold}${cyan}\]${curDir}\[${reset}\]"
+  #PS1+="\n " #start second line
+  #PS1+="\[${cyan}\]╰(\[${reset}\]"
+  #PS1+="\[${bold}${prompt_color}\]${p}\[${reset}\]"
+  #PS1+="\[${cyan}\])\[${reset}\]: "
 
   true #attempt at reseting $? (doesn't work)
 }
