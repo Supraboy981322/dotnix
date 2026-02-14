@@ -22,12 +22,12 @@
   ],
   "modules-right": [
     "wlr/taskbar",
-    "custom/nix_icon",
+    "custom/debian_icon",
     "custom/clock"
   ],
   /* === Modules Left === */
-  "custom/nix_icon": {
-    "format": "",
+  "custom/debian_icon": {
+    "format": "",
     "on-click": "wofi --show drun",
     "tooltip": false
   },

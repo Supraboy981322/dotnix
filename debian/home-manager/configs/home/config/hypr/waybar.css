@@ -15,7 +15,7 @@ window#waybar.hidden {
 }
 
 /* ==== General rules for visible modules ==== */
-#custom-nix_icon, #custom-clock, #custom-calendar, #cpu, #memory,
+#custom-debian_icon, #custom-clock, #custom-calendar, #cpu, #memory,
 #disk, #battery, #idle_inhibitor, #pulseaudio,
 #pulseaudio-slider, #network, #language {
   color: #b0ceff;
@@ -28,7 +28,7 @@ window#waybar.hidden {
 }
 
 /* Separation to the left */
-#custom-nix_icon, #cpu,
+#custom-debian_icon, #cpu,
 #idle_inhibitor {
   margin-left: 5px;
   border-top-left-radius: 10px;
@@ -45,7 +45,7 @@ window#waybar.hidden {
 /* == Specific styles == */
 
 /* Modules left */
-#custom-nix_icon {
+#custom-debian_icon {
   font-size: 24px;
   color: rgba(0, 0, 0, 0.85);
   margin-left: 0;

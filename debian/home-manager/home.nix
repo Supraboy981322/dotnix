@@ -45,9 +45,10 @@
   ];
 
   home = {
-    # create some directories I use a lot 
+    # some scripts that run when rebuilding
     activation = {
-      createScreensLink = ''
+      # create some directories I use a lot 
+      create_directories = ''
         mkdir -p "$HOME/IMG"
         ln -sfn "$HOME/Pictures/Screenshots" "$HOME/IMG/Screens"
 
@@ -56,6 +57,12 @@
             "$HOME/tmp/moreTmp" \
             "$HOME/projects" \
             "$HOME/assignments"
+      '';
+      get_latest_yt-dlp = ''
+        ${pkgs.curl}/bin/curl -L \
+            https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+            -o ~/scripts/yt-dlp
+        chmod a+rx ~/scripts/yt-dlp
       '';
     };
 
