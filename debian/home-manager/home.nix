@@ -58,6 +58,7 @@
             "$HOME/projects" \
             "$HOME/assignments"
       '';
+      # fetches latest version of yt-dlp from GitHub (newer than nixpkgs unstable)
       get_latest_yt-dlp = ''
         ${pkgs.curl}/bin/curl -L \
             https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
