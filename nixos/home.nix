@@ -113,8 +113,8 @@ in
           "source": "LFS",
           "color": {
             "1": "yellow",
-            "2": "white",
-            "3": "blue"
+            "2": "blue",
+            "3": "red"
           }
         },
         "modules": [
@@ -143,7 +143,8 @@ in
           },
           {
             "type": "uptime",
-            "keyColor": "white"
+            "keyColor": "white",
+            "format": "6 years, 350 days, 3 hours (PLEASE RESTART)"
           },
           {
             "type": "packages",
@@ -169,7 +170,8 @@ in
           },
           {
             "type": "cursor",
-            "keyColor": "white"
+            "keyColor": "white",
+            "format": "i would never."
           },
           {
             "type": "terminal",
@@ -178,11 +180,19 @@ in
           },
           {
             "type": "terminalfont",
-            "keyColor": "white"
+            "keyColor": "white",
+            "format": "{name} (5,652,733pt, VERY SMALL)"
           },
           {
             "type": "cpu",
-            "keyColor": "white"
+            "keyColor": "white",
+            "key": "CPU 1"
+          },
+          {
+            "type": "custom",
+            "keyColor": "white",
+            "key": "CPU 2-94",
+            "format": "some sand"
           },
           {
             "type": "gpu",
