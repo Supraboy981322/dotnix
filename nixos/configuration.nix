@@ -17,24 +17,25 @@
  * <sub>yeah, md in my configuration.nix comments</sub>
  */
 
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, options, ... }:
 
 let
   unstable = import <nixos-unstable> {
-   config = { allowUnfree = true; };
+    config = { allowUnfree = true; };
   };
-in
-{
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./home.nix
-    ];
+  secrets = import ./secrets.nix;
+  browsers = import ./browsers.nix;
+in {
+  imports = [
+    ./hardware-configuration.nix
+    ./home.nix
+    ./packages.nix
+  ];
 
   nix = {
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-   };
+    };
   };
 
   fileSystems = {
@@ -69,7 +70,6 @@ in
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        vaapiVdpau
         libvdpau-va-gl
         libva-vdpau-driver
       ];
@@ -86,6 +86,13 @@ in
 
   # Bootloader.
   boot = {
+    kernelModules = [
+      #"vboxdrv"
+      #"vboxnetflt"
+      #"vboxnetadp"
+      #"vboxpci"
+      "kvm-amd"
+    ];
     loader = { 
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -104,10 +111,23 @@ in
   };
   
   networking = {
+    #firewall.checkReversePath = true;
     # Define hostname.
     hostName = "keeper_nix";
     networkmanager.enable = true;
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    nat = {
+      enable = true;
+      internalInterfaces = [ "virbr0" ];
+    };
+    firewall = {
+      checkReversePath = "loose";
+      trustedInterfaces = [ "virbr0" ];
+    };
+  };
+
+  vpnNamespaces.${secrets.vpn.wg.alt.provider} = {
+    enable = true;
+    wireguardConfigFile = secrets.vpn.wg.alt.conf_path;
   };
 
   # Set your time zone.
@@ -138,8 +158,24 @@ in
 
   systemd = {
     services = {
-      tailscaled.enable = true;
-      tailscaled.serviceConfig.TimeoutStopSec = "1s";
+      tailscaled = {
+        enable = true;
+        serviceConfig.TimeoutStopSec = "1s";
+      };
+        #zen_browser_confined = {
+        #  description = "Zen Browser in a vpnNamespace";
+        #  wantedBy = [ "graphical-session.target" ];
+        #  serviceConfig = {
+        #    Type = "simple";
+        #    User = "super";
+        #    StateDirectory = "zen_browser_confined";
+        #    ExecStart = "${browsers.zen_browser}/bin/zen";
+        #    Restart = "on-failure";
+        #  };
+        #  preStart = ''
+        #    ${pkgs.sudo}/bin/sudo -n ${pkgs.wg-namespace}/bin/wg-namespace ${secrets.vpn.wg.alt.provider}
+        #  '';
+        #};
     };
   };
 
@@ -186,18 +222,18 @@ in
       enable = false;
       support32Bit = false;
     };
+    displayManager = {
+      gdm.enable = true;
+    };
     # Configure keymap in X11
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
-      videoDrivers = ["nvidia"];
-      displayManager = {
-        lightdm.enable = false;
-        gdm.enable = true;
-      };
+      videoDrivers = [ "nvidia" ];
       excludePackages = with pkgs; [
         xterm
       ];
+      displayManager.lightdm.enable = false;
       xkb = {
         layout = "us";
         variant = "";
@@ -224,31 +260,40 @@ in
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.super = {
-    isNormalUser = true;
-    description = "keeper";
-    extraGroups = [ 
-      "networkmanager"
-      "wheel"
-      "podman"
-      "docker"
-      "audio"
-    ];
-    subUidRanges = [
-      {
-        count = 65536;
-        startUid = 100000;
-      }
-    ];
-    subGidRanges = [
-      {
-        count = 65536;
-        startGid = 100000;
-      }
-    ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+  users = {
+    groups = {
+      libvirtd.members = [ "super" ];
+      netns.members = [ "super" ];
+    };
+    extraGroups.vboxusers.members = [ "super" ];
+    users.super = {
+      isNormalUser = true;
+      description = "keeper";
+      extraGroups = [ 
+        "networkmanager"
+        "wheel"
+        "podman"
+        "docker"
+        "audio"
+        "libvirtd"
+        "netns"
+      ];
+      subUidRanges = [
+        {
+          count = 65536;
+          startUid = 100000;
+        }
+      ];
+      subGidRanges = [
+        {
+          count = 65536;
+          startGid = 100000;
+        }
+      ];
+      packages = with pkgs; [
+      #  thunderbird
+      ];
+    };
   };
 
   # Allow unfree packages
@@ -261,19 +306,17 @@ in
     };
   };
   programs = {
+    virt-manager.enable = true;
     java = {
       enable = true;
-      package = pkgs.jdk23.override {
-        enableJavaFX = true;
-      };
     };
-    firefox = {
-      enable = true;
-      preferences = {
-        # disable libadwaita theming for Firefox
-        "widget.gtk.libadwaita-colors.enabled" = false;
-      };
-    };
+      #firefox = {
+      #  enable = true;
+      #  preferences = {
+      #    # disable libadwaita theming for Firefox
+      #    "widget.gtk.libadwaita-colors.enabled" = false;
+      #  };
+      #};
     chromium = {
       enable = false;
     };
@@ -291,6 +334,7 @@ in
     waybar = {
       enable = true;
     };
+    #hyprlock.enable = true;:
     hyprland = {
       enable = true;
       xwayland.enable =  true;
@@ -315,9 +359,26 @@ in
         };
       }
     ];
+    bash.shellAliases = {
+      zen_confined = "systemctl --user start zen_browser_confined.service";
+    };
   };
 
   virtualisation = {
+    virtualbox = {
+      host.enable = true;
+    };
+    spiceUSBRedirection = {
+      enable = true;
+    };
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+        swtpm.enable = true;
+      };
+    };
     docker = {
       enable = true;
       rootless = {
@@ -334,14 +395,15 @@ in
   fonts = {
     fontDir.enable = true;
     packages = with pkgs; [
-      noto-fonts-emoji
       noto-fonts-color-emoji
       fira-code
+      cascadia-code
       nerd-fonts.fira-code
       nerd-fonts._0xproto
       nerd-fonts.droid-sans-mono
       nerd-fonts.jetbrains-mono
       nerd-fonts.symbols-only
+      nerd-fonts.caskaydia-cove
     ];
     fontconfig = {
       enable = true;
@@ -359,162 +421,6 @@ in
       XDG_CURRENT_DESKTOP = "sway";
     };
     enableAllTerminfo = true;
-    systemPackages = (with pkgs; [
-      #STABLE PKGS
-      gh
-      jq
-      bc
-      vim
-      gdm
-      git
-      eza
-      wev
-      wget
-      swww
-      wofi
-      nmap
-      file
-      zlib
-      ruby
-      gimp
-      mako
-      glib
-      glibc
-      loupe
-      libva
-      sshfs
-      meson
-      clang
-      jdk23
-      hplip
-      nitch
-      dialog
-      yt-dlp
-      zenity
-      libdrm
-      libcap
-      waybar
-      docker
-      espeak
-      podman
-      freerdp
-      udisks2
-      ripgrep
-      xdotool
-      python3
-      gparted
-      gnumake
-      #      mesa.dev
-      libglvnd
-      obsidian
-      hyprshot
-      chromium #gross, I know, my school requires it
-      hyprland
-      hyprlang
-      iproute2
-      zlib.dev
-      html-tidy
-      stdenv.cc
-      glibc.dev
-      libnotify
-      nfs-utils
-      hyprutils
-      sdbus-cpp
-      hyprpaper
-      playerctl
-      libnotify
-      libxcrypt
-      fastfetch
-      pkg-config
-      alsa-utils
-      hyprpicker
-      openssl.dev
-      xorg.libX11
-      tor-browser
-      libglibutil
-      wl-clipboard
-      brightnessctl
-      bibata-cursors
-      discord-canary
-      ffmpeg.lib.dev
-      qt5.qtbase.dev
-      xorg.libX11.dev
-      wayland-protocols
-      hyprland-protocols
-      hyprwayland-scanner
-      gnome-system-monitor
-      javaPackages.openjfx23
-
-      #stuff I prefer from KDE
-      kdePackages.kate
-      kdePackages.qtsvg
-      kdePackages.dolphin
-      kdePackages.konsole
-      kdePackages.gwenview
-      kdePackages.kio-fuse
-      kdePackages.kio-extras
-      kdePackages.kde-cli-tools
-
-      #UNSTABLE PKGS
-      unstable.go
-      unstable.lua
-      unstable.zip
-      unstable.bun
-      unstable.gcc
-      unstable.zig
-      unstable.vlc
-      unstable.mpv
-      unstable.nasm
-      unstable.wine
-      unstable.cmake
-      unstable.rustc
-      unstable.cargo
-      unstable.socat
-      unstable.samba
-      unstable.emacs # might try this at some point
-      unstable.nodejs
-      unstable.wine64
-      unstable.lutris
-      unstable.libgcc
-      unstable.neovim
-      unstable.ffmpeg
-      unstable.busybox
-      unstable.openvpn
-      unstable.ghostty
-      unstable.qrencode
-      unstable.prettier
-      unstable.luarocks
-      unstable.tailscale
-      unstable.distrobox
-      unstable.signal-cli
-      unstable.rpi-imager
-      unstable.clang-tools
-      unstable.tree-sitter
-      unstable.superTuxKart
-      unstable.prismlauncher
-      unstable.signal-desktop
-      unstable.mullvad-browser 
-      unstable.lua52Packages.cjson
-      unstable.lua52Packages.luasec
-      unstable.lua52Packages.luasocket
-      unstable.wine64Packages.waylandFull
-      unstable.wineWow64Packages.waylandFull
-
-      #WRAPPERS
-      (pkgs.wrapFirefox
-        (pkgs.firefox-unwrapped.override {
-          pipewireSupport = true;
-        }) 
-      {})
-      (lutris.override {
-        extraLibraries = pkgs: [
-          #add missing libs here
-        ];
-        extraPkgs = pkgs: [
-          #missing package deps here
-        ];
-      })
-    ]);
   };
 
   # This value determines the NixOS release from which the default
@@ -525,3 +431,4 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 }
+

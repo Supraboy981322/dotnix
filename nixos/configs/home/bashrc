@@ -40,38 +40,6 @@ case "$TERM" in
   xterm-color|*-256color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-#if [ -n "$force_color_prompt" ]; then
-#    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-#        # We have color support; assume it's compliant with Ecma-48
-#        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-#        # a case would tend to support setf rather than setaf.)
-#        color_prompt=yes
-#    else
-#        color_prompt=
-#    fi
-#fi
-
-#if [ "$color_prompt" = yes ]; then
-#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#else
-#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-#fi
-#unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-#case "$TERM" in
-#xterm*|rxvt*)
-#    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-#    ;;
-#*)
-#    ;;
-#esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
   test -r ~/.dircolors \
@@ -135,7 +103,7 @@ __mkps1() {
   local white="\033[38;2;255;255;255m"
   #local yellow=`tput setaf 221`
   local yellow="\033[38;2;255;216;171m"
-  local magenta=`tput setaf 249`
+  local grey=`tput setaf 249`
   #local cyan=`tput setaf 45`
   local cyan="\033[38;2;134;225;252m"
   local bold=`tput bold`
@@ -147,6 +115,7 @@ __mkps1() {
   local green2=`tput setaf 70`
   local timeStamp="$(date +%I:%M%P)"
   local prompt_color="${green}"
+  local italic="\033[3m"
 
   local p="?"
   #makes the prompt symbol red if bad return code 
@@ -163,7 +132,7 @@ __mkps1() {
   
   #adjust printed dir based on term width 
   local term_width=$((`tput cols`-1))
-  local pre_line=" ╭ 00:00xx  ${HOSTNAME}@${USER}  --> "
+  local pre_line=" ╭[00:00xx] ${HOSTNAME} {${SHLVL}} --> "
   local pre_len=${#pre_line}
   #length of full first line
   local total_len=$((${#curDir}+${pre_len}))
@@ -177,21 +146,33 @@ __mkps1() {
     fi
   fi
 
-  #PS1+=" ╭[09:03pm] keepernix@super --> ~/foo/bar/baz"
-  #PS1+=" ╰(?) "
+  # ╭[07:10pm] keeper {1} --> ~
+  # ╰(!):
+  # new PS1
+  PS1="\n"
+  PS1+=" \[${italic}${cyan}\]╭[\[${grey}\]"
+  PS1+="${timeStamp}\[${cyan}\]]\[${reset}${italic}\]"
+  PS1+=" \[${yellow}\]\h \[${grey}\]{"
+  PS1+="\[${cyan}\]${SHLVL}\[${grey}\]}\[${reset}${italic}\]"
+  PS1+=" \[${red}\]-->\[${reset}${italic}\] "
+  PS1+="\[${cyan}\]${curDir}\n\[${italic}${cyan}\]"
+  PS1+=" ╰(\[${reset}${italic}\]\[${prompt_color}\]${p}"
+  PS1+="\[${reset}${italic}${cyan}\]):\[${reset}\] "
 
+  # ╭ 07:10pm  keeper@super --> ~
+  # ╰(!):
   #build $PS1
-  PS1+="\n "
-  PS1+="\[${cyan}\]╭\[${reset}\]"
-  PS1+="\[${BG_GRAY}${white}\] ${timeStamp} \[${reset}\] "
-  PS1+="\[${yellow}\]\h\[${reset}${magenta}\]"
-  PS1+="@\[${reset}${cyan}\]\u\[${reset}\]"
-  PS1+=" \[${bold}${red}\]-->\[${reset}\] "
-  PS1+="\[${bold}${cyan}\]${curDir}\[${reset}\]"
-  PS1+="\n " #start second line
-  PS1+="\[${cyan}\]╰(\[${reset}\]"
-  PS1+="\[${bold}${prompt_color}\]${p}\[${reset}\]"
-  PS1+="\[${cyan}\])\[${reset}\] "
+  #PS1+="\n "
+  #PS1+="\[${cyan}\]╭\[${reset}\]"
+  #PS1+="\[${BG_GRAY}${white}\] ${timeStamp} \[${reset}\] "
+  #PS1+="\[${yellow}\]\h\[${reset}${magenta}\]"
+  #PS1+="@\[${reset}${cyan}\]\u\[${reset}\]"
+  #PS1+=" \[${bold}${red}\]-->\[${reset}\] "
+  #PS1+="\[${bold}${cyan}\]${curDir}\[${reset}\]"
+  #PS1+="\n " #start second line
+  #PS1+="\[${cyan}\]╰(\[${reset}\]"
+  #PS1+="\[${bold}${prompt_color}\]${p}\[${reset}\]"
+  #PS1+="\[${cyan}\])\[${reset}\]: "
 
   true #attempt at reseting $? (doesn't work)
 }
@@ -200,6 +181,7 @@ __mkps1() {
 #############################
 #          aliases          #
 #############################
+alias clear='printf "\033c"'
 alias cls="clear"
 alias clsls="clear;ls"
 alias gettail="getTail"
@@ -207,9 +189,12 @@ alias :q="exit"
 alias ls="eza"
 alias :Q="exit"
 alias :e="nvim"
+alias error="(exit 1)"
 alias goNoCache="GOPROXY=direct go"
 alias laR="eza -aR"
 alias CURDIR="basename \"${PWD}\""
+alias vimdiff="nvim -d"
+alias nvimdiff="nvim -d"
 
 
 ############################
@@ -270,6 +255,8 @@ export GOBIN="${HOME}/go/bin"
 # make neovim the default
 export EDITOR='/usr/bin/nvim'
 export VISUAL='/usr/bin/nvim'
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/";
+export CPATH="$CPATH:/usr/include:/usr/include/gtk-4.0";
 
 
 #############################

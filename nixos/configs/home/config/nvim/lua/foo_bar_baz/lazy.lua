@@ -121,8 +121,9 @@ require("lazy").setup({
         ensure_installed = {
           "lua_ls",
           "gopls",
-          "vtsls",
           "zls",
+          "ts_ls",
+          "clangd",
           "tailwindcss",
         },
         servers = {
@@ -143,6 +144,18 @@ require("lazy").setup({
       opts = {
         suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
       },
+    },
+    {
+      "folke/todo-comments.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      opts = {},
+    },
+    {
+      "nvim-telescope/telescope.nvim", version = "*",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      }
     },
   },
   -- automatically check for plugin updates

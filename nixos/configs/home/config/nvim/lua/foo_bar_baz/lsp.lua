@@ -13,7 +13,7 @@ vim.diagnostic.config({
   update_in_insert = true,
 })
 
-vim.lsp.config('clangd', {
+--[[vim.lsp.config('clangd', {
   cmd = {
     "/run/current-system/sw/bin/clangd",
     "--background-index", "--clang-tidy",
@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.lsp.enable("clangd")
   end,
-})
+})]]--
 
 vim.lsp.config('lua_ls', {
   cmd = { "lua-language-server" },

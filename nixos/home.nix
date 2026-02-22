@@ -1,8 +1,10 @@
 { config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
-  nix-alien-pkgs = import (
-    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
+  home-manager = builtins.fetchTarball
+    "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
+
+  nix-alien-pkgs = import (builtins.fetchTarball
+    "https://github.com/thiagokokada/nix-alien/tarball/master"
   ) { };
 in
 {
@@ -12,6 +14,7 @@ in
 
   home-manager.users.root = {
     home = {
+      enableNixpkgsReleaseCheck = false;
       stateVersion = "18.09";
       file = {
         ".bashrc" = {
@@ -30,11 +33,18 @@ in
 
   home-manager.users.super = {
     home = {
+      enableNixpkgsReleaseCheck = false;
       stateVersion = "18.09";
       activation = {
         createScreensLink = ''
           mkdir -p "$HOME/IMG"
           ln -sfn "$HOME/Pictures/Screenshots" "$HOME/IMG/Screens"
+
+          mkdir -p \
+              "$HOME/machines" \
+              "$HOME/tmp/moreTmp" \
+              "$HOME/projects" \
+              "$HOME/assignments"
         '';
       };
       packages = with nix-alien-pkgs; [

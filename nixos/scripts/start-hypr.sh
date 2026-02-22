@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 #used to get the name of a monitor
 #  which reports a different name
 #    at each boot
@@ -59,5 +58,5 @@ wayBar \
   & hyprPaper \
   & confDisplay \
   & startMako \
-  & hyprCTL \
+  & HyprCTL \
   & batWarn 

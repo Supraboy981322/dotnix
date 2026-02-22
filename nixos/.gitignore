@@ -1,4 +1,5 @@
 .secrets/
+secrets/
 configs/home/config/Supraboy981322/
 scripts/
 !scripts/start-hypr.sh
@@ -10,3 +11,4 @@ configs/home/docker/winapps/
 configs/home/config/winapps/
 hardware-configuration.nix
 configs/home/config/nvim/twitch
+secrets.nix
