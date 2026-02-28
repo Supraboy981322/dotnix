@@ -33,6 +33,7 @@ require'nvim-treesitter.configs'.setup {
     "commonlisp",
     "clojure",
     "fennel",
+    "vala",
   },
   sync_install = false,
 

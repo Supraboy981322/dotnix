@@ -45,6 +45,7 @@ in
     swww
     wofi
     nmap
+    vala
     file
     zlib
     ruby

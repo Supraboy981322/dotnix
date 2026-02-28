@@ -1,6 +1,8 @@
 (defsrc
-  y caps z lsft rsft lmet
+  caps lsft rsft lmet
+  z y
   1 2 3 4 5 6 7 8 9 0
+  \
 )
 
 (defalias
@@ -11,16 +13,20 @@
 )
 
 (deflayer default
-  z esc y @lshf_num @rshf_num @sup
+  esc @lshf_num @rshf_num @sup
+  y z
   S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
+  S-\
 )
 
 (deflayer super-layer
   _ _ _ lsft rsft _
   1 2 3 4 5 6 7 8 9 0
+  _
 )
 
 (deflayer numbers
   _ _ _ _ _ _
   (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5) (unmod 6) (unmod 7) (unmod 8) (unmod 9) (unmod 0)
+  (unmod \)
 )
