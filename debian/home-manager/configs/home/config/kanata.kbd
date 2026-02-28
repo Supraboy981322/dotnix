@@ -1,14 +1,26 @@
 (defsrc
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-  caps a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft z    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rctl
+  y caps z lsft rsft lmet
+  1 2 3 4 5 6 7 8 9 0
 )
-(deflayer base
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-  tab  q    w    e    r    t    z    u    i    o    p    [    ]    \
-  esc  a    s    d    f    g    h    j    k    l    ;    '    ret
-  lsft y    x    c    v    b    n    m    ,    .    /    rsft
-  lctl lmet lalt           spc            ralt rctl
+
+(defalias
+  ;; Tap caps for escape, hold for the numbers layer
+  lshf_num (multi lsft (layer-toggle numbers))
+  rshf_num (multi rsft (layer-toggle numbers))
+  sup (multi lmet (layer-toggle super-layer))
+)
+
+(deflayer default
+  z esc y @lshf_num @rshf_num @sup
+  S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
+)
+
+(deflayer super-layer
+  _ _ _ lsft rsft _
+  1 2 3 4 5 6 7 8 9 0
+)
+
+(deflayer numbers
+  _ _ _ _ _ _
+  (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5) (unmod 6) (unmod 7) (unmod 8) (unmod 9) (unmod 0)
 )

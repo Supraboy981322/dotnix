@@ -1,3 +1,9 @@
+--vim.filetype.add({
+--  extension = {
+--    kbd = "lisp",
+--  },
+--})
+
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "c",
@@ -23,7 +29,10 @@ require'nvim-treesitter.configs'.setup {
     "dart",
     "java",
     "nix",
-    "hyprlang"
+    "hyprlang",
+    "commonlisp",
+    "clojure",
+    "fennel",
   },
   sync_install = false,
 
