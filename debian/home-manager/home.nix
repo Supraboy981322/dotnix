@@ -1,25 +1,52 @@
 { config, pkgs, ... }:
 
 let
-  kanata_config = builtins.toFile  "kanata.kbd" ''
+  # TODO: figure-out systemd stuff for this so I can replace file
+  kanata_config = builtins.toFile  "kanata.kbd" /* clojure */ ''
     (defsrc
-      grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-      tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
-      caps a    s    d    f    g    h    j    k    l    ;    '    ret
-      lsft z    x    c    v    b    n    m    ,    .    /    rsft
-      lctl lmet lalt           spc            ralt rctl
+      caps lsft rsft lmet
+      z y
+      1 2 3 4 5 6 7 8 9 0
+      \
     )
-    (deflayer base
-      grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
-      tab  q    w    e    r    t    z    u    i    o    p    [    ]    \
-      esc  a    s    d    f    g    h    j    k    l    ;    '    ret
-      lsft y    x    c    v    b    n    m    ,    .    /    rsft
-      lctl lmet lalt           spc            ralt rctl
+
+    (defalias
+      ;;aliases that press shift and toggle number layer
+      lshf_num (multi lsft (layer-toggle numbers))
+      rshf_num (multi rsft (layer-toggle numbers))
+
+      ;;super key
+      sup (multi lmet (layer-toggle super-layer))
+    )
+
+    (deflayer default
+      ;;remap caps to esc and set shift and super keys to aliases 
+      esc @lshf_num @rshf_num @sup
+
+      y z ;;qwertz
+
+      ;;swap shift layer of top-row numbers
+      S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
+
+      S-\ ;;swap shift layer of pipe
+    )
+
+    (deflayer super-layer
+      _ _ _ lsft rsft _
+      1 2 3 4 5 6 7 8 9 0
+      _
+    )
+
+    (deflayer numbers ;;shift layer
+      _ _ _ _ _ _ ;;leave these untouched
+
+      ;;use unmodified key signals for anything modified
+      (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5)
+      (unmod 6) (unmod 7) (unmod 8) (unmod 9) (unmod 0)
+      (unmod \)
     )
   '';
-in
-
-{
+in { 
   home.username = "super"; # long story
   home.homeDirectory = "/home/super";
 
@@ -67,7 +94,7 @@ in
     # some scripts that run when rebuilding
     activation = {
       # create some directories I use a lot 
-      create_directories = ''
+      create_directories = /* bash */ ''
         mkdir -p "$HOME/IMG"
         ln -sfn "$HOME/Pictures/Screenshots" "$HOME/IMG/Screens"
 
@@ -78,7 +105,7 @@ in
             "$HOME/assignments"
       '';
       # fetches latest version of yt-dlp from GitHub (newer than nixpkgs unstable)
-      get_latest_yt-dlp = ''
+      get_latest_yt-dlp = /* bash */ ''
         ${pkgs.curl}/bin/curl -L \
             https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
             -o ~/scripts/yt-dlp
