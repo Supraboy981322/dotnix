@@ -1,5 +1,24 @@
 { config, pkgs, ... }:
 
+let
+  kanata_config = builtins.toFile  "kanata.kbd" ''
+    (defsrc
+      grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+      tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+      caps a    s    d    f    g    h    j    k    l    ;    '    ret
+      lsft z    x    c    v    b    n    m    ,    .    /    rsft
+      lctl lmet lalt           spc            ralt rctl
+    )
+    (deflayer base
+      grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+      tab  q    w    e    r    t    z    u    i    o    p    [    ]    \
+      esc  a    s    d    f    g    h    j    k    l    ;    '    ret
+      lsft y    x    c    v    b    n    m    ,    .    /    rsft
+      lctl lmet lalt           spc            ralt rctl
+    )
+  '';
+in
+
 {
   home.username = "super"; # long story
   home.homeDirectory = "/home/super";

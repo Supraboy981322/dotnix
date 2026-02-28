@@ -59,10 +59,15 @@ mute_volume() {
   wpctl set-volume @DEFAULT_AUDIO_SINK@ 0
 }
 
+Kanata() {
+  kanata -c ~/.config/kanata.kbd
+}
+
 hyprPaper \
   & confDisplay \
   & startMako \
   & HyprCTL \
   & batWarn \
   & mute_volume \
-  & wayBar
+  & wayBar \
+  & Kanata

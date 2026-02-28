@@ -83,6 +83,7 @@ in
     waybar
     docker
     espeak
+    kanata
     podman
     gnutar
     libvirt
@@ -141,6 +142,7 @@ in
     brightnessctl
     cascadia-code
     prismlauncher
+    netcat-openbsd
     signal-desktop
     bibata-cursors
     discord-canary
