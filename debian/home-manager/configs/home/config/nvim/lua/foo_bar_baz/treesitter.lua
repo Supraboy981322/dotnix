@@ -34,6 +34,7 @@ require'nvim-treesitter.configs'.setup {
     "clojure",
     "fennel",
     "vala",
+    "ini", --for wireguard configs
   },
   sync_install = false,
 
