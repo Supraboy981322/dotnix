@@ -171,7 +171,7 @@ in
         "zen.view.use-single-toolbar" = false;
         "zen.watermark.enabled" = false;
         "zen.welcome-screen.seen" = true;
-        "zen.workspaces.continue-where-left-off" = true;
+        #"zen.workspaces.continue-where-left-off" = true;
         "sidebar.verticalTabs" = false; # when set to 'true', it breaks Zen's sidebar
       };
     }

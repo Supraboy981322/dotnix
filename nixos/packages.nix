@@ -30,6 +30,7 @@ in {
     vim
     gdm
     git
+    SDL
     eza
     wev
     lua
@@ -41,6 +42,7 @@ in {
     mpv
     jdk
     wget
+    vala
     swww
     wofi
     nmap
@@ -52,7 +54,10 @@ in {
     glib
     nasm
     zpaq
+    sdl3
+    SDL2
     less
+    gtk4
     delta
     cmake
     rustc
@@ -77,6 +82,7 @@ in {
     libgcc
     dialog
     xrandr
+    sdlpop
     zenity
     libdrm
     libcap
@@ -109,6 +115,7 @@ in {
     zlib.dev
     inkscape
     qemu_kvm
+    html-tidy
     highlight
     html-tidy
     stdenv.cc
@@ -159,6 +166,7 @@ in {
     lua52Packages.cjson
     lua52Packages.luasec
     gnome-system-monitor
+    vala-language-server
     lua52Packages.luasocket
     nixgl.auto.nixGLDefault
 
@@ -172,6 +180,7 @@ in {
     kdePackages.qtsvg
     kdePackages.dolphin
     kdePackages.gwenview
+    kdePackages.kdenlive
     kdePackages.kio-fuse
     kdePackages.kio-extras
     kdePackages.kde-cli-tools

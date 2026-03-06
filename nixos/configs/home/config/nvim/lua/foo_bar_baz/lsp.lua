@@ -1,10 +1,12 @@
+vim.lsp.enable("vala_ls")
+
 vim.diagnostic.config({
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = "", -- Nerd Font icon for error (a cross)
-      [vim.diagnostic.severity.WARN]  = "", -- Nerd Font icon for warning
-      [vim.diagnostic.severity.HINT]  = "", -- Nerd Font icon for hint
-      [vim.diagnostic.severity.INFO]  = "󰙎", -- Nerd Font icon for info    },
+      [ vim.diagnostic.severity.ERROR ] = "", -- Nerd Font icon for error (a cross)
+      [ vim.diagnostic.severity.WARN  ]  = "", -- Nerd Font icon for warning
+      [ vim.diagnostic.severity.HINT  ]  = "", -- Nerd Font icon for hint
+      [ vim.diagnostic.severity.INFO  ]  = "󰙎", -- Nerd Font icon for info    },
     },
   },
   virtual_text = { current_line = false },

@@ -23,7 +23,9 @@ require'nvim-treesitter.configs'.setup {
     "dart",
     "java",
     "nix",
-    "hyprlang"
+    "vala",
+    "hyprlang",
+    "clojure",
   },
   sync_install = false,
 

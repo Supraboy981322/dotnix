@@ -65,6 +65,7 @@ in {
   ];
 
   hardware = {
+    uinput.enable = true;
     bluetooth.enable = true;
     graphics = {
       enable = true;
@@ -92,6 +93,7 @@ in {
       #"vboxnetadp"
       #"vboxpci"
       "kvm-amd"
+      "uinput"
     ];
     loader = { 
       systemd-boot.enable = true;
@@ -208,6 +210,54 @@ in {
       enable = true;
       cosmic-greeter.enable = false;
     };
+    kanata = {
+      enable = true;
+      keyboards.me_keyboard.config = /* clojure */ ''
+        (defsrc
+          caps lsft rsft lmet
+          z y
+          1 2 3 4 5 6 7 8 9 0
+          \ ` [ ]
+        )
+
+        (defalias
+          ;;aliases that press shift and toggle number layer
+          lshf_num (multi lsft (layer-toggle numbers))
+          rshf_num (multi rsft (layer-toggle numbers))
+
+          ;;super key
+          sup (multi lmet (layer-toggle super-layer))
+        )
+
+        (deflayer default
+          ;;remap caps to esc and set shift and super keys to aliases
+          esc @lshf_num @rshf_num @sup
+
+          y z ;;qwertz
+
+          ;;swap shift layer of top-row numbers
+          S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
+
+          S-\ ;;swap shift layer of pipe
+          S-` S-[ S-]
+        )
+        
+        (deflayer super-layer
+          _ _ _ (unmod lsft) (unmod rsft) _
+          1 2 3 4 5 6 7 8 9 0
+          _ _ _ _
+        )
+
+        (deflayer numbers ;;shift layer
+          _ _ _ _ _ _ ;;leave these untouched
+
+          ;;use unmodified key signals for anything modified
+          (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5)
+          (unmod 6) (unmod 7) (unmod 8) (unmod 9) (unmod 0)
+          (unmod \) (unmod `) (unmod [) (unmod ])
+        )
+      '';
+    };
     desktopManager = {
       cosmic = {
         enable = false;
@@ -277,6 +327,8 @@ in {
         "audio"
         "libvirtd"
         "netns"
+        "input"
+        "uinput"
       ];
       subUidRanges = [
         {
