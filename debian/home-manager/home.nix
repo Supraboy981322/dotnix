@@ -7,43 +7,35 @@ let
       caps lsft rsft lmet
       z y
       1 2 3 4 5 6 7 8 9 0
-      \
+      \ ` [ ]
     )
 
     (defalias
-      ;;aliases that press shift and toggle number layer
+      ;; Tap caps for escape, hold for the numbers layer
       lshf_num (multi lsft (layer-toggle numbers))
       rshf_num (multi rsft (layer-toggle numbers))
-
-      ;;super key
       sup (multi lmet (layer-toggle super-layer))
     )
 
     (deflayer default
-      ;;remap caps to esc and set shift and super keys to aliases 
       esc @lshf_num @rshf_num @sup
-
-      y z ;;qwertz
-
-      ;;swap shift layer of top-row numbers
+      y z
       S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
-
-      S-\ ;;swap shift layer of pipe
+      S-\ S-grv S-[ S-]
     )
 
     (deflayer super-layer
       _ _ _ lsft rsft _
       1 2 3 4 5 6 7 8 9 0
-      _
+      _ _ _ _
     )
 
-    (deflayer numbers ;;shift layer
-      _ _ _ _ _ _ ;;leave these untouched
-
-      ;;use unmodified key signals for anything modified
+    (deflayer numbers
+      _ _ _ _ _ _
       (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5)
       (unmod 6) (unmod 7) (unmod 8) (unmod 9) (unmod 0)
-      (unmod \)
+      (unmod \) (unmod `)
+      (unmod [) (unmod ])
     )
   '';
 in { 
@@ -142,6 +134,117 @@ in {
     CPATH = "$CPATH:/usr/include:/usr/include/gtk-4.0";
 
     WLR_NO_HARDWARE_CURSORS = 1;
+  };
+
+  # hath ye been bamboozled?
+  xdg.configFile."fastfetch/config.jsonc".text = builtins.toJSON {
+    logo = {
+      source = "LFS";
+      color = {
+        "1" = "yellow";
+        "2" = "blue";
+        "3" = "red";
+      };
+    };
+    modules = [
+      "title"
+      "separator"
+      {
+        type = "os";
+        key = "OS";
+        keyColor = "blue";
+        format = "no idea";
+      }
+      {
+        keyColor = "red";
+        type = "kernel";
+        key = "Kernel";
+      }
+      {
+         type = "memory";
+         key = "Memory";
+         keyColor = "green";
+         percent = {
+           type = 3;     # Show both percentage number and bar
+           green = 30;   # Values below 30% in green
+           yellow = 70;  # 30-70% in yellow, >70% in red
+        };
+      }
+      {
+        type = "uptime";
+        keyColor = "white";
+        format = "6 years, 350 days, 3 hours (PLEASE RESTART)";
+      }
+      {
+        type = "packages";
+        keyColor = "white";
+        format = "where the heck are your packages?";
+      }
+      {
+        type = "shell";
+        keyColor = "white";
+      }
+      {
+        type = "wm";
+        keyColor = "white";
+        format = "not entirely sure";
+      }
+      {
+        type = "icons";
+        keyColor = "white";
+      }
+      {
+        type = "font";
+        keyColor = "white";
+      }
+      {
+        type = "cursor";
+        keyColor = "white";
+        format = "i would never.";
+      }
+      {
+        type = "terminal";
+        keyColor = "white";
+        format = "NeoVim?";
+      }
+      {
+        type = "terminalfont";
+        keyColor = "white";
+        format = "{name} (5;652,733pt, VERY SMALL)";
+      }
+      {
+        type = "cpu";
+        keyColor = "white";
+        key = "CPU 1";
+      }
+      {
+        type = "custom";
+        keyColor = "white";
+        key = "CPU 2-94";
+        format = "some sand";
+      }
+      {
+        type = "gpu";
+        keyColor = "white";
+      }
+      {
+        type = "custom";
+        keyColor = "white";
+        key = "GPU 3";
+        format = "2.56 pound of raw quartz";
+      }
+      {
+        type = "swap";
+        keyColor = "white";
+      }
+      {
+        type = "break";
+        keyColor = "white";
+      }
+      {
+        type = "colors";
+      }
+    ];
   };
 
   programs = {
