@@ -144,7 +144,7 @@ in {
     tor-browser
     libglibutil
     virt-manager
-    superTuxKart
+    supertuxkart
     wl-clipboard
     brightnessctl
     cascadia-code
@@ -155,6 +155,7 @@ in {
     discord-canary
     qt5.qtbase.dev
     proton-vpn-cli
+    netcat-openbsd
     hyprpolkitagent
     mullvad-browser 
     wireguard-tools
@@ -208,7 +209,7 @@ in {
       withUnfree = true;
     })
   ]) ++ [
-      browsers.zen.re-wrapped
-      browsers.firefox.re-wrapped
-    ];
+    browsers.zen.re-wrapped
+    browsers.firefox.re-wrapped
+  ];
 }

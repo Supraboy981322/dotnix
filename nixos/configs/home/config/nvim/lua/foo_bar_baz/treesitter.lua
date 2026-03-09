@@ -1,3 +1,8 @@
+vim.filetype.add({
+  extensions = {
+    kbd = "clojure",
+  },
+})
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "c",
@@ -23,9 +28,12 @@ require'nvim-treesitter.configs'.setup {
     "dart",
     "java",
     "nix",
-    "vala",
     "hyprlang",
     "clojure",
+    "commonlisp",
+    "fennel",
+    "vala",
+    "ini", --for wireguard configs
   },
   sync_install = false,
 
