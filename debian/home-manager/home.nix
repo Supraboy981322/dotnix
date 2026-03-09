@@ -39,6 +39,7 @@ let
     )
   '';
 in { 
+
   home.username = "super"; # long story
   home.homeDirectory = "/home/super";
 
@@ -77,8 +78,7 @@ in {
  
   imports = [
     ./files.nix
-    # I have a lot of packages, so I
-    #   import them from a separate file
+    ./configs/hyprland.nix
     ./packages.nix
   ];
 
@@ -115,18 +115,18 @@ in {
     };
   };
   
-  wayland.windowManager.hyprland = { 
-    enable = true;
-  };
+  #wayland.windowManager.hyprland = { 
+  #  enable = true;
+  #};
 
-  xdg.portal = {
-    enable = true;
-    config = {
-      hyprland = {
-        default = [ "hyprland" "gtk" ];
-      };
-    };
-  };
+    #xdg.portal = {
+    #  enable = true;
+    #  config = {
+    #    hyprland = {
+    #      default = [ "hyprland" "gtk" ];
+    #    };
+    #  };
+    #};
 
   home.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = 1;

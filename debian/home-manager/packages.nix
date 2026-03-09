@@ -41,6 +41,7 @@ in
     vlc
     mpv
     jdk
+    iamb
     wget
     swww
     wofi
