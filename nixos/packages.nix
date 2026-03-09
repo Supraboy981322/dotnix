@@ -26,6 +26,7 @@ in {
     fd
     xz
     bc
+    #zsh TODO: try this
     bat
     vim
     gdm
@@ -49,6 +50,7 @@ in {
     file
     zlib
     ruby
+    iamb
     gimp
     mako
     glib
@@ -100,7 +102,7 @@ in {
     python3
     gparted
     gnumake
-    busybox
+    #busybox # switched to coreutils
     openvpn
     #ghostty # just discovered Alacritty's Vi mode, might switch back to Ghostty if they add it an equivalent
     qrencode
@@ -115,6 +117,7 @@ in {
     zlib.dev
     inkscape
     qemu_kvm
+    coreutils
     html-tidy
     highlight
     html-tidy
