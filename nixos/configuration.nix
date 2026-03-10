@@ -28,7 +28,7 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
-    ./home.nix
+    #./home.nix
     ./packages.nix
   ];
 
@@ -358,17 +358,15 @@ in {
     };
   };
   programs = {
+    hyprlock.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable =  true;
+    };
     virt-manager.enable = true;
     java = {
       enable = true;
     };
-      #firefox = {
-      #  enable = true;
-      #  preferences = {
-      #    # disable libadwaita theming for Firefox
-      #    "widget.gtk.libadwaita-colors.enabled" = false;
-      #  };
-      #};
     chromium = {
       enable = false;
     };
@@ -385,12 +383,6 @@ in {
     };
     waybar = {
       enable = true;
-    };
-    hyprlock.enable = true;
-    hyprland = {
-      enable = true;
-      #withUWSM = true;
-      xwayland.enable =  true;
     };
     steam = {
       enable = true;
@@ -472,6 +464,7 @@ in {
   environment = {
     sessionVariables = {
       XDG_CURRENT_DESKTOP = "sway";
+      NIXOS_OZONE_WL = "1";
     };
     enableAllTerminfo = true;
   };

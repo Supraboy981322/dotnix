@@ -1,15 +1,12 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 let
-  home-manager = builtins.fetchTarball
-    "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz";
-
   nix-alien-pkgs = import (builtins.fetchTarball
     "https://github.com/thiagokokada/nix-alien/tarball/master"
   ) { };
-in
-{
+in {
   imports = [
     (import "${home-manager}/nixos")
+    ./configs/hyprland.nix 
   ];
 
   home-manager.users.root = {

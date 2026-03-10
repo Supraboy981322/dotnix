@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     ghostty = {
       url = "github:ghostty-org/ghostty";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,8 +21,13 @@
 
     # my web browser of choice is not in NixPKGs
     zen-browser_pkg = {
-        url = "github:youwen5/zen-browser-flake";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -30,6 +36,7 @@
     self,
     nixpkgs,
     ghostty,
+    home-manager,
     zen-browser_pkg,
     vpn-confinement,
     nixpkgs-unstable,
@@ -57,6 +64,14 @@
             modules = [ configPath ];
           };
     in {
+      homeConfigurations.myuser = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./home.nix
+          ./configs/hyprland.nix
+        ];
+      };
+
       nixpkgs.overlays = [
         (final: prev: { zig_0_15 = zig; })
       ];
