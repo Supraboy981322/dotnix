@@ -28,11 +28,19 @@ let
     "ui.systemUsesDarkTheme" = 1;
     "sidebar.verticalTabs" = true;
     "sidebar.verticalTabs.dragToPinPromo.dismissed" = true;
-    "browser.uiCustomization.navBarWhenVerticalTabs" = ''["sidebar-button",''
-            + ''"back-button","forward-button","stop-reload-button",''
-            + ''"customizableui-special-spring1","vertical-spacer",''
-            + ''"urlbar-container","customizableui-special-spring2",''
-            + ''"downloads-button","fxa-toolbar-menu-button","unified-extensions-button"]'';
+    "browser.uiCustomization.navBarWhenVerticalTabs" = builtins.toJSON [
+      "sidebar-button"
+      "back-button"
+      "forward-button"
+      "stop-reload-button"
+      "customizableui-special-spring1"
+      "vertical-spacer"
+      "urlbar-container"
+      "customizableui-special-spring2"
+      "downloads-button"
+      "fxa-toolbar-menu-button"
+      "unified-extensions-button"
+    ];
     "browser.ml.linkPreview.enabled" = false;
     "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
     "browser.newtabpage.activity-stream.feeds.topsites" = false;
@@ -58,7 +66,10 @@ let
     "browser.aboutwelcome.enabled" = false;
     "browser.theme.toolbar-theme" = 0;
     "browser.toolbars.bookmarks.visibility" = "never";
-    "browser.uiCustomization.horizontalTabstrip" = ''["tabbrowser-tabs","new-tab-button"]'';
+    "browser.uiCustomization.horizontalTabstrip" = builtins.toJSON [
+      "tabbrowser-tabs"
+      "new-tab-button"
+    ];
     "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
     "extensions.ui.dictionary.hidden" = true;
     "extensions.ui.locale.hidden" = true;
@@ -67,33 +78,41 @@ let
   };
 
   # list of browser extentions
-  firefox_extensions = [ # in order of importance to me
-    (firefox_extension "ublock-origin" "uBlock0@raymondhill.net")
-    (firefox_extension "vimium-ff"     "{d7742d87-e61d-4b78-b8a1-b469842139fa}")
-    (firefox_extension "darkreader"    "addon@darkreader.org")
-    (firefox_extension "noscript"      "{73a6fe31-595d-460b-a920-fcc0f8843232}")
-    (firefox_extension "proton-pass"   "78272b6fa58f4a1abaac99321d503a20@proton.me")
-  ];
-
+  firefox_extensions = pkgs.lib.forEach (
+    pkgs.lib.attrsToList {
+      # in order of importance to me
+      ublock-origin = "uBlock0@raymondhill.net";
+      vimium-ff = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
+      darkreader = "addon@darkreader.org";
+      noscript = "{73a6fe31-595d-460b-a920-fcc0f8843232}";
+      proton-pass = "78272b6fa58f4a1abaac99321d503a20@proton.me";
+    }) (kv: firefox_extension kv.name kv.value);
+  
   # list of search engines
-  firefox_search_engines = [
-    # reference:
-    #   (firefox_search_engine
-    #       "[name]" "[alias]"
-    #       "[search url]") 
-    (firefox_search_engine
-        "nixpkgs" "pkgs"
-        "https://search.nixos.org/packages?query={searchTerms}")
-    (firefox_search_engine
-        "NixOS wiki" "nixos"
-        "https://search.nixos.org/options?query={searchTerms}")
-    (firefox_search_engine
-        "noogle.dev" "nix"
-        "https://noogle.dev/q?term={searchTerms}")
-    (firefox_search_engine
-        "zig stdlib docs" "zig"
-        "https://ziglang.org/documentation/0.15.2/std/#{searchTerms}")
-  ];
+  firefox_search_engines = pkgs.lib.forEach [
+    {
+      desc = "nixpkgs";
+      alias = "pkgs";
+      url = "https://search.nixos.org/packages?query={searchTerms}";
+    }
+    {
+      desc = "NixOS wiki";
+      alias = "nixos";
+      url = "https://search.nixos.org/options?query={searchTerms}";
+    }
+    {
+      desc = "noogle.dev";
+      alias = "nix";
+      url = "https://noogle.dev/q?term={searchTerms}";
+    }
+    { 
+      desc = "zig stdlib docs";
+      alias = "zig";
+      url = "https://ziglang.org/documentation/0.15.2/std/#{searchTerms}";
+    }
+  ] (attrset:
+      firefox_search_engine attrset.desc attrset.alias attrset.url
+    );
 
   # helper to parse prefs set to json
   firefox_prefs_set_to_json = prefs: pkgs.lib.concatLines
@@ -146,11 +165,14 @@ let
       untouched = default;
     };
 
+  wrap_browser = { name, unwrapped, default, extra_prefs ? {} }:
+    {
+      name = name;
+      value = new_browser_option unwrapped default extra_prefs;
+    };
+
 in
-  (builtins.listToAttrs (map ({ name, unwrapped, default, extra_prefs ? {} }: {
-    name = name;
-    value = new_browser_option unwrapped default extra_prefs;
-  }) [
+  (builtins.listToAttrs (map wrap_browser [
     {
       name = "firefox";
       unwrapped = pkgs.firefox-unwrapped;
