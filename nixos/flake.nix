@@ -63,7 +63,9 @@
           nixpkgsSrc.lib.nixosSystem {
             modules = [ configPath ];
           };
+
     in {
+
       homeConfigurations.myuser = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
@@ -89,6 +91,12 @@
           }
           ./configuration.nix
           vpn-confinement.nixosModules.default
+
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.super = import ./home.nix;
+          }
         ];
         specialArgs = {
           pkgs-unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;

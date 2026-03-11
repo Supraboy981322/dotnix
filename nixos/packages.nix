@@ -141,6 +141,7 @@ in {
     libX11.dev
     hyprpicker
     pkg-config
+    forgejo-cli
     clang-tools
     tree-sitter
     openssl.dev
@@ -161,6 +162,7 @@ in {
     netcat-openbsd
     hyprpolkitagent
     mullvad-browser 
+    element-desktop
     wireguard-tools
     github-linguist
     nodePackages.asar

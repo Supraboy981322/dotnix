@@ -1,13 +1,9 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, home-manager, ... }:
 let
   nix-alien-pkgs = import (builtins.fetchTarball
     "https://github.com/thiagokokada/nix-alien/tarball/master"
   ) { };
-in {
-  imports = [
-    (import "${home-manager}/nixos")
-    ./configs/hyprland.nix 
-  ];
+in /*{
 
   home-manager.users.root = {
     home = {
@@ -28,7 +24,10 @@ in {
     };
   };
 
-  home-manager.users.super = {
+  home-manager.users.super = */{
+    imports = [
+      ./configs/hyprland.nix
+    ];
     home = {
       enableNixpkgsReleaseCheck = false;
       stateVersion = "18.09";
@@ -231,5 +230,5 @@ in {
         }
       ];
     };
-  };
-}
+  }/*;
+}*/

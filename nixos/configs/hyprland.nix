@@ -52,6 +52,7 @@ let
         in
           pkgs.lib.mapAttrsToList (key: argument: {
             key = key;
+            mod = (if bindings ? mod then bindings.mod else null);
             dispatcher = {
               name = dispatcher;
               args = argument;
@@ -73,164 +74,174 @@ in {
     };
   };
   
+    # programs = {
+    #   waybar = {
+    #     enable = true;
+    #     systemd.enable = true;
+    #     settings = [
+    #       {
+    #       }
+    #     ];
+    #   };
+    # };
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-    bind = builtins.map new_bind ([
-      {
-        key = "T";
-        dispatcher = {
-          name = "exec";
-          args = vars.terminal;
-        };
-      }
-      {
-        key = "escape";
-        dispatcher.name = "killactive";
-      }
-      {
-        key = "M";
-        dispatcher.name = "exit";
-      }
-      {
-        key = "E";
-        dispatcher = {
-          name = "exec";
-          args = vars.fileManager;
-        };
-      }
-      {
-        key = "C";
-        dispatcher = {
-          name = "exec";
-          args = vars.chat;
-        };
-      }
-      {
-        key = "D";
-        dispatcher = {
-          name = "exec";
-          args = vars.people_who_dont_use_signal;
-        };
-      }
-      {
-        key = "V";
-        dispatcher.name = "togglefloating";
-      }
-      {
-        key = "Space";
-        dispatcher = {
-          name = "exec";
-          args = vars.menu;
-        };
-      }
-      { # dwindle
-        key = "P";
-        dispatcher.name = "pseudo";
-      }
-      { # dwindle
-        key = "J";
-        dispatcher.name = "togglesplit";
-      }
-      {
-        mod = "SHIFT";
-        key = "F";
-        dispatcher = {
-          name = "exec";
-          args = vars.schoolBrowser;
-        };
-      }
-      {
-        key = "F";
-        dispatcher = {
-          name = "exec";
-          args = vars.personalBrowser;
-        };
-      }
-      {
-        key = "F";
-        mod = "CTRL";
-        dispatcher = {
-          name = "exec";
-          args = vars.anotherBrowser;
-        };
-      }
-      {
-        key = "F";
-        mod = "ALT";
-        dispatcher = {
-          name = "exec";
-          args = vars.alternativeBrowser;
-        };
-      }
-      {
-        key = "F";
-        mod = "ALT SHIFT";
-        dispatcher = {
-          name = "exec";
-          args = vars.torBrowser;
-        };
-      }
-      {
-        key = "L";
-        dispatcher = {
-          name = "exec";
-          args = "loginctl lock-session";
-        };
-      }
-      {
-        key = "H";
-        dispatcher = {
-          name = "exec";
-          args = "wpctl set-default 75";
-        };
-      }
-      {
-        key = "N";
-        dispatcher = {
-          name = "exec";
-          args = vars.noteProg;
-        };
-      }
-      {
-        key = "E";
-        mod = "SHIFT";
-        dispatcher = {
-          name = "exec";
-          args = vars.org_mode_is_pretty_good;
-        };
-      }
-      {
-        key = "W";
-        mod = "SHIFT";
-        dispatcher = {
-          name = "exec";
-          args = vars.restart_waybar;
-        };
-      }
-      {
-        key = "R";
-        mod = "SHIFT";
-        dispatcher = {
-          name = "exec";
-          args = "~/scripts/re_start-hypr.sh";
-        };
-      }
-      {
-        key = "B";
-        dispatcher = {
-          name = "exec";
-          args = vars.togWaybar;
-        };
-      }
-      {
-        key = "page_down";
-        dispatcher = {
-          name = "movetoworkspacesilent";
-          args = 8;
-        };
-      }
-    ] ++ (repetative_binds {
+      bind = builtins.map new_bind ([
+        {
+          key = "T";
+          dispatcher = {
+            name = "exec";
+            args = vars.terminal;
+          };
+        }
+        {
+          key = "L";
+          dispatcher = {
+            name = "exec";
+            args = "hyprlock";
+          };
+        }
+        {
+          key = "escape";
+          dispatcher.name = "killactive";
+        }
+        {
+          key = "M";
+          dispatcher.name = "exit";
+        }
+        {
+          key = "E";
+          dispatcher = {
+            name = "exec";
+            args = vars.fileManager;
+          };
+        }
+        {
+          key = "C";
+          dispatcher = {
+            name = "exec";
+            args = vars.chat;
+          };
+        }
+        {
+          key = "D";
+          dispatcher = {
+            name = "exec";
+            args = vars.people_who_dont_use_signal;
+          };
+        }
+        {
+          key = "V";
+          dispatcher.name = "togglefloating";
+        }
+        {
+          key = "R";
+          mod = "SHIFT";
+          dispatcher = {
+            name = "exec";
+            args = "~/scripts/re_start-hypr.sh";
+          };
+        }
+        {
+          key = "Space";
+          dispatcher = {
+            name = "exec";
+            args = vars.menu;
+          };
+        }
+        { # dwindle
+          key = "P";
+          dispatcher.name = "pseudo";
+        }
+        { # dwindle
+          key = "J";
+          dispatcher.name = "togglesplit";
+        }
+        {
+          mod = "SHIFT";
+          key = "F";
+          dispatcher = {
+            name = "exec";
+            args = vars.schoolBrowser;
+          };
+        }
+        {
+          key = "F";
+          dispatcher = {
+            name = "exec";
+            args = vars.personalBrowser;
+          };
+        }
+        {
+          key = "F";
+          mod = "CTRL";
+          dispatcher = {
+            name = "exec";
+            args = vars.anotherBrowser;
+          };
+        }
+        {
+          key = "F";
+          mod = "ALT";
+          dispatcher = {
+            name = "exec";
+            args = vars.alternativeBrowser;
+          };
+        }
+        {
+          key = "F";
+          mod = "ALT SHIFT";
+          dispatcher = {
+            name = "exec";
+            args = vars.torBrowser;
+          };
+        }
+        {
+          key = "H";
+          dispatcher = {
+            name = "exec";
+            args = "wpctl set-default 75";
+          };
+        }
+        {
+          key = "N";
+          dispatcher = {
+            name = "exec";
+            args = vars.noteProg;
+          };
+        }
+        {
+          key = "E";
+          mod = "SHIFT";
+          dispatcher = {
+            name = "exec";
+            args = vars.org_mode_is_pretty_good;
+          };
+        }
+        {
+          key = "W";
+          mod = "SHIFT";
+          dispatcher = {
+            name = "exec";
+            args = vars.restart_waybar;
+          };
+        }
+        {
+          key = "B";
+          dispatcher = {
+            name = "exec";
+            args = vars.togWaybar;
+          };
+        }
+        {
+          key = "page_down";
+          dispatcher = {
+            name = "movetoworkspacesilent";
+            args = 8;
+          };
+        }
+      ] ++ (repetative_binds {
         # switch windows
         movefocus = {
           left = "l";
@@ -262,144 +273,145 @@ in {
           down = "d";
         };
       }));
-    binde = builtins.map new_bind (repetative_binds {
-      resizeactive = {
-        down = "0 10";
-        up = "0 -10";
-        left = "-10 0";
-        right = "10 0";
+      binde = builtins.map new_bind (repetative_binds {
+        resizeactive = {
+          mod = "CONTROL";
+          down = "0 10";
+          up = "0 -10";
+          left = "-10 0";
+          right = "10 0";
+        };
+      });
+      bindm = [
+        # Move/resize windows with mainMod + LMB/RMB and dragging
+        "${mainMod}, mouse:272, movewindow"
+        "${mainMod}, mouse:273, resizewindow"
+      ];
+      bindel = [
+        # Laptop multimedia keys for volume and LCD brightness
+        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
+        ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
+      ];
+      bindl = [
+        # Requires playerctl
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
+      ];
+
+      general = {
+        gaps_in = 5;
+        gaps_out = 20;
+
+        border_size = 2;
+
+        # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
+        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.inactive_border" = "rgba(595959aa)";
+
+        # Set to true enable resizing windows by clicking and dragging on borders and gaps
+        resize_on_border = false;
+
+        # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
+        allow_tearing = false;
+
+        #  layout = dwindle;
+        layout = "scrolling";
       };
-    });
-    bindm = [
-      # Move/resize windows with mainMod + LMB/RMB and dragging
-      "${mainMod}, mouse:272, movewindow"
-      "${mainMod}, mouse:273, resizewindow"
-    ];
-    bindel = [
-      # Laptop multimedia keys for volume and LCD brightness
-      ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-      ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-      ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-      ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
-      ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
-    ];
-    bindl = [
-      # Requires playerctl
-      ", XF86AudioNext, exec, playerctl next"
-      ", XF86AudioPause, exec, playerctl play-pause"
-      ", XF86AudioPlay, exec, playerctl play-pause"
-      ", XF86AudioPrev, exec, playerctl previous"
-    ];
+      
+      decoration = {
+        rounding = 10;
+        rounding_power = 2;
 
-    general = {
-      gaps_in = 5;
-      gaps_out = 20;
+        # Change transparency of focused and unfocused windows
+        active_opacity = 1.0;
+        inactive_opacity = 1.0;
 
-      border_size = 2;
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
 
-      # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-      "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-      "col.inactive_border" = "rgba(595959aa)";
-
-      # Set to true enable resizing windows by clicking and dragging on borders and gaps
-      resize_on_border = false;
-
-      # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-      allow_tearing = false;
-
-      #  layout = dwindle;
-      layout = "scrolling";
-    };
-    
-    decoration = {
-      rounding = 10;
-      rounding_power = 2;
-
-      # Change transparency of focused and unfocused windows
-      active_opacity = 1.0;
-      inactive_opacity = 1.0;
-
-      shadow = {
-        enabled = true;
-        range = 4;
-        render_power = 3;
-        color = "rgba(1a1a1aee)";
+        # https://wiki.hyprland.org/Configuring/Variables/#blur
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+          vibrancy = 0.1696;
+        };
       };
 
-      # https://wiki.hyprland.org/Configuring/Variables/#blur
-      blur = {
-        enabled = true;
-        size = 3;
-        passes = 1;
-        vibrancy = 0.1696;
+      scrolling = {
+        direction = "right";
       };
-    };
 
-    scrolling = {
-      direction = "right";
-    };
-
-    # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-    dwindle = {
-      pseudotile = true; 
-      preserve_split = true;
-    };
-
-    # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-    master = {
-      new_status = "master";
-    };
-
-    # https://wiki.hyprland.org/Configuring/Variables/#misc
-    misc = {
-      force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
-      disable_hyprland_logo = false;
-    };
-
-    # https://wiki.hyprland.org/Configuring/Variables/#input
-    input = {
-      kb_layout = "us";
-
-      # NOTE: this is now handled by kanata
-      # kb_options = "caps:swapescape";
-    
-      follow_mouse = 1;
-      sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-
-      touchpad = {
-        natural_scroll = false;
+      # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+      dwindle = {
+        pseudotile = true; 
+        preserve_split = true;
       };
-    };
 
-    # Autostart necessary processes (like notifications daemons, status bars, etc.)
-    exec-once = [
-      "~/scripts/./start-hypr.sh"
-    ];
+      # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+      master = {
+        new_status = "master";
+      };
 
-    # See https://wiki.hyprland.org/Configuring/Environment-variables/
-    env = [
-      "HYPRCURSOR_THEME,Bibata-Modern-Ice"
-      "HYPRCURSOR_SIZE,12"
-      "XCURSOR_THEME,Bibata-Modern-Ice"
-      "XCURSOR_SIZE,12"
-    ];
+      # https://wiki.hyprland.org/Configuring/Variables/#misc
+      misc = {
+        force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo = false;
+      };
 
-    # fixes cursor flickering and misalignment
-    cursor = {
-      no_hardware_cursors = true;
-    };
+      # https://wiki.hyprland.org/Configuring/Variables/#input
+      input = {
+        kb_layout = "us";
 
-    # See https://wiki.hyprland.org/Configuring/Permissions/
-    # Please note permission changes here require a Hyprland restart and are not applied on-the-fly
-    # for security reasons
-    ecosystem = {
-    #   enforce_permissions = 1;
-      no_update_news = true;
-    };
+        # NOTE: this is now handled by kanata
+        # kb_options = "caps:swapescape";
+      
+        follow_mouse = 1;
+        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
 
-    windowrule = builtins.map new_anonrule [
-      # Ignore maximize requests from apps. You'll probably like this.
+        touchpad = {
+          natural_scroll = false;
+        };
+      };
+
+      # Autostart necessary processes (like notifications daemons, status bars, etc.)
+      exec-once = [
+        "~/scripts/./start-hypr.sh"
+      ];
+
+      # See https://wiki.hyprland.org/Configuring/Environment-variables/
+      env = [
+        "HYPRCURSOR_THEME,Bibata-Modern-Ice"
+        "HYPRCURSOR_SIZE,12"
+        "XCURSOR_THEME,Bibata-Modern-Ice"
+        "XCURSOR_SIZE,12"
+      ];
+
+      # fixes cursor flickering and misalignment
+      cursor = {
+        no_hardware_cursors = true;
+      };
+
+      # See https://wiki.hyprland.org/Configuring/Permissions/
+      # Please note permission changes here require a Hyprland restart and are not applied on-the-fly
+      # for security reasons
+      ecosystem = {
+      #   enforce_permissions = 1;
+        no_update_news = true;
+      };
+
+      windowrule = builtins.map new_anonrule [
+        # Ignore maximize requests from apps. You'll probably like this.
         {
           "match:class" = ".*";
           suppress_event = "maxmize";
@@ -421,6 +433,38 @@ in {
         "desc:Hewlett Packard HP w2207 3CQ82426KK, 1680x1050, 1920x-190, 1, transform, 1"
         ", preferred, auto, 1"
       ];
+      
+      animations = {
+        enabled = "yes, please :)"; # why is this the syntax?
+
+        # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        bezier = [
+          "easeOutQuint,0.23,1,0.32,1"
+          "easeInOutCubic,0.65,0.05,0.36,1"
+          "linear,0,0,1,1"
+          "almostLinear,0.5,0.5,0.75,1.0"
+          "quick,0.15,0,0.1,1"
+        ];
+
+        animation = [
+          "global, 1, 10, default"
+          "border, 1, 5.39, easeOutQuint"
+          "windows, 1, 4.79, easeOutQuint"
+          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
+          "windowsOut, 1, 1.49, linear, popin 87%"
+          "fadeIn, 1, 1.73, almostLinear"
+          "fadeOut, 1, 1.46, almostLinear"
+          "fade, 1, 3.03, quick"
+          "layers, 1, 3.81, easeOutQuint"
+          "layersIn, 1, 4, easeOutQuint, fade"
+          "layersOut, 1, 1.5, linear, fade"
+          "fadeLayersIn, 1, 1.79, almostLinear"
+          "fadeLayersOut, 1, 1.39, almostLinear"
+          "workspaces, 1, 1.94, almostLinear, fade"
+          "workspacesIn, 1, 1.21, almostLinear, fade"
+          "workspacesOut, 1, 1.94, almostLinear, fade"
+        ];
+      };
     };
   };
 }

@@ -23,6 +23,10 @@ let
   unstable = import <nixos-unstable> {
     config = { allowUnfree = true; };
   };
+
+  hyprland_nixpkgs = inputs.hyprland.inputs.nixpkgs
+        .legacyPackages.${pkgs.stdenv.hostPlatform.system};
+
   secrets = import ./secrets.nix;
   browsers = import ./browsers.nix;
 in {
@@ -70,10 +74,10 @@ in {
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [
+      extraPackages = (with pkgs; [
         libvdpau-va-gl
         libva-vdpau-driver
-      ];
+      ]);
     };
     nvidia = {
       modesetting.enable = true;
