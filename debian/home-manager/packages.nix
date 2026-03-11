@@ -152,6 +152,7 @@ in
     xorg.libX11.dev
     mullvad-browser 
     github-linguist
+    element-desktop
     nodePackages.asar
     wayland-protocols
     hyprland-protocols

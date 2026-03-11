@@ -1,6 +1,5 @@
+{ pkgs, ... }:
 let
-  pkgs = import <nixpkgs> {};
-
   mainMod = "SUPER";
   vars = {
     terminal = "alacritty";
@@ -53,6 +52,7 @@ let
         in
           pkgs.lib.mapAttrsToList (key: argument: {
             key = key;
+            mod = (if bindings ? mod then bindings.mod else null);
             dispatcher = {
               name = dispatcher;
               args = argument;
@@ -74,7 +74,17 @@ in {
     };
   };
   
-  wayland.windowManager.hyprland = { 
+    # programs = {
+    #   waybar = {
+    #     enable = true;
+    #     systemd.enable = true;
+    #     settings = [
+    #       {
+    #       }
+    #     ];
+    #   };
+    # };
+  wayland.windowManager.hyprland = {
     enable = true;
     settings = {
       bind = builtins.map new_bind ([
@@ -83,6 +93,13 @@ in {
           dispatcher = {
             name = "exec";
             args = vars.terminal;
+          };
+        }
+        {
+          key = "L";
+          dispatcher = {
+            name = "exec";
+            args = "hyprlock";
           };
         }
         {
@@ -117,6 +134,14 @@ in {
         {
           key = "V";
           dispatcher.name = "togglefloating";
+        }
+        {
+          key = "R";
+          mod = "SHIFT";
+          dispatcher = {
+            name = "exec";
+            args = "~/scripts/re_start-hypr.sh";
+          };
         }
         {
           key = "Space";
@@ -173,13 +198,6 @@ in {
           };
         }
         {
-          key = "L";
-          dispatcher = {
-            name = "exec";
-            args = "loginctl lock-session";
-          };
-        }
-        {
           key = "H";
           dispatcher = {
             name = "exec";
@@ -210,14 +228,6 @@ in {
           };
         }
         {
-          key = "R";
-          mod = "SHIFT";
-          dispatcher = {
-            name = "exec";
-            args = "~/scripts/re_start-hypr.sh";
-          };
-        }
-        {
           key = "B";
           dispatcher = {
             name = "exec";
@@ -232,39 +242,40 @@ in {
           };
         }
       ] ++ (repetative_binds {
-          # switch windows
-          movefocus = {
-            left = "l";
-            right = "r";
-            up = "u";
-            down = "d";
-          };
+        # switch windows
+        movefocus = {
+          left = "l";
+          right = "r";
+          up = "u";
+          down = "d";
+        };
 
-          # Switch workspaces with mainMod + [0-9]
-          workspace = builtins.listToAttrs (map (n:
-            { "name" = (toString n); value = (toString n); }
-          ) (pkgs.lib.lists.range 1 9)) // {
-            "0" = "10";
-          };
+        # Switch workspaces with mainMod + [0-9]
+        workspace = builtins.listToAttrs (map (n:
+          { "name" = (toString n); value = (toString n); }
+        ) (pkgs.lib.lists.range 1 9)) // {
+          "0" = "10";
+        };
 
-          # Move active window to a workspace with mainMod + SHIFT + [0-9]
-          movetoworkspace = builtins.listToAttrs (map (n:
-            { "name" = (toString n); value = (toString n); }
-          ) (pkgs.lib.lists.range 1 9)) // {
-            mod = "SHIFT";
-            "0" = "10";
-          };
-          # Move active window around with mainMod + SHIFT + arrow-keys
-          movewindow = {
-            mod = "SHIFT";
-            up = "u";
-            left = "l";
-            right = "r";
-            down = "d";
-          };
-        }));
+        # Move active window to a workspace with mainMod + SHIFT + [0-9]
+        movetoworkspace = builtins.listToAttrs (map (n:
+          { "name" = (toString n); value = (toString n); }
+        ) (pkgs.lib.lists.range 1 9)) // {
+          mod = "SHIFT";
+          "0" = "10";
+        };
+        # Move active window around with mainMod + SHIFT + arrow-keys
+        movewindow = {
+          mod = "SHIFT";
+          up = "u";
+          left = "l";
+          right = "r";
+          down = "d";
+        };
+      }));
       binde = builtins.map new_bind (repetative_binds {
         resizeactive = {
+          mod = "CONTROL";
           down = "0 10";
           up = "0 -10";
           left = "-10 0";
@@ -422,6 +433,38 @@ in {
         "desc:Hewlett Packard HP w2207 3CQ82426KK, 1680x1050, 1920x-190, 1, transform, 1"
         ", preferred, auto, 1"
       ];
+      
+      animations = {
+        enabled = "yes, please :)"; # why is this the syntax?
+
+        # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        bezier = [
+          "easeOutQuint,0.23,1,0.32,1"
+          "easeInOutCubic,0.65,0.05,0.36,1"
+          "linear,0,0,1,1"
+          "almostLinear,0.5,0.5,0.75,1.0"
+          "quick,0.15,0,0.1,1"
+        ];
+
+        animation = [
+          "global, 1, 10, default"
+          "border, 1, 5.39, easeOutQuint"
+          "windows, 1, 4.79, easeOutQuint"
+          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
+          "windowsOut, 1, 1.49, linear, popin 87%"
+          "fadeIn, 1, 1.73, almostLinear"
+          "fadeOut, 1, 1.46, almostLinear"
+          "fade, 1, 3.03, quick"
+          "layers, 1, 3.81, easeOutQuint"
+          "layersIn, 1, 4, easeOutQuint, fade"
+          "layersOut, 1, 1.5, linear, fade"
+          "fadeLayersIn, 1, 1.79, almostLinear"
+          "fadeLayersOut, 1, 1.39, almostLinear"
+          "workspaces, 1, 1.94, almostLinear, fade"
+          "workspacesIn, 1, 1.21, almostLinear, fade"
+          "workspacesOut, 1, 1.94, almostLinear, fade"
+        ];
+      };
     };
   };
 }
