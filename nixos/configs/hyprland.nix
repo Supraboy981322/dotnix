@@ -7,7 +7,8 @@ let
     menu = "wofi --show drun --style /home/super/.config/hypr/wofi.css";
     personalBrowser = "nixGL zen --profile '/home/super/.zen/mainProfile'";
     schoolBrowser = "nixGL zen --profile '/home/super/.zen/schoolProfile'";
-    chat = "signal-desktop";
+    chat = "element-desktop";
+    otherChat = "signal-desktop";
     alternativeBrowser = "nixGL zen --profile /home/super/.zen/zs3f6ux8.viv";
     anotherBrowser = "nixGL zen --profile /home/super/.zen/x4qqcuev";
     torBrowser = "tor-browser";
@@ -122,6 +123,14 @@ in {
           dispatcher = {
             name = "exec";
             args = vars.chat;
+          };
+        }
+        {
+          key = "C";
+          mod = "SHIFT";
+          dispatcher = {
+            name = "exec";
+            args = vars.otherChat;
           };
         }
         {

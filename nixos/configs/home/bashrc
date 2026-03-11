@@ -195,6 +195,7 @@ alias laR="eza -aR"
 alias CURDIR="basename \"${PWD}\""
 alias vimdiff="nvim -d"
 alias ssh="TERM=xterm-256color ssh"
+alias ds="dir_size"
 alias nvimdiff="nvim -d"
 alias switch="sudo nixos-rebuild switch --impure"
 

@@ -32,7 +32,7 @@ in /*{
       enableNixpkgsReleaseCheck = false;
       stateVersion = "18.09";
       activation = {
-        createScreensLink = /* bash */ ''
+        createDirs = /* bash */ ''
           mkdir -p "$HOME/IMG"
           ln -sfn "$HOME/Pictures/Screenshots" "$HOME/IMG/Screens"
 
