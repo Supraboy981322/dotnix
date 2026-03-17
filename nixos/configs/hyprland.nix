@@ -1,16 +1,19 @@
 { pkgs, ... }:
 let
   mainMod = "SUPER";
+  secrets = import ../secrets.nix;
+  zen = "nixGL zen --profile";
   vars = {
+    zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
     terminal = "alacritty";
     fileManager = "dolphin";
     menu = "wofi --show drun --style /home/super/.config/hypr/wofi.css";
-    personalBrowser = "nixGL zen --profile '/home/super/.zen/mainProfile'";
-    schoolBrowser = "nixGL zen --profile '/home/super/.zen/schoolProfile'";
+    personalBrowser = "${zen} '/home/super/.zen/mainProfile'";
+    schoolBrowser = "${zen} '/home/super/.zen/schoolProfile'";
     chat = "element-desktop";
     otherChat = "signal-desktop";
-    alternativeBrowser = "nixGL zen --profile /home/super/.zen/zs3f6ux8.viv";
-    anotherBrowser = "nixGL zen --profile /home/super/.zen/x4qqcuev";
+    alternativeBrowser = "${zen} /home/super/.zen/zs3f6ux8.viv";
+    anotherBrowser = "${zen} /home/super/.zen/x4qqcuev";
     torBrowser = "tor-browser";
     togWaybar = "/home/super/scripts/toggleWaybar.sh";
     noteProg = "obsidian";
@@ -176,6 +179,14 @@ in {
           };
         }
         {
+          mod = "CTRL SHIFT";
+          key = "F";
+          dispatcher = {
+            name = "exec";
+            args = "${vars.zen_confined} '/home/super/.zen/confined_profile'";
+          };
+        }
+        {
           key = "F";
           dispatcher = {
             name = "exec";
@@ -211,6 +222,21 @@ in {
           dispatcher = {
             name = "exec";
             args = "wpctl set-default 75";
+          };
+        }
+        {
+          key = "S";
+          dispatcher = {
+            name = "exec";
+            args = "~/scripts/./screenshot.sh";
+          };
+        }
+        {
+          key = "S";
+          mod = "SHIFT";
+          dispatcher = {
+            name = "exec";
+            args = "~/scripts/./screenshot.sh select";
           };
         }
         {

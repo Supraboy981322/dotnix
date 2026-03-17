@@ -60,6 +60,7 @@ in {
     SDL2
     less
     gtk4
+    libXi
     delta
     cmake
     rustc
@@ -77,6 +78,7 @@ in {
     steam
     nitch
     yt-dlp
+    waybar
     brotli
     nodejs
     lutris
@@ -102,6 +104,7 @@ in {
     python3
     gparted
     gnumake
+    wayland
     #busybox # switched to coreutils
     openvpn
     #ghostty # just discovered Alacritty's Vi mode, might switch back to Ghostty if they add it an equivalent
@@ -116,6 +119,7 @@ in {
     iproute2
     zlib.dev
     inkscape
+    libglvnd
     qemu_kvm
     coreutils
     html-tidy
@@ -127,6 +131,7 @@ in {
     libnotify
     nfs-utils
     hyprutils
+    libXrandr
     sdbus-cpp
     hyprpaper
     playerctl
@@ -140,6 +145,7 @@ in {
     alsa-utils
     libX11.dev
     hyprpicker
+    libXcursor
     pkg-config
     forgejo-cli
     clang-tools
@@ -147,9 +153,11 @@ in {
     openssl.dev
     tor-browser
     libglibutil
+    libXinerama
     virt-manager
     supertuxkart
     wl-clipboard
+    libxkbcommon
     brightnessctl
     cascadia-code
     protonvpn-gui
@@ -192,7 +200,7 @@ in {
     kdePackages.kde-cli-tools
 
     # TODO: debug
-    #  mesa.dev
+    mesa
     #  wine
     #  wine64
     #  wine64Packages.waylandFull

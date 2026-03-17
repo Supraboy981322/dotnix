@@ -34,6 +34,7 @@ in {
     ./hardware-configuration.nix
     #./home.nix
     ./packages.nix
+    ./configs
   ];
 
   nix = {
@@ -129,11 +130,6 @@ in {
       checkReversePath = "loose";
       trustedInterfaces = [ "virbr0" ];
     };
-  };
-
-  vpnNamespaces.${secrets.vpn.wg.alt.provider} = {
-    enable = true;
-    wireguardConfigFile = secrets.vpn.wg.alt.conf_path;
   };
 
   # Set your time zone.
@@ -333,6 +329,7 @@ in {
         "netns"
         "input"
         "uinput"
+        "kvm"
       ];
       subUidRanges = [
         {
@@ -385,9 +382,6 @@ in {
       enable = true;
       defaultEditor = true;
     };
-    waybar = {
-      enable = true;
-    };
     steam = {
       enable = true;
       remotePlay.openFirewall = true;
@@ -408,9 +402,6 @@ in {
         };
       }
     ];
-    bash.shellAliases = {
-      zen_confined = "systemctl --user start zen_browser_confined.service";
-    };
   };
 
   virtualisation = {
