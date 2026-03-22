@@ -35,6 +35,12 @@ require("lazy").setup({
         require('onedark').load()
       end
     },
+    { --another color scheme
+      "Shatur/neovim-ayu",
+      name = "ayu",
+      priority = 1000,
+      opts = {},
+    },
     {
       "sphamba/smear-cursor.nvim",
       opts = {

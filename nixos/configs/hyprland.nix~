@@ -18,7 +18,7 @@ let
     togWaybar = "/home/super/scripts/toggleWaybar.sh";
     noteProg = "obsidian";
     people_who_dont_use_signal = "discordcanary";
-    org_mode_is_pretty_good = "emacs";
+    org_mode_is_pretty_good = "/home/super/.config/emacs/bin/doom emacs";
     restart_waybar = "/home/super/scripts/restart_waybar.sh";
   };
 
@@ -116,7 +116,6 @@ in {
         }
         {
           key = "E";
-          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.fileManager;
@@ -249,6 +248,7 @@ in {
         }
         {
           key = "E";
+          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.org_mode_is_pretty_good;
