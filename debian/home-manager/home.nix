@@ -103,6 +103,23 @@ in {
             -o ~/scripts/yt-dlp
         chmod a+rx ~/scripts/yt-dlp
       '';
+      # can't be bothered to make a flake for these
+      install_unversioned_go_pkgs = /* bash */ ''
+        export HOME="/home/super"
+        export GOPATH="/home/super/go"
+        export PATH=$PATH:${pkgs.gcc}/bin:${pkgs.busybox}/bin:${pkgs.go}/bin
+        go_pkg_urls=(
+          "github.com/Supraboy981322/d/src/d"
+          "github.com/Supraboy981322/misc-scripts/dir_size"
+          "github.com/Supraboy981322/misc-scripts/in_out"
+          "github.com/Supraboy981322/misc-scripts/strip_ansi"
+        )
+        printf "installing go packages...\n" 1>&2
+        for url in "''${go_pkg_urls[@]}"; do 
+          printf "\t%s\n" "$url" 1>&2
+          go install $url@latest 2>&1 | sed 's/^/\t   /g' 1>&2
+        done
+      '';
     };
 
     # the default cursor os gross
@@ -132,6 +149,7 @@ in {
     NIXPKGS_ALLOW_UNFREE = 1;
     PKG_CONFIG_PATH = "$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/";
     CPATH = "$CPATH:/usr/include:/usr/include/gtk-4.0";
+    PATH = "$PATH:$HOME/.nix-profile/bin";
 
     WLR_NO_HARDWARE_CURSORS = 1;
   };
@@ -260,9 +278,16 @@ in {
       enable = true;
       defaultEditor = true;
     };
-    tmux = {          #wanted to try-out tmux
-      enable = false; #  suddenly don't have time
-    };                #    may come back to this later
+    /*tmux = {
+      enable = true;
+      mouse = false; #cringe, why is this even an option?
+      shortcut = "a";
+      historyLimit = 100000;
+      extraConfig = /* sh *//* ''
+        set -g default-terminal "xterm-256color"
+      '';
+      plugins = with pkgs; [];
+    };*/
 
     # TODO: debug
     #  nix-ld.enable = true;

@@ -197,6 +197,7 @@ alias vimdiff="nvim -d"
 alias nvimdiff="nvim -d"
 alias ssh='TERM=xterm-256color ssh'
 alias switch="home-manager switch --impure"
+alias ds="dir_size"
 
 
 ############################
@@ -236,11 +237,12 @@ errlog() (
 #        custom path        #
 #############################
 PATH="${PATH}:${HOME}/go/bin"
-PATH="${PATH}:${HOME}/bin"
-PATH="${PATH}:${HOME}/scripts"
-PATH="${PATH}:${HOME}/.local/share/gem/ruby/3.3.0/bin"
-PATH="${PATH}:${HOME}/.local/bin"
-PATH="${PATH}:${HOME}/.npm-packages/bin"
+PATH+=":${HOME}/bin"
+PATH+=":${HOME}/scripts"
+PATH+=":${HOME}/.local/share/gem/ruby/3.3.0/bin"
+PATH+=":${HOME}/.local/bin"
+PATH+=":${HOME}/.npm-packages/bin"
+PATH+=":${HOME}/.nix-profile/bin"
 
 
 #############################

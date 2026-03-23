@@ -106,6 +106,7 @@ in
     obsidian
     hyprshot
     hyprland
+    sherlock
     hyprlang
     iproute2
     zlib.dev
