@@ -1,27 +1,25 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   mainMod = "SUPER";
   secrets = import ../secrets.nix;
   zen = "nixGL zen --profile";
-  home_dir = "/home/super";
   vars = {
     zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
     terminal = "alacritty";
     fileManager = "dolphin";
-    menu = "wofi --show drun --style ${home_dir}/.config/hypr/wofi.css";
-    personalBrowser = "${zen} '${home_dir}/.zen/mainProfile'";
-    schoolBrowser = "${zen} '${home_dir}/.zen/schoolProfile'";
+    menu = "wofi --show drun --style /home/super/.config/hypr/wofi.css";
+    personalBrowser = "${zen} '/home/super/.zen/mainProfile'";
+    schoolBrowser = "${zen} '/home/super/.zen/schoolProfile'";
     chat = "element-desktop";
     otherChat = "signal-desktop";
-    alternativeBrowser = "${zen} ${home_dir}/.zen/zs3f6ux8.viv";
-    anotherBrowser = "${zen} ${home_dir}/.zen/x4qqcuev";
+    alternativeBrowser = "${zen} /home/super/.zen/zs3f6ux8.viv";
+    anotherBrowser = "${zen} /home/super/.zen/x4qqcuev";
     torBrowser = "tor-browser";
-    togWaybar = "${home_dir}/scripts/toggleWaybar.sh";
+    togWaybar = "/home/super/scripts/toggleWaybar.sh";
     noteProg = "obsidian";
     people_who_dont_use_signal = "discordcanary";
-    org_mode_is_pretty_good = "emacs";
-    restart_waybar = "${home_dir}/scripts/restart_waybar.sh";
-    d_client = "${home_dir}/scripts/d_client";
+    org_mode_is_pretty_good = "/home/super/.config/emacs/bin/doom emacs";
+    restart_waybar = "/home/super/scripts/restart_waybar.sh";
   };
 
   not_stupid_to_str = v:
@@ -118,7 +116,6 @@ in {
         }
         {
           key = "E";
-          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.fileManager;
@@ -182,18 +179,11 @@ in {
           };
         }
         {
-          key = "D";
-          dispatcher = {
-            name = "exec";
-            args = vars.d_client;
-          };
-        }
-        {
           mod = "CTRL SHIFT";
           key = "F";
           dispatcher = {
             name = "exec";
-            args = "${vars.zen_confined} '${home_dir}/.zen/confined_profile'";
+            args = "${vars.zen_confined} '/home/super/.zen/confined_profile'";
           };
         }
         {
@@ -258,6 +248,7 @@ in {
         }
         {
           key = "E";
+          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.org_mode_is_pretty_good;

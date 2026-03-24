@@ -77,7 +77,7 @@ in {
     brave
     steam
     nitch
-    yt-dlp
+    #yt-dlp #installed via a home-manager script
     waybar
     brotli
     nodejs

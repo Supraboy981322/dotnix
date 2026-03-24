@@ -42,6 +42,30 @@ in /*{
               "$HOME/projects" \
               "$HOME/assignments"
         '';
+        # fetches latest version of yt-dlp from GitHub (newer than nixpkgs unstable)
+        get_latest_yt-dlp = /* bash */ ''
+          ${pkgs.curl}/bin/curl -L \
+              https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+              -o ~/scripts/yt-dlp
+          chmod a+rx ~/scripts/yt-dlp
+        '';
+        # can't be bothered to make a flake for these
+        install_unversioned_go_pkgs = /* bash */ ''
+          export HOME="/home/super"
+          export GOPATH="/home/super/go"
+          export PATH=$PATH:${pkgs.gcc}/bin:${pkgs.busybox}/bin:${pkgs.go}/bin
+          go_pkg_urls=(
+            "github.com/Supraboy981322/d/src/d"
+            "github.com/Supraboy981322/misc-scripts/dir_size"
+            "github.com/Supraboy981322/misc-scripts/in_out"
+            "github.com/Supraboy981322/misc-scripts/strip_ansi"
+          )
+          printf "installing go packages...\n" 1>&2
+          for url in "''${go_pkg_urls[@]}"; do 
+            printf "\t%s\n" "$url" 1>&2
+            go install $url@latest 2>&1 | sed 's/^/\t   /g' 1>&2
+          done
+        '';
       };
       packages = with nix-alien-pkgs; [
         nix-alien
@@ -126,7 +150,7 @@ in /*{
     # hath ye been bamboozled?
     xdg.configFile."fastfetch/config.jsonc".text = builtins.toJSON {
       logo = {
-        source = "LFS";
+        source = "LFS"; # neat logo
         color = {
           "1" = "yellow";
           "2" = "blue";
