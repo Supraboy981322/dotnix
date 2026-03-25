@@ -16,7 +16,7 @@ window#waybar.hidden {
 
 /* ==== General rules for visible modules ==== */
 #custom-nix_icon, #custom-clock, #custom-calendar, #cpu, #memory,
-#disk, #battery, #idle_inhibitor, #pulseaudio,
+#disk, #battery, #custom-notif_mode, #pulseaudio,
 #pulseaudio-slider, #network, #language {
   color: #b0ceff;
   background: rgba(0, 0, 0, 0.5);
@@ -29,7 +29,7 @@ window#waybar.hidden {
 
 /* Separation to the left */
 #custom-nix_icon, #cpu,
-#idle_inhibitor {
+#custom-notif_mode {
   margin-left: 5px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -154,7 +154,7 @@ window#waybar.hidden {
   background: rgba(34, 36, 54, 0.5);
 }
 
-#idle_inhibitor {
+#custom-notif_mode {
   padding-right: 0;
   border-top: solid 0.2em #89B4FA;
   border-left: solid 0.2em #89B4FA;

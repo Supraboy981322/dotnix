@@ -22,6 +22,7 @@ let
     org_mode_is_pretty_good = "emacs";
     restart_waybar = "${home_dir}/scripts/restart_waybar.sh";
     d_client = "${home_dir}/scripts/d_client";
+    do_not_disturb = "makoctl mode -t dnd";
   };
 
   not_stupid_to_str = v:
@@ -141,6 +142,14 @@ in {
         }
         {
           key = "D";
+          mod = "CONTROL";
+          dispatcher = {
+            name = "exec";
+            args = vars.do_not_disturb;
+          };
+        }
+        {
+          key = "D";
           dispatcher = {
             name = "exec";
             args = vars.people_who_dont_use_signal;
@@ -183,6 +192,7 @@ in {
         }
         {
           key = "D";
+          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.d_client;
