@@ -1,0 +1,36 @@
+" buffer search settings
+set smartcase
+set hlsearch
+set ignorecase
+
+" disable bell sounds
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+" visual stuff
+set foldcolumn=1
+syntax enable
+set regexpengine=0
+set background=dark
+highlight Comment ctermfg=grey guifg=#80a0ff
+highlight String ctermfg=green guifg=#aaffaa
+highlight Normal guibg=#000000 ctermfg=white guifg=#ffffff
+
+" [insert clever category name here]
+set encoding=utf8
+set ffs=unix
+
+" whitespace and linewrapping
+set expandtab
+set smarttab
+set shiftwidth=2
+set tabstop=2
+set ai "auto indenting
+set si "'smart' indenting
+set wrap
+
+" statusline (all that's *really* needed)
+set laststatus=2
+set statusline=%f%m%=%y\ %l/%L

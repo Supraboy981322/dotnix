@@ -44,5 +44,9 @@
       enable = true;
       source = ./configs/home/psh_rc;
     };
+    ".vimrc" = {
+      enable = true;
+      source = ./configs/home/vimrc;
+    };
   };
 }

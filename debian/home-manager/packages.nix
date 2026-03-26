@@ -98,6 +98,33 @@ in
     gnumake
     busybox
     openvpn
+
+    # forgot why I need these
+    nss
+    atk
+    nspr
+    dbus
+    cups
+    glib
+    gtk3
+    libGL
+    cairo
+    pango
+    expat
+    libgbm
+    libx11
+    libxcb
+    libxext
+    alsa-lib
+    electron
+    libxfixes
+    libxrandr
+    libxdamage
+    at-spi2-atk
+    nodejs-slim
+    libxkbcommon
+    libxcomposite
+
     #ghostty # just discovered Alacritty's Vi mode, might switch back to Ghostty if they add it an equivalent
     qrencode
     prettier

@@ -17,6 +17,7 @@ let
     people_who_dont_use_signal = "discordcanary";
     org_mode_is_pretty_good = "/home/super/.config/emacs/bin/doom emacs";
     restart_waybar = "/home/super/scripts/restart_waybar.sh";
+    d_client = "/home/super/scripts/d_client";
   };
 
   not_stupid_to_str = v:
@@ -110,6 +111,14 @@ in {
         {
           key = "M";
           dispatcher.name = "exit";
+        }
+        {
+          key = "D";
+          mod = "SHIFT";
+          dispatcher = {
+            name = "exec";
+            args = vars.d_client;
+          };
         }
         {
           key = "E";
