@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+is_enabled=$(
+  makoctl mode \
+    | grep 'dnd' &>/dev/null
+  echo $?
+)
+icon="$((( $is_enabled )) && echo "" || echo "")"
+tooltip="$((( $is_enabled )) && echo "normal" || echo "do not disturb")"
+
+echo '
+{
+  "text": "'"$icon"'",
+  "class":"'"$((( $is_enabled )) && echo "off" || echo "on")"'",
+  "tooltip": "'"$tooltip"'"
+}
+' | jq -c

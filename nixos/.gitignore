@@ -7,6 +7,8 @@ scripts/
 !scripts/battery_notifier
 !scripts/toggleWaybar.sh
 !scripts/minimizeWindow.sh
+!scripts/clock_icon
+!scripts/notif_mode_icon
 configs/home/docker/winapps/
 configs/home/config/winapps/
 hardware-configuration.nix
