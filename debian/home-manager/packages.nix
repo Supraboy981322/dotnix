@@ -41,6 +41,7 @@ in
     vlc
     mpv
     jdk
+    odin
     iamb
     wget
     swww
@@ -96,8 +97,8 @@ in
     python3
     gparted
     gnumake
-    busybox
     openvpn
+    coreutils
 
     # forgot why I need these
     nss
@@ -167,7 +168,7 @@ in
     tor-browser
     libglibutil
     virt-manager
-    superTuxKart
+    supertuxkart
     wl-clipboard
     brightnessctl
     cascadia-code
