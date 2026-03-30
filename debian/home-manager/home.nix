@@ -80,6 +80,7 @@ in {
     ./files.nix
     ./configs/hyprland.nix
     ./packages.nix
+    ./configs/shell.nix
   ];
 
   home = {
