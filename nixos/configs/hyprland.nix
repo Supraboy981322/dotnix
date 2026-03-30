@@ -9,7 +9,8 @@ let
     terminal = "alacritty";
     fileManager = "dolphin";
     menu = "wofi --show drun --style ${home_dir}/.config/hypr/wofi.css";
-    personalBrowser = "${zen} '${home_dir}/.zen/mainProfile'";
+    #personalBrowser = "${zen} '${home_dir}/.zen/mainProfile'";
+    personalBrowser = "${home_dir}/scripts/browser.sh";
     schoolBrowser = "${zen} '${home_dir}/.zen/schoolProfile'";
     chat = "element-desktop";
     otherChat = "signal-desktop";
