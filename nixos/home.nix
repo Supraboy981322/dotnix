@@ -3,6 +3,7 @@ let
   nix-alien-pkgs = import (builtins.fetchTarball
     "https://github.com/thiagokokada/nix-alien/tarball/master"
   ) { };
+  secrets = import ./secrets.nix;
 in /*{
 
   home-manager.users.root = {
@@ -129,6 +130,7 @@ in /*{
               white_list = [
                 "::1"
                 "127.0.0.1"
+                "seizure"
                 "localhost"
               ];
             in
@@ -143,6 +145,27 @@ in /*{
         ".psh_rc" = {
           enable = true;
           source = ./configs/home/psh_rc;
+        };
+        "scripts/browser.sh" = {
+          enable = true;
+          source = pkgs.writeShellScript "browser.sh" /* bash */ ''
+            being_watched() {
+              makoctl mode \
+                | grep 'dnd' &>/dev/null
+            }
+
+            if being_watched; then
+              nixGL \
+                firejail \
+                  --netns=${secrets.vpn.wg.alt.provider} \
+                zen \
+                  --profile "/home/super/.zen/confined_profile"
+            else
+              nixGL \
+                zen \
+                  --profile "/home/super/.zen/mainProfile"
+            fi
+          '';
         };
       };
     };
