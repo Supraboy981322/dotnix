@@ -23,6 +23,11 @@ batWarn() {
   battery_notifier
 }
 
+dns_monitor() {
+  pkill internet_connection_checker_thingy
+  internet_connection_checker_thingy
+}
+
 Kanata() {
   pkill kanata
   kanata -c ~/.config/kanata.kbd
@@ -32,4 +37,5 @@ hyprPaper \
   & startMako \
   & batWarn \
   & wayBar \
-  & Kanata
+  & Kanata \
+  & dns_monitor

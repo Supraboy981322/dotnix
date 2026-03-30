@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 #used to get the name of a monitor
 #  which reports a different name
 #    at each boot
@@ -31,14 +30,6 @@ wayBar() {
     --config /home/super/.config/hypr/waybar.jsonc
 }
 
-hyprPaper() {
-  hyprpaper
-}
-
-startMako() {
-  mako
-}
-
 confDisplay() {
   xrandr \
     --output \
@@ -46,28 +37,12 @@ confDisplay() {
     --primary
 }
 
-HyprCTL() {
-  hyprctl \
-    setcursor Bibata-Modern-Ice 12
-}
-
-batWarn() {
-  battery_notifier
-}
-
-mute_volume() {
-  wpctl set-volume @DEFAULT_AUDIO_SINK@ 0
-}
-
-Kanata() {
-  kanata -c ~/.config/kanata.kbd
-}
-
-hyprPaper \
+hyprpaper \
   & confDisplay \
-  & startMako \
-  & HyprCTL \
-  & batWarn \
-  & mute_volume \
+  & mako \
+  & hyprctl setcursor Bibata-Modern-Ice 12 \
+  & battery_notifier \
+  & wpctl set-volume @DEFAULT_AUDIO_SINK@ 0 \
   & wayBar \
-  & Kanata
+  & kanata -c ~/.config/kanata.kbd \
+  & internet_connection_checker_thingy
