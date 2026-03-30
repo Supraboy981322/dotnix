@@ -33,15 +33,21 @@
   },
   "custom/clock": {
 //    "timezone": "America/Chicago",
-    //"format": "{:%I:%M%p | %b %d}",
+        //"format": "{:%I:%M%p | %b %d}",
+    //"format": "{}",
+    //"exec": "",
+    //"tooltip": true,
+    //"tooltip-format": "{calendar}",
+    //"interval": 5,
+    //"calendar": {
+    //  "mode": "month"
+    //}
     "format": "{}",
-    "exec": "date '+%I:%M%P | %b %d'",
-    "tooltip": true,
-    "tooltip-format": "{calendar}",
-    "interval": 5,
-    "calendar": {
-      "mode": "month"
-    }
+    "exec": "~/scripts/clock_icon",
+    "exec-on-event": true,
+    "on-click": "makoctl mode -t dnd",
+    "interval": 1,
+    "return-type": "json"
   },
   "cpu": {
     "format": "{usage}% ",
@@ -107,7 +113,7 @@
     "exec-on-event": true,
     "on-click": "makoctl mode -t dnd",
     "interval": 1,
-    "return-type": "json",
+    "return-type": "json"
   },
   "pulseaudio/slider": {
     "format": "{volume}%",
