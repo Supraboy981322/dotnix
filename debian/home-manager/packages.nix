@@ -16,9 +16,9 @@ let
     builtins.fetchTarball
         "https://github.com/nix-community/nixGL/archive/main.tar.gz"
   ) { inherit pkgs; };
-in
 
-{
+  browsers = import ./browsers.nix;
+in {
   # standard packages
   home.packages = with pkgs; [
     go
@@ -186,7 +186,7 @@ in
     wayland-protocols
     hyprland-protocols
     hyprwayland-scanner
-    zen-browser.default
+    #zen-browser.default
     lua52Packages.cjson
     lua52Packages.luasec
     gnome-system-monitor
@@ -230,5 +230,7 @@ in
     (pkgs.ffmpeg-full.override {
       withUnfree = true;
     })
+  ] ++ [
+    browsers.zen.re-wrapped
   ];
 }
