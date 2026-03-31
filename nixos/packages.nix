@@ -28,7 +28,7 @@ in {
     bc
     #zsh TODO: try this
     bat
-    vim
+    #vim
     gdm
     git
     SDL
