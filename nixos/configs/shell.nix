@@ -131,8 +131,7 @@ in {
   environment.variables = {
     VITASDK = "/usr/local/vitasdk";
     EDITOR = "nvim";
-    # TODO: change this
-    VISUAL = "/usr/bin/nvim";
+    VISUAL = "emacs";
     BUN_INSTALL = "$HOME/.bun";
     NVM_DIR="$HOME/.nvm";
     GOBIN = "$HOME/go/bin";
