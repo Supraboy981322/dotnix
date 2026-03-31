@@ -35,9 +35,12 @@
 (evil-mode 1)
 
 ;theme
-(use-package
-  ayu-theme
-  :config (load-theme 'ayu-dark t))
+(use-package doom-themes
+  :config
+  (setq
+    doom-themes-enable-bold t
+    doom-themes-enable-italic t)
+  (load-theme 'doom-vibrant t))
 ;hide the ui (why is this even present by default?)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
