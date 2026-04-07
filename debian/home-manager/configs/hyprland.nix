@@ -274,6 +274,14 @@ in {
             args = 8;
           };
         }
+        {
+          key = "E";
+          mod = "CONTROL";
+          dispatcher = {
+            name = "layoutmsg";
+            args = "colresize 1";
+          };
+        }
       ] ++ (repetative_binds {
         # switch windows
         movefocus = {
