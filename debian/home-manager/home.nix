@@ -64,7 +64,6 @@ in {
     };
   };
 
-  
   # I need several non-open packages for school,
   #  it's easier to just add them to the list with
   #    the rest of my packages and mark them as "for school"
@@ -79,9 +78,7 @@ in {
   imports = [
     ./files.nix
     ./configs
-    #./configs/hyprland.nix
     ./packages.nix
-    #./configs/shell.nix
   ];
 
   home = {
@@ -117,7 +114,7 @@ in {
           "github.com/Supraboy981322/misc-scripts/strip_ansi"
         )
         printf "installing go packages...\n" 1>&2
-        for url in "''${go_pkg_urls[@]}"; do 
+        for url in "''${go_pkg_urls[@]}"; do
           printf "\t%s\n" "$url" 1>&2
           go install $url@latest 2>&1 | sed 's/^/\t   /g' 1>&2
         done
