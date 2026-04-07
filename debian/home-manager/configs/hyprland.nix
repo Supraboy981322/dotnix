@@ -83,16 +83,6 @@ let
 
 in {
 
-  #enable desktop portal and set hyprland to default
-  xdg.portal = {
-    enable = true;
-    config = {
-      hyprland = {
-        default = [ "hyprland" "gtk" ];
-      };
-    };
-  };
-  
   # TODO: migrate additional hyprland stuff to Nix
   # programs = {
   #   waybar = {
@@ -104,6 +94,51 @@ in {
   #     ];
   #   };
   # };
+
+  xdg = 
+    let
+      waybar = import ./waybar.nix;
+    in {
+    #enable desktop portal and set hyprland to default
+    portal = {
+      enable = true;
+      config = {
+        hyprland = {
+          default = [ "hyprland" "gtk" ];
+        };
+      };
+    };
+
+    #waybar part 1
+    configFile."hypr/waybar.jsonc".text =  builtins.toJSON waybar.part_1;
+    configFile."hypr/waybar.css".text = waybar.part_2;
+    configFile."hypr/wofi.css".text = import ./wofi.nix;
+  };
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+
+      # NOTE: old config (hyprlang)
+      #  #preload = /home/super/Pictures/themes/Formula_1_Tyre_Evolution_image.1.webp
+      #  #wallpaper = eDP-1, /home/super/Pictures/themes/Formula_1_Tyre_Evolution_image.1.webp
+      #  #splash = true
+      #  #ipc = off
+      #  wallpaper {
+      #    monitor =
+      #    path = ~/Pictures/themes/Formula_1_Tyre_Evolution_image.1.webp
+      #    fit_mode = cover
+      #  }
+
+      wallpaper = [
+        {
+          monitor = "";
+          path = "~/Pictures/themes/Formula_1_Tyre_Evolution_image.1.webp"; 
+          fit_mode = "cover";
+        }
+      ];
+    };
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
