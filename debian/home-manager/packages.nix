@@ -90,6 +90,7 @@ in {
     podman
     gnutar
     libvirt
+    makemkv
     freerdp
     udisks2
     ripgrep
@@ -98,7 +99,9 @@ in {
     gparted
     gnumake
     openvpn
+    hyprlock
     coreutils
+    handbrake
 
     # forgot why I need these
     nss

@@ -115,6 +115,10 @@ in {
     configFile."hypr/wofi.css".text = import ./wofi.nix;
   };
 
+  programs.hyprlock = {
+    enable = true;
+  };
+
   services.hyprpaper = {
     enable = true;
     settings = {
