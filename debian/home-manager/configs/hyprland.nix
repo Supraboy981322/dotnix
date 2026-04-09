@@ -178,7 +178,6 @@ in {
         {
           #a small electron (gross) program I wrote for logging things
           key = "D";
-          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.d_client;
@@ -213,6 +212,7 @@ in {
         {
           #Discord
           key = "D";
+          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.people_who_dont_use_signal;
