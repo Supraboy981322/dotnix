@@ -137,12 +137,15 @@
     * {
       border: none;
       font-family: "JetbrainsMono Nerd Font";
-      font-size: 15px;
-      min-height: 10px;
+      font-size: 10px;
+      min-height: 6px;
     }
 
     window#waybar {
-      background: rgba(34, 36, 54, 0.6);
+      background: rgba(34, 36, 54, 0.0);
+      border-bottom: none;
+      margin: 0;
+      padding: 0;
     }
 
     window#waybar.hidden {
@@ -154,9 +157,8 @@
     #disk, #battery, #idle_inhibitor, #pulseaudio,
     #pulseaudio-slider, #network, #language {
       color: #b0ceff;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.75);
       margin-top: 6px;
-      margin-bottom: 6px;
       padding-left: 10px;
       padding-right: 10px;
       transition: none;
@@ -181,7 +183,7 @@
 
     /* Modules left */
 		#custom-debian_icon {
-      font-size: 24px;
+      font-size: 15px;
       color: rgba(0, 0, 0, 0.85);
       margin-left: 0;
       background: #89B4FA;
@@ -237,7 +239,7 @@
       background: rgba(0, 0, 0, 0.5);
       border: solid 0.2em #89B4FA;
       border-radius: 10px;
-      margin: 8px 5px;
+      margin: 8px 5px 0px 5px;
       padding: 0px 6px;
     }
 
@@ -266,27 +268,27 @@
     /* Modules right */
 		#taskbar {
     /*  border: solid 0.2em #89B4FA;*/
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.75);
       border-radius: 10px 0px 0px 10px;
       padding: 0px;
-      margin: 10px 5px;
+      margin: 10px 5px 0px 5px;
       margin-right: -10px;
       padding-right: 13px;
     }
 
 		#taskbar button {
       padding: 0px 5px;
-      margin: 3px 0px 3px 3px;
+      margin: 3px 0px 0px 3px;
       border-radius: 6px;
       transition: background 0.3s ease;
     }
 
 		#taskbar button.active {
-      background: rgba(134, 153, 247, 0.5);
+      background: rgba(134, 153, 247, 0.75);
     }
 
 		#taskbar button:hover {
-      background: rgba(34, 36, 54, 0.5);
+      background: rgba(34, 36, 54, 0.75);
     }
 
 		#idle_inhibitor {
