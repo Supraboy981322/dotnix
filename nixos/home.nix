@@ -28,6 +28,7 @@ in /*{
   home-manager.users.super = */{
     imports = [
       ./configs/hyprland.nix
+      ./configs/fastfetch.nix
     ];
     home = {
       enableNixpkgsReleaseCheck = false;
