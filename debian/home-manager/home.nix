@@ -112,6 +112,7 @@ in {
           "github.com/Supraboy981322/misc-scripts/dir_size"
           "github.com/Supraboy981322/misc-scripts/in_out"
           "github.com/Supraboy981322/misc-scripts/strip_ansi"
+          "github.com/Supraboy981322/misc-scripts/bytes_to_human"
         )
         printf "installing go packages...\n" 1>&2
         for url in "''${go_pkg_urls[@]}"; do

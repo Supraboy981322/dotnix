@@ -102,6 +102,7 @@ in {
     hyprlock
     coreutils
     handbrake
+    vulkan-tools
 
     # forgot why I need these
     nss
@@ -212,11 +213,11 @@ in {
     kdePackages.kde-cli-tools
 
     # TODO: debug
-    #  mesa.dev
-    #  wine
-    #  wine64
-    #  wine64Packages.waylandFull
-    #  wineWow64Packages.waylandFull
+    mesa
+    wine
+    #wine64
+    #wine64Packages.waylandFull
+    #wineWow64Packages.waylandFull
     #  javaPackages.openjfx23
     #  clang
 
