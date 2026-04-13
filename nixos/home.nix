@@ -61,11 +61,12 @@ in /*{
             "github.com/Supraboy981322/misc-scripts/dir_size"
             "github.com/Supraboy981322/misc-scripts/in_out"
             "github.com/Supraboy981322/misc-scripts/strip_ansi"
+            "github.com/Supraboy981322/misc-scripts/bytes_to_human"
           )
           printf "installing go packages...\n" 1>&2
-          for url in "''${go_pkg_urls[@]}"; do 
+          for url in "''${go_pkg_urls[@]}"; do
             printf "\t%s\n" "$url" 1>&2
-            go install $url@latest 2>&1 | sed 's/^/\t   /g' 1>&2
+            go install $url@latest 2>&1 | sed 's/^/\t\t/g' 1>&2
           done
         '';
       };
