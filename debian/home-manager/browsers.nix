@@ -107,7 +107,7 @@ let
       alias = "nix";
       url = "https://noogle.dev/q?term={searchTerms}";
     }
-    { 
+    {
       desc = "zig stdlib docs";
       alias = "zig";
       url = "https://ziglang.org/documentation/0.15.2/std/#{searchTerms}";

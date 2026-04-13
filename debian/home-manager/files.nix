@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 # various directories and dotfiles
 
@@ -47,6 +47,18 @@
     ".vimrc" = {
       enable = true;
       source = ./configs/home/vimrc;
+    };
+    ".p_shrc" = {
+      enable = true;
+      text =
+        let
+          config = (import ./helpers/p_shrc.nix { pkgs = pkgs; }).mk_rc {
+            aliases = {
+              cls = "clear";
+            };
+          };
+        in
+          config;
     };
   };
 }
