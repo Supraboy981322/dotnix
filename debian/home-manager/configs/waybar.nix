@@ -13,7 +13,7 @@
       "battery"
       "memory"
     #    "temperature"
-      "idle_inhibitor"
+      "custom/notif_mode"
       "pulseaudio/slider"
       "pulseaudio"
       #    "hyprland/language"
@@ -95,12 +95,13 @@
         Ghostty = "Terminal";
       };
     };
-    idle_inhibitor = {
-      format = "{icon}  | ";
-      format-icons = {
-        activated = "";
-        deactivated = "";
-      };
+    "custom/notif_mode" = {
+      format = "{}  | ";
+      exec = "~/scripts/notif_mode_icon";
+      exec-on-event = true;
+      on-click = "makoctl mode -t dnd";
+      interval = 1;
+      return-type = "json";
     };
     "pulseaudio/slider" = {
       format = "{volume}%";
@@ -137,15 +138,12 @@
     * {
       border: none;
       font-family: "JetbrainsMono Nerd Font";
-      font-size: 10px;
-      min-height: 6px;
+      font-size: 15px;
+      min-height: 10px;
     }
 
     window#waybar {
-      background: rgba(34, 36, 54, 0.0);
-      border-bottom: none;
-      margin: 0;
-      padding: 0;
+      background: rgba(34, 36, 54, 0.6);
     }
 
     window#waybar.hidden {
@@ -154,11 +152,12 @@
 
     /* ==== General rules for visible modules ==== */
     #custom-debian_icon, #custom-clock, #custom-calendar, #cpu, #memory,
-    #disk, #battery, #idle_inhibitor, #pulseaudio,
+    #disk, #battery, #custom-notif_mode, #pulseaudio,
     #pulseaudio-slider, #network, #language {
       color: #b0ceff;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.5);
       margin-top: 6px;
+      margin-bottom: 6px;
       padding-left: 10px;
       padding-right: 10px;
       transition: none;
@@ -166,7 +165,7 @@
 
     /* Separation to the left */
     #custom-debian_icon, #cpu,
-    #idle_inhibitor {
+    #custom-notif_mode {
       margin-left: 5px;
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
@@ -182,22 +181,22 @@
     /* == Specific styles == */
 
     /* Modules left */
-		#custom-debian_icon {
-      font-size: 15px;
+    #custom-debian_icon {
+      font-size: 24px;
       color: rgba(0, 0, 0, 0.85);
       margin-left: 0;
       background: #89B4FA;
       padding-right: 17px;
     }
 
-		#custom-calendar {
+    #custom-calendar {
       margin-right: 10px;
       border-top: solid 0.2em #89B4FA;
       border-right: solid 0.2em #89B4FA;
       border-bottom: solid 0.2em #89B4FA;
     }
 
-		#custom-clock {
+    #custom-clock {
       margin-right: 6px;
       margin-left: 0;
       padding-left: 10px;
@@ -207,7 +206,7 @@
       border-bottom: solid 0.2em #89B4FA;
     }
 
-		#cpu {
+    #cpu {
       padding-right: 5px;
       margin-left: 6px;
       border-top: solid 0.2em #89B4FA;
@@ -215,7 +214,7 @@
       border-bottom: solid 0.2em #89B4FA;
     }
 
-		#memory {
+    #memory {
       padding-right: 16px;
       padding-left: 5px;
       border-top: solid 0.2em #89B4FA;
@@ -223,11 +222,11 @@
       border-bottom: solid 0.2em #89B4FA;
     }
 
-		#disk {
+    #disk {
       background: #ffffff;
     }
 
-		#battery {
+    #battery {
       padding-left: 0;
       padding-right: 5px;
       border-top: solid 0.2em #89B4FA;
@@ -235,70 +234,70 @@
     }
 
     /* === Modules center === */
-		#workspaces {
+    #workspaces {
       background: rgba(0, 0, 0, 0.5);
       border: solid 0.2em #89B4FA;
       border-radius: 10px;
-      margin: 8px 5px 0px 5px;
+      margin: 8px 5px;
       padding: 0px 6px;
     }
 
-		#workspaces button {
+    #workspaces button {
       color: #B5E8E0;
       background: transparent;
       padding: 4px 4px;
       transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
     }
 
-		#workspaces button.occupied {
+    #workspaces button.occupied {
       color: #A6E3A1;
     }
 
-		#workspaces button.active {
+    #workspaces button.active {
       color: #89B4FA;
       text-shadow: 0 0 4px #ABE9B3;
     }
 
-		#workspaces button:hover {
+    #workspaces button:hover {
       color: #89B4FA;
     }
 
-		#workspaces button.active:hover {}
+    #workspaces button.active:hover {}
 
     /* Modules right */
-		#taskbar {
+    #taskbar {
     /*  border: solid 0.2em #89B4FA;*/
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.5);
       border-radius: 10px 0px 0px 10px;
       padding: 0px;
-      margin: 10px 5px 0px 5px;
+      margin: 10px 5px;
       margin-right: -10px;
       padding-right: 13px;
     }
 
-		#taskbar button {
+    #taskbar button {
       padding: 0px 5px;
-      margin: 3px 0px 0px 3px;
+      margin: 3px 0px 3px 3px;
       border-radius: 6px;
       transition: background 0.3s ease;
     }
 
-		#taskbar button.active {
-      background: rgba(134, 153, 247, 0.75);
+    #taskbar button.active {
+      background: rgba(134, 153, 247, 0.5);
     }
 
-		#taskbar button:hover {
-      background: rgba(34, 36, 54, 0.75);
+    #taskbar button:hover {
+      background: rgba(34, 36, 54, 0.5);
     }
 
-		#idle_inhibitor {
+    #custom-notif_mode {
       padding-right: 0;
       border-top: solid 0.2em #89B4FA;
       border-left: solid 0.2em #89B4FA;
       border-bottom: solid 0.2em #89B4FA;
     }
 
-		#pulseaudio {
+    #pulseaudio {
       padding-right: 11px;
       min-width: 50px;
       border-top: solid 0.2em #89B4FA;
@@ -307,22 +306,22 @@
       border-right: solid 0.2em #89B4FA;
     }
 
-		#pulseaudio-slider {
+    #pulseaudio-slider {
       padding-left: 0;
       border-top: solid 0.2em #89B4FA;
       border-bottom: solid 0.2em #89B4FA;
       min-width: 50px;
     }
 
-		#pulseaudio-slider slider {}
+    #pulseaudio-slider slider {}
 
 
-		#network {
+    #network {
       background: #8caaee;
       padding-right: 13px;
     }
 
-		#language {
+    #language {
       padding-left: 0;
       border-top: solid 0.2em #89B4FA;
       border-right: solid 0.2em #89B4FA;
