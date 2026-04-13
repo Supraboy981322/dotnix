@@ -44,13 +44,13 @@ in {
     jdk
     wget
     vala
-    swww
+    awww
     wofi
     nmap
     file
     zlib
     ruby
-    iamb
+    #iamb their flake in nixpkgs is broken, doesn't build
     gimp
     mako
     glib
@@ -147,6 +147,7 @@ in {
     hyprpicker
     libXcursor
     pkg-config
+    proton-vpn
     forgejo-cli
     clang-tools
     tree-sitter
@@ -160,7 +161,6 @@ in {
     libxkbcommon
     brightnessctl
     cascadia-code
-    protonvpn-gui
     prismlauncher
     signal-desktop
     bibata-cursors
@@ -173,7 +173,6 @@ in {
     element-desktop
     wireguard-tools
     github-linguist
-    nodePackages.asar
     wayland-protocols
     hyprland-protocols
     hyprwayland-scanner

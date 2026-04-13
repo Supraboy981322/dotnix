@@ -151,6 +151,7 @@ in {
         }
         {
           key = "D";
+          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.people_who_dont_use_signal;
@@ -193,7 +194,6 @@ in {
         }
         {
           key = "D";
-          mod = "SHIFT";
           dispatcher = {
             name = "exec";
             args = vars.d_client;
@@ -294,6 +294,15 @@ in {
           dispatcher = {
             name = "movetoworkspacesilent";
             args = 8;
+          };
+        }
+        {
+          #expands window to fill screen
+          key = "E";
+          mod = "CONTROL";
+          dispatcher = {
+            name = "layoutmsg";
+            args = "colresize 1";
           };
         }
       ] ++ (repetative_binds {
