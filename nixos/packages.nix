@@ -75,7 +75,7 @@ in {
     meson
     hplip
     brave
-    steam
+    #steam
     nitch
     #yt-dlp #installed via a home-manager script
     waybar
@@ -224,4 +224,10 @@ in {
     browsers.zen.re-wrapped
     browsers.firefox.re-wrapped
   ];
+  
+  #services.flatpak = {
+  #  enable = true;
+  #  update.auto.enable = true;
+  #  packages = [ "com.valvesoftware.Steam" ];
+  #};
 }

@@ -29,6 +29,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs = {
@@ -36,6 +38,7 @@
     self,
     nixpkgs,
     ghostty,
+    nix-flatpak,
     home-manager,
     zen-browser_pkg,
     vpn-confinement,
@@ -89,7 +92,10 @@
               ghostty
             ]);
           }
+
           ./configuration.nix
+
+          nix-flatpak.nixosModules.nix-flatpak
           vpn-confinement.nixosModules.default
 
           home-manager.nixosModules.home-manager {

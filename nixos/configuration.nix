@@ -58,6 +58,7 @@ in {
       options = [
         "users"
         "nofail"
+        "exec"
       ];
     };
   };
@@ -87,6 +88,9 @@ in {
       open = true;
       nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+    steam-hardware = {
+      enable = true;
     };
   };
 
