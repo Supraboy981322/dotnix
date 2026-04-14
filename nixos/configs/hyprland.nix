@@ -487,6 +487,7 @@ in {
       # Autostart necessary processes (like notifications daemons, status bars, etc.)
       exec-once = [
         "~/scripts/./start-hypr.sh"
+        "discordcanary --headless"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Environment-variables/
