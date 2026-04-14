@@ -99,9 +99,11 @@
           vpn-confinement.nixosModules.default
 
           home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.super = import ./home.nix;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.super = import ./home.nix;
+            };
           }
         ];
         specialArgs = {
