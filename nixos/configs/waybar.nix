@@ -23,12 +23,12 @@
     ];
     modules-right = [
       "wlr/taskbar"
-      "custom/debian_icon"
+      "custom/nix_icon"
       "custom/clock"
     ];
     /* === Modules Left === */
-    "custom/debian_icon" = {
-      format = "";
+    "custom/nix_icon" = {
+      format = "";
       on-click = "wofi --show drun";
       tooltip = false;
     };
@@ -151,7 +151,7 @@
     }
 
     /* ==== General rules for visible modules ==== */
-    #custom-debian_icon, #custom-clock, #custom-calendar, #cpu, #memory,
+    #custom-nix_icon, #custom-clock, #custom-calendar, #cpu, #memory,
     #disk, #battery, #custom-notif_mode, #pulseaudio,
     #pulseaudio-slider, #network, #language {
       color: #b0ceff;
@@ -164,7 +164,7 @@
     }
 
     /* Separation to the left */
-    #custom-debian_icon, #cpu,
+    #custom-nix_icon, #cpu,
     #custom-notif_mode {
       margin-left: 5px;
       border-top-left-radius: 10px;
@@ -181,7 +181,7 @@
     /* == Specific styles == */
 
     /* Modules left */
-    #custom-debian_icon {
+    #custom-nix_icon {
       font-size: 24px;
       color: rgba(0, 0, 0, 0.85);
       margin-left: 0;
