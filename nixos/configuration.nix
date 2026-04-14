@@ -458,36 +458,20 @@ in {
     };
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment = {
     sessionVariables = {
       XDG_CURRENT_DESKTOP = "sway";
       NIXOS_OZONE_WL = "1";
       GOPATH = "/home/super/go";
+      XDG_DATA_DIRS = [
+        "$HOME/.local/share/flatpak/exports/share"
+        "/var/lib/flatpak/exports/share"
+      ];
     };
     enableAllTerminfo = true;
   };
 
-  system.activationScripts = {
-    # can't be bothered to make a flake for these
-    install_unversioned_pkgs = /* bash */ ''
-      export HOME="/home/super"
-      export GOPATH="/home/super/go"
-      export PATH=$PATH:${pkgs.gcc}/bin:${pkgs.busybox}/bin:${pkgs.go}/bin
-      go_pkg_urls=(
-        "github.com/Supraboy981322/d/src/d"
-        "github.com/Supraboy981322/misc-scripts/dir_size"
-        "github.com/Supraboy981322/misc-scripts/in_out"
-        "github.com/Supraboy981322/misc-scripts/strip_ansi"
-      )
-      printf "installing go packages...\n" 1>&2 || exit 1
-      for url in "''${go_pkg_urls[@]}"; do 
-        printf "\t%s\n" "$url" 1>&2 || exit 1
-        go install $url@latest 1>&2 
-      done
-    '';
-  };
+  system.activationScripts = import ./activation.nix { pkgs = pkgs; };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
