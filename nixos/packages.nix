@@ -30,6 +30,7 @@ in {
     bat
     #vim
     gdm
+    zig
     git
     SDL
     eza
@@ -38,7 +39,6 @@ in {
     zip
     bun
     gcc
-    zig
     vlc
     mpv
     jdk

@@ -110,7 +110,7 @@ let
     { 
       desc = "zig stdlib docs";
       alias = "zig";
-      url = "https://ziglang.org/documentation/0.15.2/std/#{searchTerms}";
+      url = "https://ziglang.org/documentation/0.16.0/std/#{searchTerms}";
     }
   ] (attrset:
       firefox_search_engine attrset.desc attrset.alias attrset.url
