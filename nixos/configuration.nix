@@ -82,12 +82,14 @@ in {
       ]);
     };
     nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      open = true;
+      open = false;
       nvidiaSettings = true;
+      modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
     };
     steam-hardware = {
       enable = true;
@@ -103,6 +105,7 @@ in {
       #"vboxpci"
       "kvm-amd"
       "uinput"
+      "nvidia_drm.modeset=1"
     ];
     loader = { 
       systemd-boot.enable = true;
