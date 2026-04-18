@@ -95,7 +95,7 @@ let
     {
       desc = "nixpkgs";
       alias = "pkgs";
-      url = "https://search.nixos.org/packages?query={searchTerms}";
+      url = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
     }
     {
       desc = "NixOS wiki";
