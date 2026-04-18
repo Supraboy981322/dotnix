@@ -107,6 +107,7 @@ in {
     wayland
     #busybox # switched to coreutils
     openvpn
+    discord
     #ghostty # just discovered Alacritty's Vi mode, might switch back to Ghostty if they add it an equivalent
     qrencode
     prettier
@@ -164,7 +165,6 @@ in {
     prismlauncher
     signal-desktop
     bibata-cursors
-    discord-canary
     qt5.qtbase.dev
     proton-vpn-cli
     netcat-openbsd

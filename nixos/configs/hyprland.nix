@@ -19,7 +19,7 @@ let
     torBrowser = "tor-browser";
     togWaybar = "${home_dir}/scripts/toggleWaybar.sh";
     noteProg = "obsidian";
-    people_who_dont_use_signal = "discordcanary";
+    people_who_dont_use_signal = "discord";
     org_mode_is_pretty_good = "emacs";
     restart_waybar = "${home_dir}/scripts/restart_waybar.sh";
     d_client = "${home_dir}/scripts/d_client";
