@@ -187,7 +187,6 @@ in {
 
     # stuff my school forces me to use
     # TODO: delete as soon as possible
-    chromium
     jetbrains.idea-oss
     
     #stuff I prefer from KDE
