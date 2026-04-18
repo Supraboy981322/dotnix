@@ -466,11 +466,35 @@ in {
       XDG_CURRENT_DESKTOP = "sway";
       NIXOS_OZONE_WL = "1";
       GOPATH = "/home/super/go";
+      LIBVA_DRIVER_NAME = "nvidia";
+      XDG_SESSION_TYPE = "wayland"; #deal with it
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      WLR_NO_HARDWARE_CURSORS = "1";
+      AQ_NO_ATOMIC = "1";
+      WLR_DRM_NO_ATOMIC = "1";
+      MANPAGER = "less";
       XDG_DATA_DIRS = [
         "$HOME/.local/share/flatpak/exports/share"
         "/var/lib/flatpak/exports/share"
       ];
-    };
+    } // (pkgs.lib.mapAttrs' (name: value:
+        pkgs.lib.nameValuePair "LESS_TERMCAP_${name}" value
+      ) {
+        mb = ''\e[1;31m'';
+        md = ''\e[1;31m'';
+        me = ''\e[0m'';
+        se = ''\e[0m'';
+        so = ''\e[1;33;44m'';
+        ue = ''\e[0m'';
+        us = ''\e[4;1;32m'';
+        mr = ''\e[7m'';
+        mh = ''\e[2m'';
+        ZN = ''\e[74m'';
+        ZV = ''\e[75m'';
+        ZO = ''\e[73m'';
+        ZW = ''\e[75m'';
+      }
+    );
     enableAllTerminfo = true;
   };
 
