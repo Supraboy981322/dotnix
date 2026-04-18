@@ -108,9 +108,9 @@ in /*{
       	  enable = true;
       	  source = ./configs/home/profile;
        	};
-        ".psh_rc" = {
+        ".p_shrc" = {
           enable = true;
-          source = ./configs/home/psh_rc;
+          text = import ./configs/p_sh.nix { pkgs = pkgs; };
         };
         "scripts/browser.sh" = {
           enable = true;
