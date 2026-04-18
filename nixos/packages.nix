@@ -22,6 +22,7 @@ in {
   environment.systemPackages = (with pkgs; [#]) ++ (with nixpkgs-unstable; [
     go
     gh
+    sd
     jq
     fd
     xz
@@ -154,6 +155,7 @@ in {
     tree-sitter
     openssl.dev
     tor-browser
+    imagemagick
     libglibutil
     libXinerama
     virt-manager
