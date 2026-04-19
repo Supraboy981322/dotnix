@@ -2,16 +2,24 @@
 let
   secrets = import ./../secrets.nix;
 in {
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh = {
+  users.defaultUserShell = pkgs.bash;
+  users.users.super.shell = pkgs.bash;
+
+
+    #programs.zsh = {
+    #  enable = false; #clunkiest shell I've ever used.
+    #  syntaxHighlighting.enable = true;
+    #  enableCompletion = false;
+    #  autosuggestions.enable = false;
+    #  setOptions = [
+    #    "HIST_IGNORE_ALL_DUPS"
+    #    "HIST_IGNORE_SPACE"
+    #  ];
+    #};
+
+  programs.bash = {
     enable = true;
-    syntaxHighlighting.enable = true;
-    enableCompletion = false;
-    autosuggestions.enable = false;
-    setOptions = [
-      "HIST_IGNORE_ALL_DUPS"
-      "HIST_IGNORE_SPACE"
-    ];
+    completion.enable = false; #gross
     shellAliases = {
       ls = "${pkgs.eza}/bin/eza --color=auto";
       ll = "ls -alF";
@@ -40,29 +48,39 @@ in {
       switch = "sudo nixos-rebuild switch --impure";
       zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
     };
-    interactiveShellInit = /* sh */ ''
-      bindkey -v
-      set -o vi
-      bindkey -r "^R"
-      bindkey "^R" history-incremental-search-backward
-      bindkey -M viins "^?" backward-delete-char
-      bindkey -M viins "^[^?" backward-delete-char
-    '';
     shellInit = /* sh */ ''
       #mkdir then cd into it
-      function mkcd() {
+      mkcd() {
         mkdir "$1"
         cd "$1"
       }
       #cd into dir then eza
-      function cdls() {
+      cdls() {
         cd "$1"
         ${pkgs.eza}/bin/eza ''${@:2}
       }
+
+      declare less_config=(
+        mb="\e[1;31m"
+        md="\e[1;31m"
+        me="\e[0m"
+        se="\e[0m"
+        so="\e[1;33;44m"
+        ue="\e[0m"
+        us="\e[4;1;32m"
+        mr="\e[7m"
+        mh="\e[2m"
+        ZN="\e[74m"
+        ZV="\e[75m"
+        ZO="\e[73m"
+        ZW="\e[75m"
+      )
+      for thing in "''${less_config[@]}"; do
+        export LESS_TERMCAP_$thing
+      done
     '';
-    promptInit = /* sh */ '';
-      autoload -Uz add-zsh-hook
-      function __mkps1() {
+    promptInit = /* sh */ ''
+      __mkps1() {
         #get return status of previous cmd 
         local EXIT_CODE="$?"
         #create empty $PS1
@@ -125,7 +143,6 @@ in {
         PS1+=" ╰(%{$reset$italic$prompt_color%}$p"
         PS1+="%{$reset$italic$cyan%}):%{$reset%} "
       }
-      add-zsh-hook precmd __mkps1
     '';
   };
   environment.variables = {

@@ -477,24 +477,7 @@ in {
         "$HOME/.local/share/flatpak/exports/share"
         "/var/lib/flatpak/exports/share"
       ];
-    } // (pkgs.lib.mapAttrs' (name: value:
-        pkgs.lib.nameValuePair "LESS_TERMCAP_${name}" value
-      ) {
-        mb = ''\e[1;31m'';
-        md = ''\e[1;31m'';
-        me = ''\e[0m'';
-        se = ''\e[0m'';
-        so = ''\e[1;33;44m'';
-        ue = ''\e[0m'';
-        us = ''\e[4;1;32m'';
-        mr = ''\e[7m'';
-        mh = ''\e[2m'';
-        ZN = ''\e[74m'';
-        ZV = ''\e[75m'';
-        ZO = ''\e[73m'';
-        ZW = ''\e[75m'';
-      }
-    );
+    };
     enableAllTerminfo = true;
   };
 
