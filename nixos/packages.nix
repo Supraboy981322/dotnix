@@ -27,7 +27,6 @@ in {
     fd
     xz
     bc
-    #zsh TODO: try this
     bat
     #vim
     gdm
@@ -68,7 +67,7 @@ in {
     cargo
     socat
     samba
-    emacs # might try this at some point
+    emacs # org mode's pretty good
     glibc
     loupe
     libva
@@ -106,10 +105,8 @@ in {
     gparted
     gnumake
     wayland
-    #busybox # switched to coreutils
     openvpn
     discord
-    #ghostty # just discovered Alacritty's Vi mode, might switch back to Ghostty if they add it an equivalent
     qrencode
     prettier
     luarocks
@@ -123,7 +120,6 @@ in {
     inkscape
     libglvnd
     qemu_kvm
-    coreutils
     html-tidy
     highlight
     html-tidy
@@ -167,6 +163,7 @@ in {
     prismlauncher
     signal-desktop
     bibata-cursors
+    coreutils-full
     qt5.qtbase.dev
     proton-vpn-cli
     netcat-openbsd

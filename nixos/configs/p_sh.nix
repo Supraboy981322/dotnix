@@ -23,8 +23,6 @@ in
       switch = "sudo nixos-rebuild switch --impure";
       zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
 
-      piss = ''echo "farts"'';
-
       #clsls = "clear;ls"; # TODO: multi-command aliases
 
       # TODO: defining env vars
