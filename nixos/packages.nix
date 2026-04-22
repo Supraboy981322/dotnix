@@ -76,6 +76,7 @@ in {
     hplip
     brave
     #steam
+    kitty #I am dog-fooding a shell, I need a secondary terminal not tied to it for debugging
     nitch
     #yt-dlp #installed via a home-manager script
     waybar

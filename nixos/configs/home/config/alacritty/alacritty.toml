@@ -10,3 +10,7 @@
 [window]
 blur = true
 opacity = 0.965
+
+[terminal.shell]
+program = "/home/super/.bin/p_sh"
+args = [ ]
