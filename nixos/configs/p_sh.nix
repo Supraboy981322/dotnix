@@ -31,5 +31,24 @@ in
     };
     general = {
       colorizing_level = 2;
+      start_in_previous_dir = true;
+    };
+
+    env = {
+      PS1 = let 
+        BG_GRAY=''\e[48;2;75;75;75m'';
+        white=''\e[38;2;255;255;255m'';
+        yellow=''\e[38;2;255;216;171m'';
+        cyan=''\e[38;2;134;225;252m'';
+        bold=''\e[1m'';
+        red=''\e[38;2;255;117;127m'';
+        green=''\033[38;2;195;232;141m'';
+        reset=''\e[0m'';
+        italic=''\e[3m'';
+        grey=''\e[38;2;150;150;150m'';
+      in ''
+
+\e[${italic}${cyan}╭[${grey}{time}${cyan}] ${yellow}${italic}keepernix${grey} {{${cyan}$SHLVL${grey}}} ${red}-->${cyan} {cwd}
+╰({char}${cyan}):'';
     };
   }
