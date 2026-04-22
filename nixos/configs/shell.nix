@@ -162,6 +162,7 @@ in {
       "/usr/include/gtk-4.0"
     ];
     PATH = [
+      "$HOME/.bin"
       "$GOBIN"
       "$HOME/bin"
       "$HOME/scripts"
