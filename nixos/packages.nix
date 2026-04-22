@@ -71,6 +71,7 @@ in {
     glibc
     loupe
     libva
+    unzip
     sshfs
     meson
     hplip
