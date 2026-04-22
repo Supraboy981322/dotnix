@@ -1,21 +1,21 @@
 { pkgs, ... }:
 let
+  mk_pairs = set:
+    pkgs.lib.concatLines (pkgs.lib.mapAttrsToList (name: value:
+      "\t" + ''${name}=${builtins.toJSON value}''
+    ) set);
+
   mk_rc = {
-    aliases,
-    general,
+    aliases ? {},
+    general ? {},
+    env ? {}
   }: ''
     aliases=[
-      ${
-        pkgs.lib.concatLines (pkgs.lib.mapAttrsToList (name: value:
-          "\t" + ''${name}=${builtins.toJSON value}''
-        ) aliases)
-      }]
+      ${mk_pairs aliases}]
     general=[
-      ${
-        pkgs.lib.concatLines (pkgs.lib.mapAttrsToList (name: value:
-          "\t" + ''${name}=${builtins.toJSON value}''
-        ) general)
-      }]
+      ${mk_pairs general}]
+    env=[
+      ${mk_pairs env}]
   '';
 in {
   mk_rc = mk_rc;
