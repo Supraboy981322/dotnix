@@ -186,7 +186,6 @@ in {
     mullvad-browser 
     github-linguist
     element-desktop
-    nodePackages.asar
     wayland-protocols
     hyprland-protocols
     hyprwayland-scanner
