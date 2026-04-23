@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, katata_config, ... }:
 
 # various directories and dotfiles
 
@@ -59,6 +59,10 @@
           };
         in
           config;
+    };
+    ".config/katata.kbd" = {
+      enable = true;
+      source = ./configs/home/config/kanata.kbd;
     };
   };
 }
