@@ -37,12 +37,17 @@ confDisplay() {
     --primary
 }
 
-hyprpaper \
-  & confDisplay \
-  & mako \
-  & hyprctl setcursor Bibata-Modern-Ice 12 \
-  & battery_notifier \
-  & wpctl set-volume @DEFAULT_AUDIO_SINK@ 0 \
-  & wayBar \
-  & kanata -c ~/.config/kanata.kbd \
-  & internet_connection_checker_thingy
+declare commands=(
+  "hyprpaper"
+  "confDisplay"
+  "mako"
+  "hyprctl setcursor Bibata-Modern-Ice 12"
+  "battery_notifier"
+  "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0"
+  "wayBar"
+  "kanata -c ~/.config/kanata.kbd"
+  "internet_connection_checker_thingy"
+)
+for cmd in "${commands[@]}"; do
+  ($cmd || err_window "failed to start: $cmd") & :
+done
