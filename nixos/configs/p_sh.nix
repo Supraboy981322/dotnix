@@ -22,6 +22,7 @@ in
       nvimdiff = "nvim -d";
       switch = "sudo nixos-rebuild switch --impure";
       zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
+      ".." = "cd ..";
 
       #clsls = "clear;ls"; # TODO: multi-command aliases
 
