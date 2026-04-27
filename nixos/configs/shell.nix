@@ -119,7 +119,7 @@ in {
         
         #adjust printed dir based on term width 
         local term_width=$((`tput cols`-1))
-        local pre_line=" ╭[00:00xx] $HOSTNAME {$SHLVL} --> "
+        local pre_line=" ╭[00:00xx] {$SHLVL} --> "
         local pre_len=''${#pre_line}
         #length of full first line
         local total_len=$((''${#curDir}+$pre_len))
@@ -130,13 +130,13 @@ in {
             curDir="...$curDir"
         fi
 
-        # ╭[07:10pm] keeper {1} --> ~
+        # ╭[07:10pm] {1} --> ~
         # ╰(!):
         # new PS1
         PS1=$'\n'
         PS1+=" %{$italic$cyan%}╭[%{$grey%}"
         PS1+="$timeStamp%{$cyan%}]%{$reset$italic%}"
-        PS1+=" %{$yellow%}%m %{$grey%}{"
+        PS1+=" %{$grey%}{"
         PS1+="$cyan%}$SHLVL%{$grey%}}%{$reset$italic%}"
         PS1+=" %{$red%}-->%{$reset$italic%} "
         PS1+="%{$cyan%}$curDir"$'\n'"%{$italic$cyan%}"

@@ -48,7 +48,7 @@ in
         grey=''\e[38;2;150;150;150m'';
       in ''
 
-\e[${italic}${cyan}╭[${grey}{time}${cyan}] ${yellow}${italic}keepernix${grey} {{${cyan}$SHLVL${grey}}} ${red}-->${cyan} {cwd}
+\e[${italic}${cyan}╭[${grey}{time}${cyan}] ${grey}{{${cyan}$SHLVL${grey}}} ${red}-->${cyan} {cwd}
 ╰({char}${cyan}):'';
     };
   }
