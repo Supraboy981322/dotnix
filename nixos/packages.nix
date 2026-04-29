@@ -83,7 +83,7 @@ in {
     waybar
     brotli
     nodejs
-    lutris
+    #lutris # FIXME: their build script errors-out
     gradle
     libgcc
     dialog
