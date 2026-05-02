@@ -146,6 +146,10 @@ in {
     #  };
     #};
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
+
   home.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = 1;
     PKG_CONFIG_PATH = "$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/";

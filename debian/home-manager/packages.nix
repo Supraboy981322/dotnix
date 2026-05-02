@@ -40,7 +40,6 @@ in {
     zig
     vlc
     mpv
-    jdk
     odin
     iamb
     wget
@@ -103,6 +102,8 @@ in {
     coreutils
     handbrake
     vulkan-tools
+
+    jdk25_headless # for school
 
     # forgot why I need these
     nss
