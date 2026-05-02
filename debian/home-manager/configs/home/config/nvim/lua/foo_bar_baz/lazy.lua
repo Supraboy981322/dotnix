@@ -35,6 +35,18 @@ require("lazy").setup({
         require('onedark').load()
       end
     },
+    { --another color scheme
+      "Shatur/neovim-ayu",
+      name = "ayu",
+      lazy = false,
+      priority = 1000,
+      opts = {},
+    },
+    {
+      "catppuccin/nvim",
+      name = "catppuccin",
+      priority = 1000
+    },
     {
       "sphamba/smear-cursor.nvim",
       opts = {
@@ -75,7 +87,7 @@ require("lazy").setup({
       priority = 1000,
       dependencies = {
         {"vim-airline/vim-airline-themes"},
-        {"ryanoasis/vim-devicons"}, 
+        {"ryanoasis/vim-devicons"},
       }
     },
     {
@@ -156,6 +168,12 @@ require("lazy").setup({
         "nvim-lua/plenary.nvim",
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       }
+    },
+    {
+        "wstucco/c3.nvim",
+        config = function()
+            require("c3")
+        end,
     },
   },
   -- automatically check for plugin updates
