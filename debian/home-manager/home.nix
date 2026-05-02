@@ -120,6 +120,7 @@ in {
           go install $url@latest 2>&1 | sed 's/^/\t   /g' 1>&2
         done
       '';
+      gc = /* bash */ "nix-collect-garbage -d";
     };
 
     # the default cursor os gross
