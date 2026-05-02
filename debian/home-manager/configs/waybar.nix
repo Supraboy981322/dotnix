@@ -33,16 +33,10 @@
       tooltip = false;
     };
     "custom/clock" = {
-#    timezone = "America/Chicago";
-      #format = "{:%I:%M%p | %b %d}";
       format = "{}";
-      exec = "date '+%I:%M%P | %b %d'";
-      tooltip = true;
-      tooltip-format = "{calendar}";
+      return-type = "json";
+      exec = "/home/super/scripts/clock_icon";
       interval = 5;
-      calendar = {
-        mode = "month";
-      };
     };
     cpu = {
       format = "{usage}% ";
