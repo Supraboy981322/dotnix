@@ -115,7 +115,7 @@ in {
         PS1=$'\n'
         PS1+=" %{$italic$cyan%}╭[%{$grey%}"
         PS1+="$timeStamp%{$cyan%}]%{$reset$italic%}"
-        PS1+=" %{$yellow%}%m %{$grey%}{"
+        PS1+=" %{$grey%}{"
         PS1+="$cyan%}$SHLVL%{$grey%}}%{$reset$italic%}"
         PS1+=" %{$red%}-->%{$reset$italic%} "
         PS1+="%{$cyan%}$curDir"$'\n'"%{$italic$cyan%}"
