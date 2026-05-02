@@ -159,7 +159,6 @@ in {
     home-manager.enable = true;
 
     # browsers
-    chromium.enable = false; # for school;  TODO: delete it
     firefox.enable = true;
 
     waybar.enable = true;
