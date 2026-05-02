@@ -18,6 +18,16 @@ let
   ) { inherit pkgs; };
 
   browsers = import ./browsers.nix;
+
+  pick_pkg = fat: needed:
+    pkgs.symlinkJoin {
+      name = needed;
+      paths = [ fat ];
+      postBuild = ''
+        find $out -type f -not -name "${needed}" -delete
+      '';
+    };
+      
 in {
   # standard packages
   home.packages = with pkgs; [
@@ -27,6 +37,7 @@ in {
     fd
     xz
     bc
+    c3c
     bat
     vim
     gdm
@@ -68,13 +79,14 @@ in {
     libva
     sshfs
     meson
+    unzip
     hplip
     brave
     steam
     nitch
     brotli
     nodejs
-    lutris
+    #lutris
     gradle
     libgcc
     dialog
@@ -236,5 +248,6 @@ in {
     })
   ] ++ [
     browsers.zen.re-wrapped
+    (pick_pkg pkgs.util-linux "cal")
   ];
 }
