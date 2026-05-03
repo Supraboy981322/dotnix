@@ -2,15 +2,13 @@
 let
   secrets = import ./../secrets.nix;
 in {
-  programs.zsh = {
+  programs.bash = {
     enable = true;
-    syntaxHighlighting.enable = true;
-    enableCompletion = false;
-    autosuggestion.enable = false;
-    setOptions = [
-      "HIST_IGNORE_ALL_DUPS"
-      "HIST_IGNORE_SPACE"
-    ];
+    profileExtra = /* bash */ ''
+      if [[ -z "$DISPLAY" ]] && ([[ $(tty) = /dev/tty2 ]] || [[ $(tty) = /dev/tty1 ]]); then
+        exec nixGL start-hyprland
+      fi
+    '';
     shellAliases = {
       ls = "${pkgs.eza}/bin/eza --color=auto";
       ll = "ls -alF";
@@ -38,28 +36,42 @@ in {
       nvimdiff = "nvim -d";
       switch = "home-manager switch --impure";
       zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
+      ".." = "cd ..";
     };
-    initContent = /* sh */ ''
-      bindkey -v
-      set -o vi
-      bindkey -r "^R"
-      bindkey "^R" history-incremental-search-backward
-      bindkey -M viins "^?" backward-delete-char
-      bindkey -M viins "^[^?" backward-delete-char
-
+    bashrcExtra = /* sh */ ''
       #mkdir then cd into it
-      function mkcd() {
+      mkcd() {
         mkdir "$1"
         cd "$1"
       }
       #cd into dir then eza
-      function cdls() {
+      cdls() {
         cd "$1"
         ${pkgs.eza}/bin/eza ''${@:2}
       }
 
-      autoload -Uz add-zsh-hook
-      function __mkps1() {
+      declare less_config=(
+        mb="\e[1;31m"
+        md="\e[1;31m"
+        me="\e[0m"
+        se="\e[0m"
+        so="\e[1;33;44m"
+        ue="\e[0m"
+        us="\e[4;1;32m"
+        mr="\e[7m"
+        mh="\e[2m"
+        ZN="\e[74m"
+        ZV="\e[75m"
+        ZO="\e[73m"
+        ZW="\e[75m"
+      )
+      for thing in "''${less_config[@]}"; do
+        export LESS_TERMCAP_$thing
+      done
+    '';
+    initExtra = /* sh */ ''
+      PROMPT_COMMAND=__mkps1
+      __mkps1() {
         #get return status of previous cmd 
         local EXIT_CODE="$?"
         #create empty $PS1
@@ -98,7 +110,7 @@ in {
         
         #adjust printed dir based on term width 
         local term_width=$((`tput cols`-1))
-        local pre_line=" ╭[00:00xx] $HOSTNAME {$SHLVL} --> "
+        local pre_line=" ╭[00:00xx] {$SHLVL} --> "
         local pre_len=''${#pre_line}
         #length of full first line
         local total_len=$((''${#curDir}+$pre_len))
@@ -109,20 +121,19 @@ in {
             curDir="...$curDir"
         fi
 
-        # ╭[07:10pm] keeper {1} --> ~
+        # ╭[07:10pm] {1} --> ~
         # ╰(!):
         # new PS1
         PS1=$'\n'
-        PS1+=" %{$italic$cyan%}╭[%{$grey%}"
-        PS1+="$timeStamp%{$cyan%}]%{$reset$italic%}"
-        PS1+=" %{$grey%}{"
-        PS1+="$cyan%}$SHLVL%{$grey%}}%{$reset$italic%}"
-        PS1+=" %{$red%}-->%{$reset$italic%} "
-        PS1+="%{$cyan%}$curDir"$'\n'"%{$italic$cyan%}"
-        PS1+=" ╰(%{$reset$italic$prompt_color%}$p"
-        PS1+="%{$reset$italic$cyan%}):%{$reset%} "
+        PS1+=" \[$italic$cyan\]╭[\[$grey\]"
+        PS1+="$timeStamp\[$cyan\]]\[$reset$italic\]"
+        PS1+=" \[$grey\]{"
+        PS1+="$cyan\]$SHLVL\[$grey\]}\[$reset$italic\]"
+        PS1+=" \[$red\]-->\[$reset$italic\] "
+        PS1+="\[$cyan\]$curDir"$'\n'"\[$italic$cyan\]"
+        PS1+=" ╰(\[$reset$italic$prompt_color\]$p"
+        PS1+="\[$reset$italic$cyan\]):\[$reset\] "
       }
-      add-zsh-hook precmd __mkps1
     '';
   };
   home ={
@@ -137,6 +148,7 @@ in {
       "$BUN_INSTALL/bin"
     ];
     sessionVariables = {
+      SHELL = "/home/super/.nix-profile/bin/bash";
       VITASDK = "/usr/local/vitasdk";
       EDITOR = "nvim";
       # TODO: change this

@@ -5,7 +5,7 @@ vim.cmd[[colorscheme ayu-dark]]
 --vim.cmd[[colorscheme catppuccin]]
 
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "ayu-dark",
+  pattern = "*",
   callback = function()
     for name, modification in pairs({
 

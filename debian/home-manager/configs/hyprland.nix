@@ -372,6 +372,15 @@ in {
             args = "colresize 1";
           };
         }
+        {
+          #expands window to fill screen
+          key = "S";
+          mod = "CONTROL";
+          dispatcher = {
+            name = "layoutmsg";
+            args = "colresize 0.5";
+          };
+        }
       ] ++ (repetative_binds {
 
         # switch windows

@@ -28,14 +28,12 @@ dns_monitor() {
   internet_connection_checker_thingy
 }
 
-Kanata() {
-  pkill kanata
-  kanata -c ~/.config/kanata.kbd
-}
-
 hyprPaper \
   & startMako \
   & batWarn \
   & wayBar \
-  & Kanata \
-  & dns_monitor
+  & dns_monitor \
+  & (
+    pkill kanata
+    kanata -c ~/.config/kanata.kbd
+  )

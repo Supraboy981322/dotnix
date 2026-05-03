@@ -32,14 +32,14 @@
       recursive = true;
       source = ./configs/home/Pictures;
     };
-    ".bashrc" = {
-      enable = true;
-      source = ./configs/home/bashrc;
-    };
-    ".profile" = {
-      enable = true;
-      source = ./configs/home/profile;
-    };
+    #".bashrc" = {
+    #  enable = true;
+    #  source = ./configs/home/bashrc;
+    #};
+    #".profile" = {
+    #  enable = true;
+    #  source = ./configs/home/profile;
+    #};
     ".psh_rc" = {
       enable = true;
       source = ./configs/home/psh_rc;

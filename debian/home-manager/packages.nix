@@ -51,10 +51,11 @@ in {
     zig
     vlc
     mpv
+    zsh # TODO: remove this nonsense
     odin
     iamb
     wget
-    swww
+    awww
     wofi
     nmap
     vala
@@ -174,6 +175,7 @@ in {
     fastfetch
     distrobox
     #signal-cli
+    libX11.dev
     rpi-imager
     alsa-utils
     hyprpicker
@@ -181,7 +183,6 @@ in {
     clang-tools
     tree-sitter
     openssl.dev
-    xorg.libX11
     tor-browser
     libglibutil
     virt-manager
@@ -195,7 +196,6 @@ in {
     bibata-cursors
     discord-canary
     qt5.qtbase.dev
-    xorg.libX11.dev
     mullvad-browser 
     github-linguist
     element-desktop

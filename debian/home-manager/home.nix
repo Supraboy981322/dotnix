@@ -155,6 +155,7 @@ in {
     PKG_CONFIG_PATH = "$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/";
     CPATH = "$CPATH:/usr/include:/usr/include/gtk-4.0";
     PATH = "$PATH:$HOME/.nix-profile/bin";
+    SHELL = "/home/super/.nix-profile/bin/bash";
 
     WLR_NO_HARDWARE_CURSORS = 1;
   };
@@ -163,13 +164,18 @@ in {
     home-manager.enable = true;
 
     # browsers
-    firefox.enable = true;
+    firefox = {
+      enable = true;
+      configPath = "${config.xdg.configHome}/mozilla/firefox";
+    };
 
     waybar.enable = true;
 
     neovim = {
       enable = true;
       defaultEditor = true;
+      withPython3 = false;
+      withRuby = false;
     };
     /*tmux = {
       enable = true;
