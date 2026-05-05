@@ -11,5 +11,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     vim.cmd("BufferOrderByBufferNumber")
     vim.cmd("TransparentEnable")
+    vim.cmd("doautocmd ColorScheme")
   end,
 })
