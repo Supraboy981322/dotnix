@@ -93,6 +93,13 @@ in /*{
                   StrictHostKeyChecking no
                   LogLevel ERROR
               '';
+
+              new_ident = { file, alias, host ? "${alias}.com" }: ''
+                Host ${alias}
+                  HostName ${host}
+                  User git
+                  IdentityFile ${file}
+              '';
               white_list = [
                 "::1"
                 "127.0.0.1"
@@ -101,7 +108,9 @@ in /*{
               ];
             in
               pkgs.writeText "ssh_config" (builtins.concatStringsSep "\n" (
-                builtins.map white_list_host white_list
+                (builtins.map white_list_host white_list)
+                ++
+                (builtins.map new_ident secrets.accounts.git.ssh_keys)
               ));
         };
       	".profile" = {
