@@ -341,6 +341,15 @@ in {
             args = "colresize 1";
           };
         }
+        {
+          #shrinks window to half screen
+          key = "S";
+          mod = "CONTROL";
+          dispatcher = {
+            name = "layoutmsg";
+            args = "colresize 0.5";
+          };
+        }
       ] ++ (repetative_binds {
         # switch windows
         movefocus = {
