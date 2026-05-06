@@ -81,7 +81,7 @@ require("lazy").setup({
       priority = 1000,
       dependencies = {
         {"vim-airline/vim-airline-themes"},
-        {"ryanoasis/vim-devicons"}, 
+        {"ryanoasis/vim-devicons"},
       }
     },
     {
@@ -162,6 +162,23 @@ require("lazy").setup({
         "nvim-lua/plenary.nvim",
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       }
+    },
+    {
+      "nvim-orgmode/orgmode",
+      dependencies = {
+        "nvim-orgmode/org-bullets.nvim",
+      },
+      event = "VeryLazy",
+      ft = { "org" },
+      config = function()
+        require("orgmode").setup({
+          org_agenda_files = "~/orgfiles/**/*",
+          org_default_notes_file = "~/orgfiles/refile.org",
+          org_startup_folded = "showeverything",
+        })
+        require("org-bullets").setup();
+        vim.lsp.enable("org") -- TODO: do I *really* want this?
+      end,
     },
   },
   -- automatically check for plugin updates
