@@ -67,7 +67,7 @@ in {
     cargo
     socat
     samba
-    emacs # org mode's pretty good
+    #emacs # org mode's pretty good
     glibc
     loupe
     libva
