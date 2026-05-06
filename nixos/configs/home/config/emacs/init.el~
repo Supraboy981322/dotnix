@@ -35,12 +35,9 @@
 (evil-mode 1)
 
 ;theme
-(use-package doom-themes
-  :config
-  (setq
-    doom-themes-enable-bold t
-    doom-themes-enable-italic t)
-  (load-theme 'doom-vibrant t))
+(use-package
+  ayu-theme
+  :config (load-theme 'ayu-dark t))
 ;hide the ui (why is this even present by default?)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -50,3 +47,28 @@
 
 (add-to-list 'default-frame-alist
  '(font . "Cascadia Code NF-12"))
+
+(setq
+ backup-directory-alist
+ `((".". ,(expand-file-name
+	   "tmp/backups/"
+	   user-emacs-directory))))
+(setq
+ auto-save-file-name-transforms
+ `((".*" ,(expand-file-name
+	   "tmp/auto-saves/"
+	   user-emacs-directory)
+    t)))
+(make-directory
+ (expand-file-name
+  "tmp/backups"
+  user-emacs-directory) t)
+(make-directory
+ (expand-file-name
+  "tmp/auto-saves/"
+  user-emacs-directory) t)
+
+(global-display-line-numbers-mode 1)
+(setq
+ display-line-numbers-type
+ 'relative)
