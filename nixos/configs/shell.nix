@@ -49,6 +49,14 @@ in {
       zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
       ".." = "cd ..";
     };
+
+    interactiveShellInit = ''
+      ${builtins.concatStringsSep "\n" (builtins.map (opt: "shopt -s ${opt}") [
+        "globstar"
+        "extglob"
+      ])}
+    '';
+
     shellInit = /* sh */ ''
       #mkdir then cd into it
       mkcd() {
