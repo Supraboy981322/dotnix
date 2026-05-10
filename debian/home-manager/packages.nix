@@ -51,7 +51,6 @@ in {
     zig
     vlc
     mpv
-    zsh # TODO: remove this nonsense
     odin
     iamb
     wget
@@ -112,6 +111,7 @@ in {
     gnumake
     openvpn
     hyprlock
+    cdrtools
     coreutils
     handbrake
     vulkan-tools
