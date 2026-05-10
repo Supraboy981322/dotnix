@@ -130,7 +130,7 @@ in {
         PS1+=" \[$grey\]{"
         PS1+="$cyan\]$SHLVL\[$grey\]}\[$reset$italic\]"
         PS1+=" \[$red\]-->\[$reset$italic\] "
-        PS1+="\[$cyan\]$curDir"$'\n'"\[$italic$cyan\]"
+        PS1+="\[$cyan\]\w"$'\n'"\[$italic$cyan\]"
         PS1+=" ╰(\[$reset$italic$prompt_color\]$p"
         PS1+="\[$reset$italic$cyan\]):\[$reset\] "
       }
