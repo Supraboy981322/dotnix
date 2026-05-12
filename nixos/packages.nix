@@ -28,6 +28,7 @@ in {
     xz
     bc
     bat
+    tea
     #vim
     gdm
     zig
