@@ -27,6 +27,7 @@ in {
     fd
     xz
     bc
+    nh
     bat
     tea
     #vim

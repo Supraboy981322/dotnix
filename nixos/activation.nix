@@ -2,7 +2,7 @@
 {
   createDirs = /* bash */ ''
     mkdir -p "/home/super/IMG" 1>&2
-    ln -sfn "/home/super/Pictures/Screenshots" "/home/super/IMG/Screens" 1>&2
+    #ln -sfn "/home/super/Pictures/Screenshots" "/home/super/IMG/Screens" 1>&2
 
     mkdir -p \
         "/home/super/machines" \
@@ -12,12 +12,12 @@
   '';
 
   #fetches latest version of yt-dlp from GitHub (newer than nixpkgs unstable)
-  get_latest_yt-dlp = /* bash */ ''
-    ${pkgs.curl}/bin/curl -L \
-        https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
-        -o /home/super/scripts/yt-dlp 1>&2
-    chmod a+rx /home/super/scripts/yt-dlp 1>&2
-  '';
+  #get_latest_yt-dlp = /* bash */ ''
+  #  ${pkgs.curl}/bin/curl -L \
+  #      https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp \
+  #      -o /home/super/scripts/yt-dlp 1>&2
+  #  chmod a+rx /home/super/scripts/yt-dlp 1>&2
+  #'';
 
   #can't be bothered to make a flake for these
   install_unversioned_go_pkgs = /* bash */ ''
