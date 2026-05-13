@@ -383,12 +383,9 @@ in {
 
   environment = {
     sessionVariables = {
-      XDG_CURRENT_DESKTOP = "sway";
-      NIXOS_OZONE_WL = "1";
+      #NIXOS_OZONE_WL = "1";
       GOPATH = "/home/super/go";
-      LIBVA_DRIVER_NAME = "nvidia";
-      XDG_SESSION_TYPE = "wayland"; #deal with it
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      #XDG_SESSION_TYPE = "wayland"; #deal with it
       WLR_NO_HARDWARE_CURSORS = "1";
       AQ_NO_ATOMIC = "1";
       WLR_DRM_NO_ATOMIC = "1";
@@ -397,6 +394,8 @@ in {
         "$HOME/.local/share/flatpak/exports/share"
         "/var/lib/flatpak/exports/share"
       ];
+      MOZ_ACCELERATED = "0";
+      MOZ_WEBRENDER = "0";
     };
     enableAllTerminfo = true;
   };

@@ -75,6 +75,10 @@ let
     "extensions.ui.locale.hidden" = true;
     "extensions.ui.mlmodel.hidden" = true;
     "sidebar.visibility" = "hide-sidebar";
+    # WARNING: this fixes every FireFox based browser seg-faulting
+    "layers.acceleration.force-enabled" = false;
+    "gfx.webrender.all" = false;
+    "widget.wayland-dmabuf-vaapi.enabled" = false;
   };
 
   # list of browser extentions

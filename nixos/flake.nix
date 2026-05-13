@@ -87,7 +87,7 @@
         (final: prev: { zig = zig_overlay.packages.${system}.default; })
       ];
 
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.keepernix = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           {
