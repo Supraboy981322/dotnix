@@ -187,10 +187,6 @@ in {
     lua52Packages.luasocket
     nixgl.auto.nixGLDefault
 
-    # stuff my school forces me to use
-    # TODO: delete as soon as possible
-    jetbrains.idea-oss
-    
     #stuff I prefer from KDE
     kdePackages.kate
     kdePackages.qtsvg
