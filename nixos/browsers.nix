@@ -75,7 +75,9 @@ let
     "extensions.ui.locale.hidden" = true;
     "extensions.ui.mlmodel.hidden" = true;
     "sidebar.visibility" = "hide-sidebar";
+
     # WARNING: this fixes every FireFox based browser seg-faulting
+    #  (on an Nvidia system without proprietary drivers)
     "layers.acceleration.force-enabled" = false;
     "gfx.webrender.all" = false;
     "widget.wayland-dmabuf-vaapi.enabled" = false;
