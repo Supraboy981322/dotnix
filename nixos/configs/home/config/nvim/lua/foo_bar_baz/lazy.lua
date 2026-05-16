@@ -18,23 +18,23 @@ vim.opt.rtp:prepend(lazypath)
 -- setup lazy.nvim
 require("lazy").setup({
   spec = {
-    { --color scheme
-      "folke/tokyonight.nvim",
-      lazy = false,
-      priority = 1000,
-      opts = {},
-    },
-    { --alternative color scheme
-      "navarasu/onedark.nvim",
-      name = "onedark",
-      priority = 999,
-      config = function()
-        require('onedark').setup {
-          style = 'darker'
-        }
-        require('onedark').load()
-      end
-    },
+    --{ --color scheme
+    --  "folke/tokyonight.nvim",
+    --  lazy = false,
+    --  priority = 1000,
+    --  opts = {},
+    --},
+    --{ --alternative color scheme
+    --  "navarasu/onedark.nvim",
+    --  name = "onedark",
+    --  priority = 999,
+    --  config = function()
+    --    require('onedark').setup {
+    --      style = 'darker'
+    --    }
+    --    require('onedark').load()
+    --  end
+    --},
     { --another color scheme
       "Shatur/neovim-ayu",
       name = "ayu",
@@ -109,10 +109,10 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
       opts = {}
     },
-    {
-      "shortcuts/no-neck-pain.nvim",
-      version = "*"
-    },
+    --{
+    --  "shortcuts/no-neck-pain.nvim",
+    --  version = "*"
+    --},
     {
       "mason-org/mason.nvim",
       opts = {
@@ -163,23 +163,23 @@ require("lazy").setup({
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       }
     },
-    {
-      "nvim-orgmode/orgmode",
-      dependencies = {
-        "nvim-orgmode/org-bullets.nvim",
-      },
-      event = "VeryLazy",
-      ft = { "org" },
-      config = function()
-        require("orgmode").setup({
-          org_agenda_files = "~/orgfiles/**/*",
-          org_default_notes_file = "~/orgfiles/refile.org",
-          org_startup_folded = "showeverything",
-        })
-        require("org-bullets").setup();
-        vim.lsp.enable("org") -- TODO: do I *really* want this?
-      end,
-    },
+    --{
+    --  "nvim-orgmode/orgmode",
+    --  dependencies = {
+    --    "nvim-orgmode/org-bullets.nvim",
+    --  },
+    --  event = "VeryLazy",
+    --  ft = { "org" },
+    --  config = function()
+    --    require("orgmode").setup({
+    --      org_agenda_files = "~/orgfiles/**/*",
+    --      org_default_notes_file = "~/orgfiles/refile.org",
+    --      org_startup_folded = "showeverything",
+    --    })
+    --    require("org-bullets").setup();
+    --    vim.lsp.enable("org") -- TODO: do I *really* want this?
+    --  end,
+    --},
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
