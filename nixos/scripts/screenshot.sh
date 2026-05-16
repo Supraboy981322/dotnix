@@ -11,14 +11,14 @@ if [[ "$1" == "select" ]]; then
   hyprshot \
       -m region \
       -o ${fileDir} \
-      -f "${filename}" \
-    || err_window "hyprshot failed"
+      -f "${filename}"
+  [[ ! -f "${filename}" ]] || err_window "hyprshot failed"
 else
   hyprshot \
       -m active \
       -m output \
       -o ${fileDir} \
-      -f "${filename}" \
-    || err_window "hyprshot failed"
+      -f "${filename}"
+  [[ ! -f "${filename}" ]] || err_window "hyprshot failed"
 fi
 #notify-send "Screenshot" "Saved to:\n~/IMG/Screen/${filename}"
