@@ -17,6 +17,52 @@ in {
     #  ];
     #};
 
+  programs.xonsh = {
+    enable = true;
+    config = /* py */''
+      from xonsh.tools import format_color
+      import time
+      def __get_prompt_symbol():
+        rtn = __xonsh__.history.rtns[-1] if __xonsh__.history.rtns else 0
+        return "{ITALIC_#a7d169}?" if rtn == 0 else "{ITALIC_#ff757f}!"
+      $PROMPT_FIELDS["status_symbol"] = __get_prompt_symbol
+      $PROMPT_FIELDS["time"] = lambda: time.strftime("%I:%M%p").lower(  )
+      $PROMPT_FIELDS["SHLVL"] = lambda: str($SHLVL)
+      $PROMPT = (
+        "\n {ITALIC_#86e1fc}╭[{ITALIC_#a2abb3}{time}{ITALIC_#86e1fc}] "
+        "{ITALIC_#a2abb3}{{{{{ITALIC_#86e1fc}{SHLVL}{ITALIC_#a2abb3}}}}} "
+        "{ITALIC_#ff757f}--> {ITALIC_#86e1fc}{cwd}\n "
+        "{ITALIC_#86e1fc}╰({status_symbol}{ITALIC_#86e1fc}):{RESET} "
+      )
+      aliases |= {
+        "ls": { "alias": [ "${pkgs.eza}/bin/eza", "--color=auto" ] },
+        "ll": { "alias": [ "ls", "-alF" ] },
+        "l": { "alias": [ "ls", "-F" ] },
+        "dir": { "alias": [ "dir", "--color=auto" ] },
+        "vdir": { "alias": [ "vdir", "--color=auto" ] },
+        "grep": { "alias": [ "grep", "--color=auto" ] },
+        "fgrep": { "alias": [ "fgrep", "--color=auto" ] },
+        "egrep": { "alias": [ "egrep", "--color=auto" ] },
+        "cls": { "alias": ["clear"] },
+        "gettail": { "alias": [ "getTail" ] },
+        ":q": { "alias": [ "exit" ] },
+        ":Q": { "alias": [ "exit" ] },
+        ":e": { "alias": [ "nvim" ] },
+        "goNoCache": { "alias": [ "GOPROXY=direct", "go" ] },
+        "laR": { "alias": [ "${pkgs.eza}/bin/eza", "-aR" ] },
+        "vimdiff": { "alias": [ "nvim", "-d" ] },
+        "ssh": { "alias": [ "TERM=xterm-256color", "ssh" ] },
+        "ds": { "alias": [ "dir_size" ] },
+        "nvimdiff": { "alias": [ "nvim", "-d" ] },
+        "switch": { "alias": [ "sudo", "nixos-rebuild", "switch", "--impure" ] },
+        "zen_confined": { "alias": [
+          "nixGL", "firejail", "--netns=${secrets.vpn.wg.alt.provider}", "zen", "--profile"
+        ] },
+        "..": { "alias": [ "cd", ".." ] },
+      }
+    '';
+  };
+
   programs.bash = {
     enable = true;
     completion.enable = false; #gross

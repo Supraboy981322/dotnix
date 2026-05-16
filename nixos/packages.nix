@@ -76,6 +76,7 @@ in {
     unzip
     sshfs
     meson
+    xonsh
     hplip
     brave
     #steam
