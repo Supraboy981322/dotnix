@@ -58,6 +58,7 @@ vim.lsp.config('lua_ls', {
         globals = {
           "vim",
           "require",
+          "hl", --hyprland
         },
       },
     },
