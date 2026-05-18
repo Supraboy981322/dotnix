@@ -95,7 +95,7 @@ in {
   };
 
   networking = {
-    hostName = "keeper_nix";
+    hostName = "keepernix";
     networkmanager.enable = true;
     nat = {
       enable = true;
