@@ -151,6 +151,7 @@ in {
     libXcursor
     pkg-config
     proton-vpn
+    pavucontrol
     forgejo-cli
     clang-tools
     tree-sitter
