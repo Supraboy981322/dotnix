@@ -17,8 +17,13 @@ in {
     #  ];
     #};
 
+  # nice concept, horrible execution
+  #  it doesn't remotely conform to standards
+  #    it claims to. it's also super slow and 
+  #      has non-standard arg parsing
+  #        (am I the only one these days who likes a true POSIX shell?)
   programs.xonsh = {
-    enable = true;
+    enable = false;
     config = /* py */''
       from xonsh.tools import format_color
       import time
@@ -34,6 +39,17 @@ in {
         "{ITALIC_#ff757f}--> {ITALIC_#86e1fc}{cwd}\n "
         "{ITALIC_#86e1fc}╰({status_symbol}{ITALIC_#86e1fc}):{RESET} "
       )
+
+      def _mkcd(args):
+        mkdir @(args[0])
+        cd @(args[0])
+      aliases["mkcd"] = _mkcd
+
+      def _cdls(args):
+        cd @(args[0])
+        ${pkgs.eza}/bin/eza @(args[0:])
+      aliases["cdls"] = _cdls
+
       aliases |= {
         "ls": { "alias": [ "${pkgs.eza}/bin/eza", "--color=auto" ] },
         "ll": { "alias": [ "ls", "-alF" ] },
