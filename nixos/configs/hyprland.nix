@@ -540,8 +540,8 @@ in {
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor = [
         "desc:LG Electronics LG ULTRAGEAR 209NTNH3L775, 1920x1080@144, 0x0, 1"
-        #"desc:Hewlett Packard HP w2207 3CQ82426KK, 1680x1050, 1920x-190, 1, transform, 1"
-        "desc:Valve Corporation ANX7530 U 0x00000001, 800x1280@59.99900, 0x0, 1, transform, 3"
+        "desc:Hewlett Packard HP w2207 3CQ82426KK, 1680x1050, 1920x-190, 1, transform, 1"
+        "desc:Valve Corporation ANX7530 U 0x00000001, 800x1280@59.99900, 0x1080, 1, transform, 3"
         ", preferred, auto, 1"
       ];
       
