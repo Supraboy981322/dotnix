@@ -43,16 +43,17 @@ in {
     gcc
     vlc
     mpv
-    jdk
+    wine
     wget
     vala
     awww
+    mesa
     wofi
     nmap
     file
     zlib
     ruby
-    #iamb their flake in nixpkgs is broken, doesn't build
+    iamb
     gimp
     mako
     glib
@@ -81,11 +82,11 @@ in {
     brave
     kitty
     nitch
-    #yt-dlp #installed via a home-manager script
+    clang
+    wine64
     waybar
     brotli
     nodejs
-    #lutris # FIXME: their build script errors-out
     gradle
     libgcc
     dialog
@@ -185,6 +186,8 @@ in {
     vala-language-server
     lua52Packages.luasocket
     nixgl.auto.nixGLDefault
+    wine64Packages.waylandFull
+    wineWow64Packages.waylandFull
 
     #stuff I prefer from KDE
     kdePackages.kate
@@ -197,13 +200,7 @@ in {
     kdePackages.kde-cli-tools
 
     # TODO: debug
-    mesa
-    #  wine
-    #  wine64
-    #  wine64Packages.waylandFull
-    #  wineWow64Packages.waylandFull
-    #  javaPackages.openjfx23
-    #  clang
+    #  lutris
 
     # fonts
     noto-fonts-color-emoji
