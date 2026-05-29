@@ -292,9 +292,12 @@ in {
       xwayland.enable =  true;
     };
     virt-manager.enable = true;
-    java = {
-      enable = true;
-    };
+
+      # NOTE: may need for school again
+      #  java = {
+      #    enable = true;
+      #  };
+
     chromium = {
       enable = false;
     };
