@@ -28,6 +28,7 @@ in {
     xz
     bc
     nh
+    gdb
     bat
     tea
     #vim
@@ -64,6 +65,7 @@ in {
     gtk4
     libXi
     delta
+    gleam
     cmake
     rustc
     cargo
