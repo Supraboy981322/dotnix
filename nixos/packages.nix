@@ -31,7 +31,6 @@ in {
     gdb
     bat
     tea
-    #vim
     gdm
     zig
     git
@@ -71,7 +70,6 @@ in {
     cargo
     socat
     samba
-    #emacs # org mode's pretty good
     glibc
     loupe
     libva
@@ -81,8 +79,7 @@ in {
     xonsh
     hplip
     brave
-    #steam
-    kitty #I am dog-fooding a shell, I need a secondary terminal not tied to it for debugging
+    kitty
     nitch
     #yt-dlp #installed via a home-manager script
     waybar
@@ -145,7 +142,6 @@ in {
     alacritty
     fastfetch
     distrobox
-    #signal-cli
     rpi-imager
     alsa-utils
     libX11.dev
