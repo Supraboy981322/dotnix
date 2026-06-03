@@ -45,7 +45,9 @@ in {
     mpv
     wine
     wget
+    fasm
     vala
+    btop
     awww
     mesa
     wofi
