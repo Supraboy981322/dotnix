@@ -60,6 +60,11 @@ in {
     {
       device = "/var/lib/swapfile";
       size = 25*1024;
+      priority = 999;
+    }
+    { # FIXME: this drive has no UUID for some reason
+      device = "/dev/mmcblk0";
+      priority = 10;
     }
   ];
 
