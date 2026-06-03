@@ -19,7 +19,7 @@ let
   browsers = import ./browsers.nix;
 in {
   # standard packages
-  environment.systemPackages = (with pkgs; [#]) ++ (with nixpkgs-unstable; [
+  environment.systemPackages = (with pkgs; [
     go
     gh
     sd
@@ -200,7 +200,7 @@ in {
     kdePackages.kde-cli-tools
 
     # TODO: debug
-    #  lutris
+    # lutris
 
     # fonts
     noto-fonts-color-emoji
