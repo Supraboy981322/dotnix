@@ -43,6 +43,7 @@
       calendar = {
         mode = "month";
       };
+      # TODO: ~/scripts/clock_icon
     };
     cpu = {
       format = "{usage}% ";
