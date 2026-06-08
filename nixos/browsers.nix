@@ -88,12 +88,13 @@ let
     pkgs.lib.attrsToList {
       # in order of importance to me
       ublock-origin = "uBlock0@raymondhill.net";
-      vimium-ff = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
-      darkreader = "addon@darkreader.org";
-      noscript = "{73a6fe31-595d-460b-a920-fcc0f8843232}";
-      proton-pass = "78272b6fa58f4a1abaac99321d503a20@proton.me";
-      tampermonkey = "firefox@tampermonkey.net";
-      clearurls = "{74145f27-f039-47ce-a470-a662b129930a}";
+          vimium-ff = "{d7742d87-e61d-4b78-b8a1-b469842139fa}";
+         darkreader = "addon@darkreader.org";
+           noscript = "{73a6fe31-595d-460b-a920-fcc0f8843232}";
+        proton-pass = "78272b6fa58f4a1abaac99321d503a20@proton.me";
+       tampermonkey = "firefox@tampermonkey.net";
+          clearurls = "{74145f27-f039-47ce-a470-a662b129930a}";
+           seven_tv = "seventv-next@7tv.app";
     }) (kv: firefox_extension kv.name kv.value);
   
   # list of search engines
