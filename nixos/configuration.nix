@@ -192,20 +192,22 @@ in {
           z y
           1 2 3 4 5 6 7 8 9 0
           \ ` [ ]
+          q w e r t u i o p a s d f g h j k l x c v b n m
         )
 
         (defalias
           ;;aliases that press shift and toggle number layer
           lshf_num (multi lsft (layer-toggle numbers))
-          rshf_num (multi rsft (layer-toggle numbers))
 
           ;;super key
           sup (multi lmet (layer-toggle super-layer))
+          altgr (layer-toggle altgr-layer)
         )
 
+        ;;default layer
         (deflayer default
           ;;remap caps to esc and set shift and super keys to aliases
-          esc @lshf_num @rshf_num @sup
+          esc @lshf_num @altgr @sup
 
           y z ;;qwertz
 
@@ -214,21 +216,37 @@ in {
 
           S-\ ;;swap shift layer of pipe
           S-` S-[ S-]
+          q w e r t u i o p a s d f g h j k l x c v b n m
         )
         
+        ;;super key layer
         (deflayer super-layer
-          _ _ _ (unmod lsft) (unmod rsft) _
+          _ _ _ (unmod lsft) _ _
           1 2 3 4 5 6 7 8 9 0
           _ _ _ _
+          _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
         )
 
-        (deflayer numbers ;;shift layer
+        ;;shift layer
+        (deflayer numbers
           _ _ _ _ _ _ ;;leave these untouched
 
           ;;use unmodified key signals for anything modified
           (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5)
           (unmod 6) (unmod 7) (unmod 8) (unmod 9) (unmod 0)
           (unmod \) (unmod `) (unmod [) (unmod ])
+
+          _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+        )
+
+        (deflayer altgr-layer
+          _ _ _ _
+          AG-y AG-z
+          _ _ _ _ _ _ _ _ _ _ _ _ _ _
+          AG-q AG-w AG-e AG-r AG-t AG-u
+          AG-i AG-o AG-p AG-a AG-s AG-d
+          AG-f AG-g AG-h AG-j AG-k AG-l
+          AG-x AG-c AG-v AG-b AG-n AG-m
         )
       '';
     };
