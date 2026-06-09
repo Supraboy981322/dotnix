@@ -188,7 +188,7 @@ in {
       enable = true;
       keyboards.me_keyboard.config = /* clojure */ ''
         (defsrc
-          caps lsft rsft lmet
+          caps lsft rsft lmet ralt
           z y
           1 2 3 4 5 6 7 8 9 0
           \ ` [ ]
@@ -207,7 +207,7 @@ in {
         ;;default layer
         (deflayer default
           ;;remap caps to esc and set shift and super keys to aliases
-          esc @lshf_num @altgr @sup
+          esc @lshf_num @altgr @sup lalt
 
           y z ;;qwertz
 
@@ -221,7 +221,7 @@ in {
         
         ;;super key layer
         (deflayer super-layer
-          _ _ _ (unmod lsft) _ _
+          _ _ _ (unmod lsft) _ _ _
           1 2 3 4 5 6 7 8 9 0
           _ _ _ _
           _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -229,7 +229,7 @@ in {
 
         ;;shift layer
         (deflayer numbers
-          _ _ _ _ _ _ ;;leave these untouched
+          _ _ _ _ _ _ _ ;;leave these untouched
 
           ;;use unmodified key signals for anything modified
           (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5)
@@ -242,7 +242,7 @@ in {
         ;;altgr with Polish characters
         ;; TODO: capital Polish letters
         (deflayer altgr-layer
-          _ _ _ _
+          _ _ _ _ _
           (unicode ż) (unicode ź)
           ;;use unmodified key signals for anything modified
           AG-1 AG-2 AG-3 AG-4 AG-5
