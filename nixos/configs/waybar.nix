@@ -35,7 +35,7 @@
     "custom/clock" = {
       format = "{}";
       return-type = "json";
-      exec = "/home/super/scripts/clock_icon";
+      exec = "~/scripts/clock_icon";
       interval = 5;
     };
     cpu = {
