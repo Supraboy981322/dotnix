@@ -481,6 +481,7 @@ in {
       # https://wiki.hyprland.org/Configuring/Variables/#input
       input = {
         kb_layout = "us";
+        kb_variant = "altgr-intl";
 
         # NOTE: this is now handled by kanata
         # kb_options = "caps:swapescape";
