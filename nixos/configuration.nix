@@ -239,14 +239,19 @@ in {
           _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
         )
 
+        ;;altgr with Polish characters
+        ;; TODO: capital Polish letters
         (deflayer altgr-layer
           _ _ _ _
-          AG-y AG-z
-          _ _ _ _ _ _ _ _ _ _ _ _ _ _
-          AG-q AG-w AG-e AG-r AG-t AG-u
-          AG-i AG-o AG-p AG-a AG-s AG-d
-          AG-f AG-g AG-h AG-j AG-k AG-l
-          AG-x AG-c AG-v AG-b AG-n AG-m
+          (unicode ż) (unicode ź)
+          ;;use unmodified key signals for anything modified
+          AG-1 AG-2 AG-3 AG-4 AG-5
+          AG-6 AG-7 AG-8 AG-9 AG-0
+          AG-\ AG-` AG-[ AG-]
+          AG-q AG-w (unicode ę) AG-r AG-t AG-u
+          AG-i (unicode ó) AG-p (unicode ą) (unicode ś) AG-d
+          AG-f AG-g AG-h AG-j AG-k (unicode ł)
+          AG-x (unicode ć) AG-v AG-b (unicode ń) AG-m
         )
       '';
     };
