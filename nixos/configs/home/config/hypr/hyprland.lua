@@ -308,23 +308,11 @@ hl.config({
   animations = {
     enabled = true,
   },
+  cursor = {
+    no_hardware_cursors = true,
+  },
 })
---
---  scrolling = {
---    direction = "right";
---  };
---
---  # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
---  dwindle = {
---    pseudotile = true; 
---    preserve_split = true;
---  };
---
---  # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
---  master = {
---    new_status = "master";
---  };
---
+
 --  # https://wiki.hyprland.org/Configuring/Variables/#misc
 --  misc = {
 --    force_default_wallpaper = 0; # Set to 0 or 1 to disable the anime mascot wallpapers
@@ -345,12 +333,6 @@ hl.config({
 --      natural_scroll = false;
 --    };
 --  };
---
---  # Autostart necessary processes (like notifications daemons, status bars, etc.)
---  exec-once = [
---    "~/scripts/./start-hypr.sh"
---    "discordcanary --headless"
---  ];
 --
 --  # See https://wiki.hyprland.org/Configuring/Environment-variables/
 --  env = [
@@ -390,12 +372,53 @@ hl.config({
 --      no_focus = true;
 --    }
 --  ];
---  # See https://wiki.hyprland.org/Configuring/Monitors/
---  monitor = [
---    "desc:LG Electronics LG ULTRAGEAR 209NTNH3L775, 1920x1080@144, 0x0, 1"
---    "desc:Hewlett Packard HP w2207 3CQ82426KK, 1680x1050, 1920x-190, 1, transform, 1"
---    ", preferred, auto, 1"
---  ];
+
+hl.monitor({
+    output   = "",
+    mode     = "preferred",
+    position = "auto",
+    scale    = "auto",
+})
+hl.monitor({
+  output = "desc:LG Electronics LG ULTRAGEAR 209NTNH3L775",
+  mode = "preferred",
+  position = "0x0",
+  scale = 1,
+})
+hl.monitor({
+  output = "desc:Hewlett Packard HP w2207 3CQ82426KK",
+  mode = "preferred",
+  position = "1920x-190",
+  scale = 1,
+  transform = 1,
+})
+hl.monitor({
+  output = "desc:Valve Corporation ANX7530 U 0x00000001",
+  mode = "preferred",
+  position = "0x1080",
+  scale = 1,
+  transform = 3,
+})
+
+hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")
+hl.env("HYPRCURSOR_SIZE", "12")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
+hl.env("XCURSOR_SIZE", "12")
+
+hl.window_rule({
+    -- Fix some dragging issues with XWayland
+    name  = "fix-xwayland-drags",
+    match = {
+        class      = "^$",
+        title      = "^$",
+        xwayland   = true,
+        float      = true,
+        fullscreen = false,
+        pin        = false,
+    },
+
+    no_focus = true,
+})
 
 hl.curve(
   "easeOutQuint",
@@ -425,44 +448,44 @@ hl.animation({
   leaf = "border", enabled = true, speed = 5.39, bezier = "easeOutQuint"
 })
 hl.animation({
-  "windows", enabled = true, speed = 4.79, bezier = "easeOutQuint"
+  leaf = "windows", enabled = true, speed = 4.79, bezier = "easeOutQuint"
 })
 hl.animation({
-  "windowsIn", enabled = true, speed = 4.1, bezier = "easeOutQuint", style = "popin 87%"
+  leaf = "windowsIn", enabled = true, speed = 4.1, bezier = "easeOutQuint", style = "popin 87%"
 })
 hl.animation({
-  "windowsOut", enabled = true, speed = 4.49, bezier = "linear", style = "popin 87%"
+  leaf = "windowsOut", enabled = true, speed = 4.49, bezier = "linear", style = "popin 87%"
 })
 hl.animation({
-  "fadeIn", enabled = true, speed = 1.73, bezier = "almostLinear"
+  leaf = "fadeIn", enabled = true, speed = 1.73, bezier = "almostLinear"
 })
 hl.animation({
-  "fadeOut", enabled = true, speed = 1.46, bezier = "almostLinear"
+  leaf = "fadeOut", enabled = true, speed = 1.46, bezier = "almostLinear"
 })
 hl.animation({
-  "fade", enabled = true, speed = 3.03, bezier = "quick"
+  leaf = "fade", enabled = true, speed = 3.03, bezier = "quick"
 })
 hl.animation({
-  "layers", enabled = true, speed = 3.81, bezier = "easeOutQuint"
+  leaf = "layers", enabled = true, speed = 3.81, bezier = "easeOutQuint"
 })
 hl.animation({
-  "layersIn", enabled = true, speed = 4, bezier = "easeOutQuint", style = "fade"
+  leaf = "layersIn", enabled = true, speed = 4, bezier = "easeOutQuint", style = "fade"
 })
 hl.animation({
-  "layersOut", enabled = true, speed = 1.5, bezier = "linear", style = "fade"
+  leaf = "layersOut", enabled = true, speed = 1.5, bezier = "linear", style = "fade"
 })
 hl.animation({
-  "fadeLayersIn", enabled = true, speed = 1.75, bezier = "almostLinear"
+  leaf = "fadeLayersIn", enabled = true, speed = 1.75, bezier = "almostLinear"
 })
 hl.animation({
-  "fadeLayersOut", enabled = true, speed = 1.39, bezier = "almostLinear"
+  leaf = "fadeLayersOut", enabled = true, speed = 1.39, bezier = "almostLinear"
 })
 hl.animation({
-  "workspaces", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade"
+  leaf = "workspaces", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade"
 })
 hl.animation({
-  "workspacesIn", enabled = true, speed = 1.21, bezier = "almostLinear", style = "fade"
+  leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "almostLinear", style = "fade"
 })
 hl.animation({
-  "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade"
+  leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade"
 })
