@@ -68,13 +68,14 @@ in {
   swapDevices = [
     {
       device = "/var/lib/swapfile";
-      size = 25*1024;
+      size = 50*1024;
       priority = 999;
     }
-    { # FIXME: this drive has no UUID for some reason
-      device = "/dev/mmcblk0";
-      priority = 10;
-    }
+      # TODO: new swap drive for desktop
+      # {
+      #   device = "/dev/mmcblk0";
+      #   priority = 10;
+      # }
   ];
 
   hardware = {
