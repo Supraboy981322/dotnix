@@ -86,10 +86,10 @@ hl.bind(
   "SUPER + D",
   hl.dsp.exec_cmd(d_client)
 )
-hl.bind(
-  "SUPER + CTRL + SHIFT + F",
-  hl.dsp.exec_cmd(zen_confined .. '/home/super/.zen/confined_profile')
-)
+--hl.bind(
+--  "SUPER + CTRL + SHIFT + F",
+--  hl.dsp.exec_cmd(zen_confined .. '/home/super/.zen/confined_profile')
+--)
 hl.bind(
   "SUPER + F",
   hl.dsp.exec_cmd(personalBrowser)
