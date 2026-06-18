@@ -79,8 +79,12 @@ in {
   ];
 
   hardware = {
+    enableAllFirmware = true;
     uinput.enable = true;
-    bluetooth.enable = true;
+    bluetooth = { 
+      enable = true;
+      powerOnBoot = true;
+    };
     graphics = {
       enable = true;
       enable32Bit = true;
