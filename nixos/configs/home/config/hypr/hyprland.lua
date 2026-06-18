@@ -1,21 +1,25 @@
-local zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
+local  zen = "nixGL zen --profile"
+
+--local zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
 local terminal = "alacritty";
 local fileManager = "dolphin";
-local menu = "wofi --show drun --style ${home_dir}/.config/hypr/wofi.css";
-local personalBrowser = "${home_dir}/scripts/browser.sh";
-local schoolBrowser = "${zen} '${home_dir}/.zen/schoolProfile'";
+local menu = "wofi --show drun --style ~/.config/hypr/wofi.css";
+local personalBrowser = "~/scripts/browser.sh";
+local schoolBrowser = zen .. " '~/.zen/schoolProfile'";
 local chat = "element-desktop";
 local otherChat = "signal-desktop";
-local alternativeBrowser = "${zen} ${home_dir}/.zen/zs3f6ux8.viv";
-local anotherBrowser = "${zen} ${home_dir}/.zen/x4qqcuev";
+local alternativeBrowser = zen .. " ~/.zen/zs3f6ux8.viv";
+local anotherBrowser = zen .. " ~/.zen/x4qqcuev";
 local torBrowser = "tor-browser";
-local togWaybar = "${home_dir}/scripts/toggleWaybar.sh";
+local togWaybar = "~/scripts/toggleWaybar.sh";
 local noteProg = "obsidian";
 local people_who_dont_use_signal = "discord";
 local org_mode_is_pretty_good = "emacs";
-local restart_waybar = "${home_dir}/scripts/restart_waybar.sh";
-local d_client = "${home_dir}/scripts/d_client";
+local restart_waybar = "~/scripts/restart_waybar.sh";
+local d_client = "~/scripts/d_client";
 local do_not_disturb = "makoctl mode -t dnd";
+
+hl.on("hyprland.start", function() hl.exec_cmd("~/scripts/start-hypr.sh") end)
 
 hl.bind(
   "SUPER + T",
