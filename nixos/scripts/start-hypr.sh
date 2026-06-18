@@ -66,4 +66,5 @@ wayBar \
   & confDisplay \
   & startMako \
   & HyprCTL \
-  & batWarn 
+  & batWarn \
+  & udiskie -a -n
