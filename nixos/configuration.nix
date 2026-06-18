@@ -429,9 +429,7 @@ in {
 
   environment = {
     sessionVariables = {
-      #NIXOS_OZONE_WL = "1";
       GOPATH = "/home/super/go";
-      #XDG_SESSION_TYPE = "wayland"; #deal with it
       WLR_NO_HARDWARE_CURSORS = "1";
       AQ_NO_ATOMIC = "1";
       WLR_DRM_NO_ATOMIC = "1";
