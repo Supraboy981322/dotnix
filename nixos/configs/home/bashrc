@@ -231,6 +231,15 @@ errlog() (
   set -eou pipefail
   printf "${@}" 1>&2
 )
+music() {
+  declare lister=ls
+  [[ $# -gt 0 ]] && lister="$1"
+  while true; do
+    for m in $($lister | shuf); do
+      ffplay "$m" -nodisp -autoexit -hide_banner
+    done
+  done
+}
 
 
 #############################
