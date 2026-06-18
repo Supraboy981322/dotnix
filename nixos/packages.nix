@@ -105,6 +105,7 @@ in {
     gnutar
     libvirt
     freerdp
+    udiskie
     udisks2
     ripgrep
     xdotool
@@ -114,6 +115,7 @@ in {
     wayland
     openvpn
     discord
+    usbutils
     qrencode
     prettier
     luarocks
@@ -153,6 +155,7 @@ in {
     pkg-config
     proton-vpn
     pavucontrol
+    protonup-qt
     forgejo-cli
     clang-tools
     tree-sitter
@@ -216,6 +219,10 @@ in {
     # "overrides"
     (pkgs.ffmpeg-full.override {
       withUnfree = true;
+    })
+    (pkgs.lutris.override  {
+      extraLibraries = pkgs: [ ];
+      extraPkgs = pkgs: [ ];
     })
   ]) ++ [
     browsers.zen.re-wrapped
