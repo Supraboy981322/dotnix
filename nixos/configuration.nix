@@ -359,6 +359,7 @@ in {
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
+      gamescopeSession.enable = true;
     };
     tmux = {          #wanted to try-out tmux
       enable = false; #  suddenly don't have time
