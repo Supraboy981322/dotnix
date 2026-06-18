@@ -45,8 +45,17 @@ in {
         "noauto"
       ];
     };
-    "/mnt/Games" = {
+    "/mnt/Games (HDD)" = {
       device = "/dev/disk/by-uuid/8a6b2cd0-0d95-4a57-a8b0-b55661cdfa66";
+      fsType = "ext4";
+      options = [
+        "users"
+        "nofail"
+        "exec"
+      ];
+    };
+    "/mnt/Games (SSD)" = {
+      device = "/dev/disk/by-uuid/b7168a0c-8645-4f7b-8aca-5392aa8b4ae0";
       fsType = "ext4";
       options = [
         "users"
