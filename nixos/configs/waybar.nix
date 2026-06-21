@@ -46,7 +46,7 @@
     memory = {
       format = "| {}% ";
       tooltip = true;
-      tooltip-format = "RAM usage (GiB): {used} / {total} ({percentage}%)\nSwap usage (GiB): {swapUsed} / {swapTotal} ({swapPercentage})%";
+      tooltip-format = "RAM usage (GiB): {used} / {total} ({percentage}%)\nSwap usage (GiB): {swapUsed} / {swapTotal} ({swapPercentage}%)";
     };
     battery = {
       format = "| {capacity}% {icon} ";
