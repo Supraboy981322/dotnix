@@ -24,6 +24,9 @@ in {
         size = 22;
       };
       file = {
+        mnt = {
+          source = config.lib.file.mkOutOfStoreSymlink /mnt;
+        };
         "machines" = {
           recursive = true;
           enable = true;
