@@ -489,3 +489,6 @@ hl.animation({
 hl.animation({
   leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade"
 })
+-- Move/resize windows with mainMod + LMB/RMB and dragging
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })
