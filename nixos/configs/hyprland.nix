@@ -130,6 +130,8 @@ in {
     # };
   wayland.windowManager.hyprland = {
     enable = true;
+    extraConfig = ''--foo''; #silences a Nix warning
+    configType = "lua";
     #settings = {
     #  bind = builtins.map new_bind ([
     #    {
