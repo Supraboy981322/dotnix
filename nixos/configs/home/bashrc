@@ -146,9 +146,8 @@ __mkps1() {
     fi
   fi
 
-  # ╭[07:10pm] keeper {1} --> ~
-  # ╰(!):
-  # new PS1
+  # ╭[07:10pm] keeper {1} -> ~
+  # ╰(?):
   PS1="\n"
   PS1+=" \[${italic}${cyan}\]╭[\[${grey}\]"
   PS1+="${timeStamp}\[${cyan}\]]\[${reset}${italic}\]"
@@ -158,23 +157,6 @@ __mkps1() {
   PS1+="\[${cyan}\]${curDir}\n\[${italic}${cyan}\]"
   PS1+=" ╰(\[${reset}${italic}\]\[${prompt_color}\]${p}"
   PS1+="\[${reset}${italic}${cyan}\]):\[${reset}\] "
-
-  # ╭ 07:10pm  keeper@super --> ~
-  # ╰(!):
-  #build $PS1
-  #PS1+="\n "
-  #PS1+="\[${cyan}\]╭\[${reset}\]"
-  #PS1+="\[${BG_GRAY}${white}\] ${timeStamp} \[${reset}\] "
-  #PS1+="\[${yellow}\]\h\[${reset}${magenta}\]"
-  #PS1+="@\[${reset}${cyan}\]\u\[${reset}\]"
-  #PS1+=" \[${bold}${red}\]-->\[${reset}\] "
-  #PS1+="\[${bold}${cyan}\]${curDir}\[${reset}\]"
-  #PS1+="\n " #start second line
-  #PS1+="\[${cyan}\]╰(\[${reset}\]"
-  #PS1+="\[${bold}${prompt_color}\]${p}\[${reset}\]"
-  #PS1+="\[${cyan}\])\[${reset}\]: "
-
-  true #attempt at reseting $? (doesn't work)
 }
 
 
