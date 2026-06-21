@@ -4,28 +4,7 @@ let
     "https://github.com/thiagokokada/nix-alien/tarball/master"
   ) { };
   secrets = import ./secrets.nix;
-in /*{
-
-  home-manager.users.root = {
-    home = {
-      enableNixpkgsReleaseCheck = false;
-      stateVersion = "18.09";
-      file = {
-        ".bashrc" = {
-      	  enable = true;
-      	  source = ./configs/root/bashrc;
-      	};
-        ".config/nvim" = {
-      	  force = true;
-      	  enable = true;
-      	  recursive = true;
-      	  source = ./configs/home/config/nvim;
-      	};
-      };
-    };
-  };
-
-  home-manager.users.super = */{
+in {
     imports = [
       ./configs/hyprland.nix
       ./configs/fastfetch.nix
