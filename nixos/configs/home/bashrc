@@ -55,47 +55,23 @@ if [ -x /usr/bin/dircolors ]; then
   alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -F'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
 
 
 #############################
 #        custom  ps1        #
 #############################
-PROMPT_COMMAND=__mkps1 #needed for some reason
+PROMPT_COMMAND=__mkps1
 __mkps1() {
   #get return status of previous cmd 
   local EXIT_CODE="$?"
-  #create empty $PS1
+
+  #empty $PS1
   PS1=""
 
   #define colors
@@ -134,12 +110,15 @@ __mkps1() {
   local term_width=$((`tput cols`-1))
   local pre_line=" ╭[00:00xx] ${HOSTNAME} {${SHLVL}} --> "
   local pre_len=${#pre_line}
+
   #length of full first line
   local total_len=$((${#curDir}+${pre_len}))
+
   if [[ ${total_len} -gt ${term_width} ]]; then
     local pre_len_diff=$((term_width-pre_len))
     if [[ ${pre_len_diff} -lt 5 ]]; then
-      : #too lazy to fix this, I don't plan to use a terminal this narrow
+      printf "TODO: terminal smaller than 5 chars"
+      exit
     else #cut-off string and add '...' to beginning 
       curDir=${curDir: -$((pre_len_diff-3))}
       curDir="...${curDir}"
@@ -160,9 +139,11 @@ __mkps1() {
 }
 
 
+
 #############################
 #          aliases          #
 #############################
+
 alias clear='printf "\033c"'
 alias cls="clear"
 alias clsls="clear;ls"
@@ -180,25 +161,36 @@ alias ssh="TERM=xterm-256color ssh"
 alias ds="dir_size"
 alias nvimdiff="nvim -d"
 alias switch="sudo nixos-rebuild switch --impure"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -F'
+
 
 
 ############################
 #     ever-so-slightly     #
 #   more complex aliases   #
 ############################
+
 #get just ipv4 of tailscale machine
 getTail() (
   set -eou pipefail
   tailscale ip "${1}" | sed -n "1p"
-) #cd into dir then eza
+)
+
+#cd into dir then eza
 cdls() {
   cd "$1"
   eza ${@:2}
-} #mkdir then cd into it
+}
+
+#mkdir then cd into it
 mkcd() {
   mkdir "${1}"
   cd "${1}"
-} #count lines of files from args
+}
+
+#count lines of files from args
 countsLines() (
   set -eou pipefail
   local -i res=0
@@ -208,11 +200,15 @@ countsLines() (
     ((res += new))
   done
   printf "%d\n" "${res}"
-) #printf to stderr
+)
+
+#printf to stderr
 errlog() (
   set -eou pipefail
   printf "${@}" 1>&2
 )
+
+#convenient music alias
 music() {
   declare lister=ls
   [[ $# -gt 0 ]] && lister="$1"
@@ -222,6 +218,7 @@ music() {
     done
   done
 }
+
 
 
 #############################
@@ -235,29 +232,25 @@ PATH="${PATH}:${HOME}/.local/bin"
 PATH="${PATH}:${HOME}/.npm-packages/bin"
 
 
+
 #############################
 #      custom  exports      #
 #############################
+
 #vitasdk (PS Vita homebew)
 export VITASDK=/usr/local/vitasdk
 export PATH=$VITASDK/bin:${PATH}
-# bun
+
+#bun
 export BUN_INSTALL="${HOME}/.bun"
 export PATH="$BUN_INSTALL/bin:${PATH}"
+
 #go
 export GOBIN="${HOME}/go/bin"
-# make neovim the default
-export EDITOR='/usr/bin/nvim'
-export VISUAL='/usr/bin/nvim'
+
+export EDITOR='/usr/bin/nvim' #best editor
+export VISUAL='/usr/bin/emacs' #best visual editor
+
+#C stuff
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/";
 export CPATH="$CPATH:/usr/include:/usr/include/gtk-4.0";
-
-
-#############################
-#       NeoVim  stuff       #
-#############################
-export NVM_DIR="$HOME/.nvm"
-# This loads nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
