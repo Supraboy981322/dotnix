@@ -310,6 +310,8 @@ hl.config({
   },
   cursor = {
     no_hardware_cursors = true,
+    inactive_timeout= 1,
+    hide_on_key_press = true,
   },
 })
 
