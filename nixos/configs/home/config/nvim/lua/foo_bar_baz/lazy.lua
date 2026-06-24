@@ -151,11 +151,11 @@ require("lazy").setup({
         suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
       },
     },
-    {
-      "folke/todo-comments.nvim",
-      dependencies = { "nvim-lua/plenary.nvim" },
-      opts = {},
-    },
+    --{
+    --  "folke/todo-comments.nvim",
+    --  dependencies = { "nvim-lua/plenary.nvim" },
+    --  opts = {},
+    --},
     {
       "nvim-telescope/telescope.nvim", version = "*",
       dependencies = {
