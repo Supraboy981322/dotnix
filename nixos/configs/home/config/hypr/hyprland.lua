@@ -170,6 +170,15 @@ for i = 1, 10 do
   )
 end
 hl.bind(
+  "SUPER + ALT + left",
+  hl.dsp.focus({ monitor = "l" })
+)
+hl.bind(
+  "SUPER + ALT + right",
+  hl.dsp.focus({ monitor = "r" })
+)
+
+hl.bind(
   "SUPER + SHIFT + left",
   hl.dsp.window.move({ direction = "left" })
 )
@@ -185,6 +194,7 @@ hl.bind(
   "SUPER + SHIFT + up",
   hl.dsp.window.move({ direction = "up" })
 )
+
 hl.bind(
   "SUPER + CONTROL + down",
   hl.dsp.window.resize({ x = 0, y = -10, relative = true }),
@@ -205,6 +215,7 @@ hl.bind(
   hl.dsp.window.resize({ x = 10, y = 0, relative = true }),
   { repeating = true }
 )
+
 hl.bind(
   "XF86AudioRaiseVolume",
   hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
