@@ -51,6 +51,12 @@ in {
       	  recursive = true;
       	  source = ./configs/home/config;
         };
+        ".config/hypr/stubs" = {
+          enable = true;
+          force = true;
+          recursive = true;
+          source = "${pkgs.hyprland}/share/hypr/stubs";
+        };
       	".local" = {
       	  enable = true;
           recursive = true;

@@ -61,6 +61,13 @@ vim.lsp.config('lua_ls', {
           "hl", --hyprland
         },
       },
+      workspace = {
+        library = {
+          vim.fn.expand("$VIMRUNTIME"),
+          vim.fn.expand("~/.config/hypr/stubs/"),
+        };
+        checkThirdParty = false,
+      };
     },
   },
 })
