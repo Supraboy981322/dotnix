@@ -263,12 +263,3 @@ vim.keymap.set(
     desc = "telescope buffers"
   }
 )
-vim.keymap.set(
-  { "v", "i", "n", "x" },
-  "<M-'>", --think "say"
-  ":Telescope help_tags<CR>",
-  {
-    noremap = true, silent = true,
-    desc = "telescope help tags"
-  }
-)

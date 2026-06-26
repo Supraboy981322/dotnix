@@ -75,11 +75,6 @@ hl.bind(
   "SUPER + Space",
   hl.dsp.exec_cmd(menu)
 )
---dwindle
-hl.bind(
-  "SUPER + P",
-  hl.dsp.window.pseudo()
-)
 hl.bind(
   "SUPER + J",
   hl.dsp.layout("togglesplit")
