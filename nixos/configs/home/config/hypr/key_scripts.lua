@@ -19,7 +19,7 @@ function M.mute_window()
   os.execute("wpctl set-mute -p " .. pid .. " toggle")
   local msg = (function()
     local res = "muted: " .. name .. " (" .. pid .. ")"
-    if not muted then
+    if muted then --will make muted
       res = "un" .. res
     end
     return res
