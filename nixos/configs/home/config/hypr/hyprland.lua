@@ -1,5 +1,7 @@
-local  zen = "nixGL zen --profile"
+local helpers = require("helpers")
+local key_scripts = require("key_scripts")
 
+local zen = "nixGL zen --profile"
 --local zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
 local terminal = "alacritty";
 local fileManager = "dolphin";
@@ -35,7 +37,11 @@ hl.bind(
 )
 hl.bind(
   "SUPER + M",
-  hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+  key_scripts.mute_window
+)
+hl.bind(
+  "SUPER + SHIFT + P",
+  key_scripts.popup_pid
 )
 hl.bind(
   "SUPER + SHIFT + E",
