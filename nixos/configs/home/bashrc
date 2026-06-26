@@ -210,11 +210,14 @@ errlog() (
 
 #convenient music alias
 music() {
-  declare lister=ls
-  [[ $# -gt 0 ]] && lister="$1"
   while true; do
-    for m in $($lister | shuf); do
-      ffplay "$m" -nodisp -autoexit -hide_banner
+    declare songs=(*)
+    for i in $(seq 1 ${#songs[@]}); do
+      declare idx=$((RANDOM % ${#songs[@]}))
+      declare m="${songs[idx]}"
+      unset "songs[${idx}]"
+      songs=("${songs[@]}")
+      ffplay "${m}" -nodisp -autoexit -hide_banner
     done
   done
 }
