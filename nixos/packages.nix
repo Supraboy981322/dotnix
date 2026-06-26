@@ -187,6 +187,7 @@ in {
     hyprwayland-scanner
     lua52Packages.cjson
     lua52Packages.luasec
+    lua51Packages.cjson
     gnome-system-monitor
     vala-language-server
     lua52Packages.luasocket
