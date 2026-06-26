@@ -36,4 +36,15 @@
       go install $url@latest 2>&1 | sed 's/^/\t\t/g' 1>&2
     done
   '';
+
+  install_hyprland_lua_libs = /* bash */ ''
+    declare lib_dir="/home/super/.config/hypr/libs"
+    if ! [ -d "$lib_dir" ]; then
+      mkdir -p "$lib_dir"
+      chown -R super:users "$lib_dir"
+    fi
+    ${pkgs.wget}/bin/wget -q \
+      "https://raw.githubusercontent.com/rxi/json.lua/refs/heads/master/json.lua" \
+      -O "$lib_dir/json.lua"
+  '';
 }
