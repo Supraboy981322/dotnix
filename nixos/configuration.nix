@@ -340,6 +340,14 @@ in {
       #    enable = true;
       #  };
 
+    obs-studio = {
+      enable = true;
+      enableVirtualCamera = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+      ];
+    };
+
     chromium = {
       enable = false;
     };
