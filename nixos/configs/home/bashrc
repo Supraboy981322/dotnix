@@ -222,6 +222,34 @@ music() {
   done
 }
 
+isNum() {
+  ((1-$0)) &> /dev/null
+}
+
+#calculate maxInt of given bitwidth and signedness
+maxInt() (
+  help() {
+    echo -e \
+  "\e[33musage\e[0m:
+    \e[32mmaxInt\e[0m [bitwidth] [signedness]
+    \e[32mmaxInt\e[0m \e[34mhelp\e[0m
+  \e[35meg\e[0m:
+    $ \e[32mmaxInt\e[0m \e[34m3\e[0m \e[34msigned\e[0m
+    7"
+    exit 1
+  }
+
+  local width="$1"
+  if ! [[ "$width" =~ ^([0-9]+|help)$ ]]; then help; fi
+  if [[ "$2" =~ ^(signed|true|1)$ ]]; then
+    dc -e "2 $width 1 - ^ 1 - pq"
+  elif [[ "$2" =~ ^(unsigned|false|0)$ ]]; then
+    dc -e "2 $width ^ 1 - pq"
+  else
+    help
+  fi
+)
+
 
 
 #############################
