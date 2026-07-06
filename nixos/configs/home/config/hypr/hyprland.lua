@@ -143,22 +143,7 @@ hl.bind(
   "SUPER + CONTROL + S",
   hl.dsp.layout("colresize 0.5")
 )
-hl.bind(
-  "SUPER + left",
-  hl.dsp.focus({ direction = "left" })
-)
-hl.bind(
-  "SUPER + right",
-  hl.dsp.focus({ direction = "right" })
-)
-hl.bind(
-  "SUPER + down",
-  hl.dsp.focus({ direction = "down" })
-)
-hl.bind(
-  "SUPER + up",
-  hl.dsp.focus({ direction = "up" })
-)
+
 for i = 1, 10 do
   local key = i % 10
   hl.bind(
@@ -170,63 +155,63 @@ for i = 1, 10 do
     hl.dsp.window.move({ workspace = i })
   )
 end
-hl.bind(
-  "SUPER + ALT + left",
-  hl.dsp.focus({ monitor = "l" })
-)
-hl.bind(
-  "SUPER + ALT + right",
-  hl.dsp.focus({ monitor = "r" })
-)
 
-hl.bind(
-  "SUPER + SHIFT + left",
-  hl.dsp.window.move({ direction = "left" })
-)
-hl.bind(
-  "SUPER + SHIFT + right",
-  hl.dsp.window.move({ direction = "right" })
-)
-hl.bind(
-  "SUPER + SHIFT + down",
-  hl.dsp.window.move({ direction = "down" })
-)
-hl.bind(
-  "SUPER + SHIFT + up",
-  hl.dsp.window.move({ direction = "up" })
-)
+for i, dir in ipairs({ "down", "up", "left", "right" }) do
+  hl.bind(
+    "SUPER + SHIFT + " .. dir,
+    hl.dsp.window.move({ direction = dir })
+  )
+  hl.bind(
+    "SUPER + " .. dir,
+    hl.dsp.focus({ direction = dir })
+  )
+  hl.bind(
+    "SUPER + SHIFT + CONTROL + " .. dir,
+    hl.dsp.window.move({ monitor = dir:sub(1, 1) })
+  )
+  do
+    local y = ((i <= 2) and 10 or 0) * ((i % 2 ~= 0) and -1 or 1)
+    if y == -0 then y = 0 end
 
-hl.bind(
-  "SUPER + CONTROL + down",
-  hl.dsp.window.resize({ x = 0, y = -10, relative = true }),
-  { repeating = true }
-)
-hl.bind(
-  "SUPER + CONTROL + up",
-  hl.dsp.window.resize({ x = 0, y = 10, relative = true }),
-  { repeating = true }
-)
-hl.bind(
-  "SUPER + CONTROL + left",
-  hl.dsp.window.resize({ x = -10, y = 0, relative = true }),
-  { repeating = true }
-)
-hl.bind(
-  "SUPER + CONTROL + right",
-  hl.dsp.window.resize({ x = 10, y = 0, relative = true }),
-  { repeating = true }
-)
+    local x = ((i > 2) and 10 or 0) * ((i % 2 ~= 0) and -1 or 1)
+    if x == -0 then x = 0 end
 
-hl.bind(
-  "XF86AudioRaiseVolume",
-  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-  { locked = true, repeating = true }
-)
-hl.bind(
-  "XF86AudioLowerVolume",
-  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-  { locked = true, repeating = true }
-)
+    hl.bind(
+      "SUPER + CONTROL + " .. dir,
+      hl.dsp.window.resize({ x = x, y = y, relative = true }),
+      { repeating = true }
+    )
+  end
+  if i > 2 then
+    hl.bind(
+      "SUPER + ALT + " .. dir,
+      hl.dsp.focus({ monitor = dir:sub(1, 1) })
+    )
+  end
+end
+
+--SUPER + vol-up/vol-down for just current window
+for i, keys in ipairs({
+  { "Page_Up", "XF86AudioRaiseVolume" },
+  { "Page_Down", "XF86AudioLowerVolume" }
+}) do
+  local d = (i % 2 == 0) and "-" or "+"
+  local one = function(k)
+    hl.bind(
+      "SUPER + " .. k,
+      key_scripts.window_vol(d)
+    )
+  end
+  local two = function(k)
+    hl.bind(
+      k,
+      hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%" .. d),
+      { locked = true, repeating = true }
+    )
+  end
+  for _, k in ipairs(keys) do one(k) two(k) end
+end
+
 hl.bind(
   "XF86AudioMute",
   hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
@@ -393,18 +378,18 @@ hl.monitor({
     position = "auto",
     scale    = "auto",
 })
-hl.monitor({
+hl.monitor({ --nice-ish monitor (remains at home setup)
   output = "desc:LG Electronics LG ULTRAGEAR 209NTNH3L775",
   mode = "preferred",
   position = "0x0",
   scale = 1,
 })
-hl.monitor({
+hl.monitor({ --(decent monitor) home [secondary] ; travel [primary]
   output = "desc:Hewlett Packard HP w2207 3CQ82426KK",
   mode = "preferred",
-  position = "1920x-190",
+  position = "1920x50",
   scale = 1,
-  transform = 1,
+  transform = 0, --set to 1 for vertical
 })
 hl.monitor({
   output = "desc:Valve Corporation ANX7530 U 0x00000001",
@@ -412,6 +397,13 @@ hl.monitor({
   position = "0x1080",
   scale = 1,
   transform = 3,
+})
+hl.monitor({
+  output = "desc:Sceptre Tech Inc E225W-1920",
+  mode = "preferred",
+  position = "1680x0",
+  scale = 1,
+  transform = 0,
 })
 
 hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")

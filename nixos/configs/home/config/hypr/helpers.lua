@@ -1,29 +1,29 @@
 local json = require("libs.json")
 local M = {}
 
+--yes, I know that's kind-of redundant,
+--  but it's much less verbose to use
+function M.notify(msg, timeout)
+  hl.notification.create({ text = msg, timeout = timeout or 2000 })
+end
+
 function M.get_pw_node(pid)
-  local handle = io.popen("pw-dump -R")
+  --would be nice if I could do this reliably almost
+  --  exclusively in Lua, without it being obscenely slow
+  local handle = io.popen("pw-dump -R | jq '[.[] | select(.type == \"PipeWire:Interface:Node\") | select(.info.props.\"application.process.id\" == " .. pid .. ") | select(.info.state == \"running\")] | .[0]'")
   if handle == nil then return nil end
   local raw = handle:read("*a")
   handle:close()
 
-  local pid_pattern = '"application.process.id": ' .. pid .. ","
-
-  local res = "["
-  while raw:match(pid_pattern) ~= nil do
-    local id_start, id_end = raw:find(pid_pattern)
-    local _, start = raw:sub(0, id_start):reverse():find(('{"id": '):reverse())
-    res = res .. assert(raw:sub(id_start - start+1, id_start-2))
-    local obj_end = raw:sub(id_start - start+1, -1):find(',{"id": %d+,')
-    res = res .. assert(raw:sub(id_end, id_start - start + obj_end))
-    raw = raw:sub(id_start - start + obj_end-3, -1)
+  local ok, foo = pcall(json.decode, raw)
+  if ok and foo ~= nil then
+    return foo
+  elseif not ok then
+    M.notify("failed to decode json:\n\t" .. foo)
+  else
+    M.notify("no window node matching current ID is '.info.state == \"running\"'")
   end
-  res = res:sub(0, -2) .. "]"
-  if res:match("PipeWire:Interface:Node") == nil then return nil end
 
-  for _, node in ipairs(json.decode(res)) do
-    if node.type == "PipeWire:Interface:Node" then return node end
-  end
   return nil
 end
 
@@ -47,6 +47,12 @@ function M.collect_stdout(cmd)
   local res = handle:read("*a")
   handle:close()
   return res
+end
+
+function M.get_pw_node_id(pid)
+  local node = M.get_pw_node(pid)
+  if node == nil then return nil end
+  return node.id
 end
 
 return M

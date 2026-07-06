@@ -28,9 +28,38 @@ function M.mute_window()
 end
 
 function M.popup_pid()
-  local pid = hl.get_active_window().pid
-  local name = hl.get_active_window().title
-  hl.notification.create({ text = name .. ": " .. pid, timeout = 10000 })
+  local window = hl.get_active_window() or {}
+  local pid = window.pid
+  local name = window.title
+  local pw_id = helpers.get_pw_node_id(pid)
+  hl.notification.create({
+    text = name .. ": (pid " .. pid .. ") (pw_id " .. (pw_id or "[null]") .. ")",
+    timeout = 10000
+  })
+end
+
+function M.window_vol(op)
+  return function()
+    local window = hl.get_active_window() or {}
+    local pid = window.pid
+    local name = window.title
+    local id = helpers.get_pw_node_id(pid)
+    local amnt = 3
+
+    os.execute("wpctl set-volume -p " .. pid .. " " .. amnt .. "%" .. op)
+
+    if id ~= nil then
+      helpers.notify("node not found")
+      return
+    end
+    local handle = io.popen("wpctl get-volume " .. id)
+    if handle == nil then return nil end
+    local raw = handle:read("*a")
+    handle:close()
+
+    local volume = raw:reverse():match("^(.-) "):reverse():gsub("%s+", "")
+    helpers.notify(name .. ": " .. volume .. "%")
+  end
 end
 
 return M
