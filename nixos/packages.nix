@@ -37,6 +37,7 @@ in {
     SDL
     eza
     wev
+    zls
     lua
     zip
     bun

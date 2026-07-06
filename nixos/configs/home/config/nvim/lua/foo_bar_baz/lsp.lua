@@ -103,3 +103,10 @@ vim.lsp.config('lua_ls', {
 --    end
 --  end
 --})
+
+
+vim.lsp.config('zls', {
+  cmd = { "zls" },
+  root_dir = vim.fs.root(0, { "zls.json", "build.zig", ".git" }),
+})
+vim.lsp.enable({ 'zls' })
