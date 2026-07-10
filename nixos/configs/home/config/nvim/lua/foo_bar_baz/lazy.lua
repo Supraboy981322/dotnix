@@ -126,6 +126,7 @@ require("lazy").setup({
       opts = {
         ensure_installed = {
           "lua_ls",
+          "ols",
           "gopls",
           --"zls",
           "ts_ls",

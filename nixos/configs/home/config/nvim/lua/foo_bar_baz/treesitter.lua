@@ -20,6 +20,7 @@ require'nvim-treesitter.configs'.setup {
     "json",
     "rust",
     "zig",
+    "odin",
     "ocaml",
     "bash",
     "jsdoc",
