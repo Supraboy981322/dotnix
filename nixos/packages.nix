@@ -45,6 +45,8 @@ in {
     vlc
     mpv
     wine
+    eden
+    odin
     wget
     fasm
     vala
@@ -115,6 +117,7 @@ in {
     gnumake
     wayland
     openvpn
+    ryubing
     discord
     usbutils
     qrencode
