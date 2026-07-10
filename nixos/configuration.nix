@@ -381,9 +381,9 @@ in {
   };
 
   virtualisation = {
-    virtualbox = {
-      host.enable = true;
-    };
+      #virtualbox = {
+      #  host.enable = true;
+      #};
     spiceUSBRedirection = {
       enable = true;
     };
