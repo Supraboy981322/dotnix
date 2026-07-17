@@ -33,6 +33,10 @@ hl.bind(
 )
 hl.bind(
   "SUPER + escape",
+  hl.dsp.window.close()
+)
+hl.bind(
+  "SUPER + SHIFT + escape",
   hl.dsp.window.kill()
 )
 hl.bind(
@@ -209,7 +213,8 @@ for i, keys in ipairs({
       { locked = true, repeating = true }
     )
   end
-  for _, k in ipairs(keys) do one(k) two(k) end
+  one(keys[1])
+  two(keys[2])
 end
 
 hl.bind(
@@ -252,10 +257,18 @@ hl.bind(
   hl.dsp.exec_cmd("playerctl previous"),
   { locked = true }
 )
+
+hl.bind(
+  "SUPER + SHIFT + ALT + CONTROL + M",
+  hl.dsp.exec_cmd(
+    "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown "
+        .. "|| hyprctl dispatch 'hl.dsp.exit()'")
+)
+
 hl.config({
   general = {
     gaps_in = 5,
-    gaps_out = 20,
+    gaps_out = { top = 5, left = 20, right = 20, bottom = 10 },
 
     border_size = 2,
 

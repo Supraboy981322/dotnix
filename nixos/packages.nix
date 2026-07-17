@@ -44,8 +44,10 @@ in {
     gcc
     vlc
     mpv
+    gmp
     wine
     eden
+    mpfr
     odin
     wget
     fasm
@@ -105,6 +107,7 @@ in {
     espeak
     podman
     libX11
+    stdenv
     gnutar
     libvirt
     freerdp
@@ -129,6 +132,7 @@ in {
     hyprland
     hyprlang
     iproute2
+    curl.dev
     zlib.dev
     inkscape
     libglvnd
@@ -170,6 +174,7 @@ in {
     libXinerama
     virt-manager
     supertuxkart
+    glibc.static
     wl-clipboard
     libxkbcommon
     brightnessctl

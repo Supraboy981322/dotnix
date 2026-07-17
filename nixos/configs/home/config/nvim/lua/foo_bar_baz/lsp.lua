@@ -15,7 +15,7 @@ vim.diagnostic.config({
   update_in_insert = true,
 })
 
---[[vim.lsp.config('clangd', {
+vim.lsp.config('clangd', {
   cmd = {
     "/run/current-system/sw/bin/clangd",
     "--background-index", "--clang-tidy",
@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.lsp.enable("clangd")
   end,
-})]]--
+})
 
 vim.lsp.config('lua_ls', {
   cmd = { "lua-language-server" },
@@ -108,5 +108,17 @@ vim.lsp.config('lua_ls', {
 vim.lsp.config('zls', {
   cmd = { "zls" },
   root_dir = vim.fs.root(0, { "zls.json", "build.zig", ".git" }),
+  settings = {
+    zls = {
+      enable_ast_check_diagnostics = true,
+      warn_style = true,
+      enable_semantic_tokens = true,
+      enable_inlay_hints = true,
+      inlay_hints_hide_redundant_param_names = true,
+      inlay_hints_hide_redundant_param_names_last_token = true,
+      include_at_in_builtins = true,
+      max_detail_length = 1048576,
+    }
+  },
 })
 vim.lsp.enable({ 'zls' })

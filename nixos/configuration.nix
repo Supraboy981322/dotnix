@@ -8,12 +8,12 @@
  * sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
  * sudo nix-channel --update
  * ```
- * 
+ *
  * Also, make sure to rebuild with `--impure`
  * ```sh
  * sudo nixos-rebuild switch --impure
  * ```
- * 
+ *
  * <sub>yeah, md in my configuration.nix comments</sub>
  */
 
@@ -64,7 +64,7 @@ in {
       ];
     };
   };
-  
+
   swapDevices = [
     {
       device = "/var/lib/swapfile";
@@ -81,7 +81,7 @@ in {
   hardware = {
     enableAllFirmware = true;
     uinput.enable = true;
-    bluetooth = { 
+    bluetooth = {
       enable = true;
       powerOnBoot = true;
     };
@@ -227,7 +227,7 @@ in {
           S-` S-[ S-]
           q w e r t u i o p a s d f g h j k l x c v b n m
         )
-        
+
         ;;super key layer
         (deflayer super-layer
           _ _ _ (unmod lsft) _ _ _
@@ -431,20 +431,56 @@ in {
   };
 
   environment = {
-    sessionVariables = {
-      GOPATH = "/home/super/go";
-      WLR_NO_HARDWARE_CURSORS = "1";
-      AQ_NO_ATOMIC = "1";
-      WLR_DRM_NO_ATOMIC = "1";
-      MANPAGER = "less";
-      XDG_DATA_DIRS = [
-        "$HOME/.local/share/flatpak/exports/share"
-        "/var/lib/flatpak/exports/share"
-      ];
-      MOZ_ACCELERATED = "0";
-      MOZ_WEBRENDER = "0";
-    };
+    sessionVariables =
+      let
+        cc = pkgs.stdenv.cc;
+      in {
+        GOPATH = "/home/super/go";
+        WLR_NO_HARDWARE_CURSORS = "1";
+        AQ_NO_ATOMIC = "1";
+        WLR_DRM_NO_ATOMIC = "1";
+        MOZ_WEBRENDER = "0";
+        MANPAGER = "less";
+        XDG_DATA_DIRS = [
+          "$HOME/.local/share/flatpak/exports/share"
+          "/var/lib/flatpak/exports/share"
+        ];
+        MOZ_ACCELERATED = "0";
+
+        LD_LIBRARY_PATH = "${cc.cc}/lib/gcc/${pkgs.stdenv.hostPlatform.config}/${cc.version}";
+        LIBRARY_PATH = [
+          "${pkgs.mpfr.out}/lib"
+          "${pkgs.gmp.out}/lib"
+          "${pkgs.gtk4.out}/lib"
+          "${pkgs.glibc.out}/lib"
+          "${pkgs.curl.out}/lib"
+        ];
+        CPATH =
+          let
+            glibc = pkgs.glibc.dev;
+
+            common_dir_includes = base: rest: (
+              pkgs.lib.forEach rest (p: "${base}/${p}")
+            );
+
+            cc_includes =
+              (common_dir_includes "${cc.cc}/include" [
+                "c++/${cc.version}"
+                "c++/${cc.version}/${pkgs.stdenv.hostPlatform.config}"
+                "${cc.system}-linux-gnu"
+              ]) ++ ([
+                "${pkgs.mpfr.dev}/include"
+                "${pkgs.gmp.dev}/include"
+                "${pkgs.gtk4.dev}/include"
+              ]);
+
+            constructed_list = [ "${glibc}/include" ] ++ cc_includes;
+          in
+            constructed_list;
+        AROCC_FLAGS = "-I${pkgs.glibc.dev}/include";
+      };
     enableAllTerminfo = true;
+    etc = import ./configs/etc.nix { pkgs = pkgs; config = config; };
   };
 
   system.activationScripts = import ./activation.nix { pkgs = pkgs; };

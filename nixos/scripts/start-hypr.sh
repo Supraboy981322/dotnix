@@ -57,8 +57,8 @@ HyprCTL() {
 }
 
 batWarn() {
-  /home/super/scripts/battery_notifier \
-    || err_window "failed to start battery_notifier"
+  #home/super/scripts/battery_notifier \
+  #  || err_window "failed to start battery_notifier"
 }
 
 wayBar \
@@ -66,5 +66,5 @@ wayBar \
   & confDisplay \
   & startMako \
   & HyprCTL \
-  & batWarn \
   & udiskie -a -n
+  #& batWarn \

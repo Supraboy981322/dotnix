@@ -154,16 +154,16 @@ alias :Q="exit"
 alias :e="nvim"
 alias error="(exit 1)"
 alias goNoCache="GOPROXY=direct go"
-alias laR="eza -aR"
+alias laR="eza -aR --"
 alias CURDIR="basename \"${PWD}\""
 alias vimdiff="nvim -d"
 alias ssh="TERM=xterm-256color ssh"
 alias ds="dir_size"
 alias nvimdiff="nvim -d"
 alias switch="sudo nixos-rebuild switch --impure"
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -F'
+alias ll='ls -alF --'
+alias la='ls -A --'
+alias l='ls -F --'
 alias curl="curl --path-as-is"
 
 
@@ -285,4 +285,4 @@ export VISUAL='/usr/bin/emacs' #best visual editor
 
 #C stuff
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/";
-export CPATH="$CPATH:/usr/include:/usr/include/gtk-4.0";
+export NIX_LDFLAGS="-L$(dirname $(g++ -print-file-name=libgcc_s.so)) $NIX_LDFLAGS"

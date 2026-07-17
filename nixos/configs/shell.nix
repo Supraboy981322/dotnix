@@ -134,12 +134,8 @@ in {
       "$PKG_CONFIG_PATH"
       "/usr/lib/x86_64-linux-gnu/pkgconfig/"
     ];
-    CPATH = [
-      "$CPATH"
-      "/usr/include"
-      "/usr/include/gtk-4.0"
-    ];
     PATH = [
+      "$HOME/.bin/bccc"
       "$HOME/.bin"
       "$GOBIN"
       "$HOME/bin"
