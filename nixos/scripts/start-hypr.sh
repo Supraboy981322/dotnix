@@ -56,11 +56,6 @@ HyprCTL() {
     || err_window "hyprctl failed"
 }
 
-batWarn() {
-  #home/super/scripts/battery_notifier \
-  #  || err_window "failed to start battery_notifier"
-}
-
 wayBar \
   & hyprPaper \
   & confDisplay \

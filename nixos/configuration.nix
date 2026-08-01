@@ -168,6 +168,7 @@ in {
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    udev.packages = [ pkgs.steam ];
       # TODO: did I need this? (it suddenly broke)
       #avahi = {
       #  enable = true;
@@ -292,6 +293,7 @@ in {
         "libvirtd"
         "netns"
         "input"
+        "plugdev"
         "uinput"
         "kvm"
       ];

@@ -45,6 +45,7 @@ in {
     vlc
     mpv
     gmp
+    mgba
     wine
     eden
     mpfr
@@ -72,6 +73,7 @@ in {
     gtk4
     libXi
     delta
+    mesen
     gleam
     cmake
     rustc
@@ -199,6 +201,7 @@ in {
     lua51Packages.cjson
     gnome-system-monitor
     vala-language-server
+    coreboot-toolchain.i386
     lua52Packages.luasocket
     nixgl.auto.nixGLDefault
     wine64Packages.waylandFull

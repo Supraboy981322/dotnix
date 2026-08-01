@@ -106,7 +106,7 @@
     "wlr/taskbar" = {
       format = "{icon}";
       all-outputs = false;
-      active-first = true;
+      active-first = false;
       justify = "center";
       tooltip-format = "{name}";
       ignore-list = [ "wofi" ];
