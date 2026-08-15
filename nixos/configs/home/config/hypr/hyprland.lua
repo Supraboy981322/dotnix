@@ -18,10 +18,125 @@ local noteProg = "obsidian";
 local people_who_dont_use_signal = "discord";
 local org_mode_is_pretty_good = "emacs";
 local restart_waybar = "~/scripts/restart_waybar.sh";
-local d_client = "~/scripts/d_client";
+local d_client = "alacritty -e sh -c log_tui";
 local do_not_disturb = "makoctl mode -t dnd";
 
 hl.on("hyprland.start", function() hl.exec_cmd("~/scripts/start-hypr.sh") end)
+
+hl.bind(
+  "SUPER + ALT + V",
+  hl.dsp.submap("visual")
+)
+
+hl.define_submap("visual", function()
+
+  hl.bind(
+    "escape",
+    hl.dsp.submap("reset"),
+    { locked = true }
+  )
+
+  hl.bind(
+    "SHIFT + ALT + RETURN",
+    hl.dsp.exec_cmd("ydotool click 0x81")
+  )
+
+  hl.bind(
+    "ALT + RETURN",
+    hl.dsp.exec_cmd("ydotool click 0x41")
+  )
+  hl.bind(
+    "ALT + RETURN",
+    hl.dsp.exec_cmd("ydotool click 0x81"),
+    { release = true, ignore_mods = true }
+  )
+
+  hl.bind(
+    "SHIFT + RETURN",
+    hl.dsp.exec_cmd("ydotool click 0x80")
+  )
+
+  hl.bind(
+    "RETURN",
+    hl.dsp.exec_cmd("ydotool click 0x40")
+  )
+  hl.bind(
+    "RETURN",
+    hl.dsp.exec_cmd("ydotool click 0x80"),
+    { release = true, ignore_mods = true }
+  )
+
+  hl.bind(
+    "ALT + left",
+    hl.dsp.exec_cmd("ydotool mousemove -- -2 0"),
+    { repeating = true }
+  )
+  hl.bind(
+    "ALT + right",
+    hl.dsp.exec_cmd("ydotool mousemove -- 2 0"),
+    { repeating = true }
+  )
+  hl.bind(
+    "ALT + down",
+    hl.dsp.exec_cmd("ydotool mousemove -- 0 2"),
+    { repeating = true }
+  )
+  hl.bind(
+    "ALT + up",
+    hl.dsp.exec_cmd("ydotool mousemove -- 0 -2"),
+    { repeating = true }
+  )
+
+
+  hl.bind(
+    "CONTROL + left",
+    hl.dsp.exec_cmd("ydotool mousemove -- -10 0"),
+    { repeating = true }
+  )
+  hl.bind(
+    "CONTROL + right",
+    hl.dsp.exec_cmd("ydotool mousemove -- 10 0"),
+    { repeating = true }
+  )
+  hl.bind(
+    "CONTROL + down",
+    hl.dsp.exec_cmd("ydotool mousemove -- 0 10"),
+    { repeating = true }
+  )
+  hl.bind(
+    "CONTROL + up",
+    hl.dsp.exec_cmd("ydotool mousemove -- 0 -10"),
+    { repeating = true }
+  )
+
+  hl.bind(
+    "left",
+    hl.dsp.exec_cmd("ydotool mousemove -- -50 0"),
+    { repeating = true }
+  )
+  hl.bind(
+    "right",
+    hl.dsp.exec_cmd("ydotool mousemove -- 50 0"),
+    { repeating = true }
+  )
+  hl.bind(
+    "down",
+    hl.dsp.exec_cmd("ydotool mousemove -- 0 50"),
+    { repeating = true }
+  )
+  hl.bind(
+    "up",
+    hl.dsp.exec_cmd("ydotool mousemove -- 0 -50"),
+    { repeating = true }
+  )
+
+end)
+
+
+hl.bind(
+  "SUPER + M",
+  key_scripts.mute_window
+)
 
 hl.bind(
   "SUPER + T",
@@ -38,10 +153,6 @@ hl.bind(
 hl.bind(
   "SUPER + SHIFT + escape",
   hl.dsp.window.kill()
-)
-hl.bind(
-  "SUPER + M",
-  key_scripts.mute_window
 )
 hl.bind(
   "SUPER + SHIFT + P",
@@ -162,17 +273,22 @@ end
 
 for i, dir in ipairs({ "down", "up", "left", "right" }) do
   hl.bind(
-    "SUPER + SHIFT + " .. dir,
-    hl.dsp.window.move({ direction = dir })
-  )
-  hl.bind(
-    "SUPER + " .. dir,
-    hl.dsp.focus({ direction = dir })
-  )
-  hl.bind(
     "SUPER + SHIFT + CONTROL + " .. dir,
     hl.dsp.window.move({ monitor = dir:sub(1, 1) })
   )
+  hl.bind(
+    "SUPER + SHIFT + " .. dir,
+    hl.dsp.window.move({ direction = dir })
+  )
+  do
+    local x = ((i > 2) and 50 or 0) * ((i % 2 ~= 0) and 0 or -1)
+    local y = ((i > 2) and 0 or 50) * ((i % 2 ~= 0) and 0 or -1)
+    hl.bind(
+      "SUPER + TAB + " .. dir,
+      hl.dsp.exec_cmd("ydotool mousemove -- " .. x .. " " .. y),
+      { repeating = true }
+    )
+  end
   do
     local y = ((i <= 2) and 10 or 0) * ((i % 2 ~= 0) and -1 or 1)
     if y == -0 then y = 0 end
@@ -192,6 +308,12 @@ for i, dir in ipairs({ "down", "up", "left", "right" }) do
       hl.dsp.focus({ monitor = dir:sub(1, 1) })
     )
   end
+
+  hl.bind(
+    "SUPER + " .. dir,
+    hl.dsp.focus({ direction = dir })
+  )
+
 end
 
 --SUPER + vol-up/vol-down for just current window
@@ -265,6 +387,8 @@ hl.bind(
         .. "|| hyprctl dispatch 'hl.dsp.exit()'")
 )
 
+
+
 hl.config({
   general = {
     gaps_in = 5,
@@ -322,6 +446,14 @@ hl.config({
     no_hardware_cursors = true,
     inactive_timeout= 1,
     hide_on_key_press = true,
+  },
+  --input = {
+  --  sensitivity = 0.0,
+  --  force_no_accel = true,
+  --  accel_profile = "flat"
+  --},
+  ecosystem = {
+    no_donation_nag = true,
   },
 })
 
@@ -417,6 +549,13 @@ hl.monitor({
   position = "1680x0",
   scale = 1,
   transform = 0,
+})
+hl.monitor({
+  output = "desc:ROW AAA",
+  mode = "preferred",
+  position = "-768x300",
+  scale = 1,
+  transform = 3,
 })
 
 hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")

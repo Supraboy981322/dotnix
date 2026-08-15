@@ -1,4 +1,5 @@
 vim.lsp.enable("vala_ls")
+vim.lsp.log.set_level("off")
 
 vim.diagnostic.config({
   signs = {

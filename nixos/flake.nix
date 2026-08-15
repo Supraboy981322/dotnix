@@ -31,6 +31,11 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    intInfo = {
+      url = "github:Supraboy981322/misc-scripts?dir=intInfo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -43,6 +48,7 @@
     zen-browser_pkg,
     vpn-confinement,
     nixpkgs-unstable,
+    intInfo,
     ...
   }@inputs: 
     let

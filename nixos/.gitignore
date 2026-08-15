@@ -14,3 +14,4 @@ configs/home/config/winapps/
 hardware-configuration.nix
 configs/home/config/nvim/twitch
 secrets.nix
+configs/home/config/Keeper_of_The_Interwebs/

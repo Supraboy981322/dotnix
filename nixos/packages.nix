@@ -28,6 +28,7 @@ in {
     xz
     bc
     nh
+
     gdb
     bat
     tea
@@ -45,6 +46,9 @@ in {
     vlc
     mpv
     gmp
+
+    mame
+    cc65
     mgba
     wine
     eden
@@ -71,6 +75,7 @@ in {
     SDL2
     less
     gtk4
+
     libXi
     delta
     mesen
@@ -92,6 +97,8 @@ in {
     kitty
     nitch
     clang
+
+    stella
     wine64
     waybar
     brotli
@@ -111,6 +118,8 @@ in {
     libX11
     stdenv
     gnutar
+
+    ataripp
     libvirt
     freerdp
     udiskie
@@ -124,6 +133,7 @@ in {
     openvpn
     ryubing
     discord
+
     usbutils
     qrencode
     prettier
@@ -139,6 +149,9 @@ in {
     inkscape
     libglvnd
     qemu_kvm
+    quickemu
+
+    fira-code
     html-tidy
     highlight
     html-tidy
@@ -157,6 +170,8 @@ in {
     alacritty
     fastfetch
     distrobox
+
+    galculator
     rpi-imager
     alsa-utils
     libX11.dev
@@ -164,6 +179,7 @@ in {
     libXcursor
     pkg-config
     proton-vpn
+
     pavucontrol
     protonup-qt
     forgejo-cli
@@ -174,6 +190,7 @@ in {
     imagemagick
     libglibutil
     libXinerama
+
     virt-manager
     supertuxkart
     glibc.static
@@ -182,66 +199,77 @@ in {
     brightnessctl
     cascadia-code
     prismlauncher
+
     signal-desktop
     bibata-cursors
     coreutils-full
     qt5.qtbase.dev
     proton-vpn-cli
     netcat-openbsd
+
     hyprpolkitagent
-    mullvad-browser 
+    mullvad-browser
     element-desktop
     wireguard-tools
     github-linguist
+
+    kdePackages.kate
+
+    kdePackages.qtsvg
     wayland-protocols
+
+    adwaita-icon-theme
     hyprland-protocols
+
+    nerd-fonts._0xproto
+    kdePackages.dolphin
     hyprwayland-scanner
     lua52Packages.cjson
-    lua52Packages.luasec
     lua51Packages.cjson
+
+    nerd-fonts.fira-code
+    lua52Packages.luasec
     gnome-system-monitor
     vala-language-server
-    coreboot-toolchain.i386
-    lua52Packages.luasocket
-    nixgl.auto.nixGLDefault
-    wine64Packages.waylandFull
-    wineWow64Packages.waylandFull
-
-    #stuff I prefer from KDE
-    kdePackages.kate
-    kdePackages.qtsvg
-    kdePackages.dolphin
     kdePackages.gwenview
     kdePackages.kdenlive
     kdePackages.kio-fuse
+
     kdePackages.kio-extras
-    kdePackages.kde-cli-tools
-
-    # TODO: debug
-    # lutris
-
-    # fonts
     noto-fonts-color-emoji
-    fira-code
-    nerd-fonts.fira-code
-    nerd-fonts._0xproto
-    nerd-fonts.droid-sans-mono
-    nerd-fonts.jetbrains-mono
+
     nerd-fonts.symbols-only
+    coreboot-toolchain.i386
+    lua52Packages.luasocket
+    nixgl.auto.nixGLDefault
+
+    kdePackages.kde-cli-tools
+    nerd-fonts.jetbrains-mono
+    gsettings-desktop-schemas
+
+    nerd-fonts.droid-sans-mono
+    wine64Packages.waylandFull
+
+    wineWow64Packages.waylandFull
+
 
     # "overrides"
     (pkgs.ffmpeg-full.override {
       withUnfree = true;
     })
+
     (pkgs.lutris.override  {
       extraLibraries = pkgs: [ ];
       extraPkgs = pkgs: [ ];
     })
+
   ]) ++ [
     browsers.zen.re-wrapped
     browsers.firefox.re-wrapped
+
+    inputs.intInfo.packages.${builtins.currentSystem}.default
   ];
-  
+
   #services.flatpak = {
   #  enable = true;
   #  update.auto.enable = true;

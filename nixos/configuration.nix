@@ -94,6 +94,7 @@ in {
       ]);
     };
     steam-hardware.enable = true;
+    cpu.amd.updateMicrocode = true;
   };
 
   # Bootloader
@@ -168,7 +169,12 @@ in {
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    udev.packages = [ pkgs.steam ];
+    udev = {
+      packages = [ pkgs.steam ];
+      extraRules = ''
+        KERNEL=="uinput", GROUP="input", TAG+="uaccess"
+      '';
+    };
       # TODO: did I need this? (it suddenly broke)
       #avahi = {
       #  enable = true;
@@ -296,6 +302,7 @@ in {
         "plugdev"
         "uinput"
         "kvm"
+        "ydotool"
       ];
       subUidRanges = [
         {
@@ -312,9 +319,6 @@ in {
     };
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs = {
     config = {
@@ -324,7 +328,23 @@ in {
       };
     };
   };
+
+  systemd.services = {
+    ydotoold = {
+      enable = true;
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = let
+        sock = "/run/ydotoold/socket";
+        daemon = "${pkgs.ydotool}/bin/ydotoold";
+      in {
+        ExecStart = pkgs.lib.mkDefault "${daemon} --socket-path=${sock} --socket-perm=0660";
+        Restart = "always";
+      };
+    };
+  };
+
   programs = {
+    ydotool.enable = true;
     hyprlock.enable = true;
     hyprland = {
       enable = true;
@@ -345,6 +365,7 @@ in {
       ];
     };
 
+    firefox.enable = true;
     chromium = {
       enable = false;
     };
@@ -366,20 +387,21 @@ in {
       localNetworkGameTransfers.openFirewall = true;
       gamescopeSession.enable = true;
     };
-    tmux = {          #wanted to try-out tmux
-      enable = false; #  suddenly don't have time
-    };                #    may come back to this later
-    dconf.profiles.user.databases = [
-      {
-        settings."org/gnome/desktop/interface" = {
-          gtk-theme = "Adwaita";
-          icon-theme = "Flat-Remix-Red-Dark";
-          font-name = "Noto Sans Medium 11";
-          document-font-name = "Noto Sans Medium 11";
-          monospace-font-name = "Noto Sans Mono Medium 11";
-        };
-      }
-    ];
+    tmux.enable = false; #utterly useless just use a scrolling tiling window manager
+    dconf = {
+      enable = true;
+      profiles.user.databases = [
+        {
+          settings."org/gnome/desktop/interface" = {
+            gtk-theme = "Adwaita";
+            icon-theme = "Flat-Remix-Red-Dark";
+            font-name = "Noto Sans Medium 11";
+            document-font-name = "Noto Sans Medium 11";
+            monospace-font-name = "Noto Sans Mono Medium 11";
+          };
+        }
+      ];
+    };
   };
 
   virtualisation = {
@@ -438,6 +460,7 @@ in {
         cc = pkgs.stdenv.cc;
       in {
         GOPATH = "/home/super/go";
+        YDOTOOL_SOCKET = "/run/ydotoold/socket";
         WLR_NO_HARDWARE_CURSORS = "1";
         AQ_NO_ATOMIC = "1";
         WLR_DRM_NO_ATOMIC = "1";
@@ -446,6 +469,7 @@ in {
         XDG_DATA_DIRS = [
           "$HOME/.local/share/flatpak/exports/share"
           "/var/lib/flatpak/exports/share"
+          "${pkgs.gsettings-desktop-schemas}/share/gsettigs-schemas/${pkgs.gsettings-desktop-schemas.name}"
         ];
         MOZ_ACCELERATED = "0";
 
@@ -483,6 +507,9 @@ in {
       };
     enableAllTerminfo = true;
     etc = import ./configs/etc.nix { pkgs = pkgs; config = config; };
+    shellAliases = {
+      "confine" = "nixGL firejail --quiet --netns=${secrets.vpn.wg.alt.provider}";
+    };
   };
 
   system.activationScripts = import ./activation.nix { pkgs = pkgs; };

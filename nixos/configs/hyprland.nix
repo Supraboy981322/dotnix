@@ -73,25 +73,20 @@ let
           )) cleanBindings
       ) binds);
 in {
-  xdg = 
+  xdg =
     let
       waybar = import ./waybar.nix;
     in {
-    #enable desktop portal and set hyprland to default
-    portal = {
-      enable = true;
-      config = {
-        hyprland = {
-          default = [ "hyprland" "gtk" ];
-        };
+      portal = {
+        enable = true;
+        config.hyprland.default = [ "hyprland" "gtk" ];
       };
-    };
 
-    #waybar part 1
-    configFile."hypr/waybar.jsonc".text =  builtins.toJSON waybar.part_1;
-    configFile."hypr/waybar.css".text = waybar.part_2;
-    configFile."hypr/wofi.css".text = import ./wofi.nix;
-  };
+      #waybar part 1
+      configFile."hypr/waybar.jsonc".text =  builtins.toJSON waybar.part_1;
+      configFile."hypr/waybar.css".text = waybar.part_2;
+      configFile."hypr/wofi.css".text = import ./wofi.nix;
+    };
 
   services.hyprpaper = {
     enable = true;

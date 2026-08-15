@@ -99,3 +99,7 @@
 (use-package zig-ts-mode
   :vc ( :url "https://codeberg.org/meow_king/zig-ts-mode"
 				:rev :newest))
+
+;dired mode create file
+(with-eval-after-load 'dired
+	(define-key dired-mode-map (kbd "c") 'find-file))
