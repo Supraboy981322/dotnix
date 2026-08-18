@@ -4,11 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     zig_overlay.url = "github:mitchellh/zig-overlay";
 
     nixpkgs-unstable = {
@@ -41,7 +36,6 @@
   outputs = {
     self,
     nixpkgs,
-    ghostty,
     nix-flatpak,
     zig_overlay,
     home-manager,
@@ -101,7 +95,6 @@
               # may put something here at some point
             ]) ++ (with nixpkgs-unstable; [
               zig_overlay.packages.${system}.default
-              ghostty
             ]);
           }
 

@@ -76,6 +76,7 @@ in {
     less
     gtk4
 
+    caddy
     libXi
     delta
     mesen
@@ -151,6 +152,7 @@ in {
     qemu_kvm
     quickemu
 
+    qemu_full
     fira-code
     html-tidy
     highlight

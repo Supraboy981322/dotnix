@@ -112,6 +112,45 @@ in {
       kernelModules = [ "nfs" ];
     };
     supportedFilesystems = [ "nfs" ];
+    binfmt = {
+
+      registrations = {
+        go-src = {
+          recognitionType = "extension";
+          magicOrExtension = "go";
+          interpreter = pkgs.writeShellScript "go-run" ''
+            go run "$1" -- "$@"
+          '';
+          wrapInterpreterInShell = false;
+          fixBinary = true;
+        };
+        zig-src = {
+          recognitionType = "extension";
+          magicOrExtension = "zig";
+          interpreter = pkgs.writeShellScript "zig-run" ''
+            zig run "$1" -- "$@"
+          '';
+          wrapInterpreterInShell = false;
+          fixBinary = true;
+        };
+        c-src = {
+          recognitionType = "extension";
+          magicOrExtension = "c";
+          interpreter = pkgs.writeShellScript "cc-run" ''
+            out_file="/tmp/cc-run_$(${pkgs.coreutils}/bin/date '+%s_%N')"
+            gcc -x c "$1" -o "$out_file" && $out_file "$@"
+            rm $out_file
+          '';
+          wrapInterpreterInShell = false;
+          fixBinary = true;
+        };
+      };
+
+      #why not?
+      emulatedSystems =
+        builtins.filter (itm: itm != pkgs.stdenv.hostPlatform.system)
+          options.boot.binfmt.emulatedSystems.type.nestedTypes.elemType.functor.payload.values;
+    };
   };
 
   networking = {
