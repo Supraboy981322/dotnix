@@ -193,6 +193,7 @@ in {
     libglibutil
     libXinerama
 
+    umu-launcher
     virt-manager
     supertuxkart
     glibc.static
