@@ -148,8 +148,16 @@ in {
 
       #why not?
       emulatedSystems =
-        builtins.filter (itm: itm != pkgs.stdenv.hostPlatform.system)
-          options.boot.binfmt.emulatedSystems.type.nestedTypes.elemType.functor.payload.values;
+        let
+          all_systems = options.boot.binfmt.emulatedSystems.
+                type.nestedTypes.elemType.functor.payload.values;
+          excluded_systems = [
+            pkgs.stdenv.hostPlatform.system
+            "i386-linux"
+            "i686-linux"
+          ];
+        in
+          lib.lists.subtractLists all_systems excluded_systems;
     };
   };
 
