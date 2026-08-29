@@ -31,6 +31,12 @@
       url = "github:Supraboy981322/misc-scripts?dir=intInfo";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    dir_size = {
+      url = "github:Supraboy981322/misc-scripts?dir=dir_size";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {
@@ -43,6 +49,7 @@
     vpn-confinement,
     nixpkgs-unstable,
     intInfo,
+    dir_size,
     ...
   }@inputs: 
     let

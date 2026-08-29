@@ -28,6 +28,7 @@ in {
     xz
     bc
     nh
+    pv
 
     gdb
     bat
@@ -47,6 +48,7 @@ in {
     mpv
     gmp
 
+    cmus
     mame
     cc65
     mgba
@@ -182,6 +184,7 @@ in {
     pkg-config
     proton-vpn
 
+    chatterino2
     pavucontrol
     protonup-qt
     forgejo-cli
@@ -271,6 +274,7 @@ in {
     browsers.firefox.re-wrapped
 
     inputs.intInfo.packages.${builtins.currentSystem}.default
+    inputs.dir_size.packages.${builtins.currentSystem}.default
   ];
 
   #services.flatpak = {
