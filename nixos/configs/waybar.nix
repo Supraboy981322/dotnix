@@ -76,6 +76,29 @@
       format = "";
     };
 
+    "custom/notif_mode" = {
+      format = "{}";
+      exec = pkgs.writeShellScript "notif_mode_icon" ''
+        is_enabled=$(
+          (makoctl mode | grep 'dnd') &>/dev/null
+          echo $?
+        )
+        icon="$((($is_enabled)) && echo "" || echo "")"
+        tooltip="$((($is_enabled)) && echo "normal" || echo "do not disturb")"
+        echo '
+        {
+          "text": "'"$icon"'",
+          "class":"'"$((($is_enabled)) && echo "off" || echo "on")"'",
+          "tooltip": "'"$tooltip"'"
+        }
+        ' | jq -c
+      '';
+      exec-on-event = true;
+      on-click = "makoctl mode -t dnd";
+      interval = 1;
+      return-type = "json";
+    };
+
     "custom/separator#pipe" = {
       format = "|";
       interval = "once";
@@ -94,11 +117,12 @@
         "bluetooth"
         "network"
         "custom/separator#pipe"
-        "pulseaudio"
-        "custom/separator#pipe"
         "cpu"
         "custom/separator#pipe"
         "memory"
+        "custom/separator#pipe"
+        "pulseaudio"
+        #"custom/separator#pipe"
         #"battery"
       ];
       orientation = "inherit";
@@ -136,6 +160,7 @@
     modules-left = [
       "custom/nixos"
       "hyprland/workspaces"
+      "custom/notif_mode"
     ];
 
     modules-right = [
@@ -172,7 +197,9 @@
       icon-size = 12;
       spacing = 4;
     };
+
   };
+
   part_2 = /*css */ ''
     @define-color background rgba(34, 36, 54, 0.6);
     @define-color foreground rgba(200, 230, 255, 0.7);
@@ -308,6 +335,13 @@
     #group-ctl, #group_ctl, #ctl {
       font-weight: 800;
       background:alpha(@foreground, 0.1);
+      border-radius: 16px;
+      padding: 0px 5px;
+      margin: 3.5 2px;
+    }
+
+    #custom-notif_mode {
+      font-weight: 800;
       border-radius: 16px;
       padding: 0px 5px;
       margin: 3.5 2px;
