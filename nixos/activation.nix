@@ -26,7 +26,6 @@
     export PATH=$PATH:${pkgs.gcc}/bin:${pkgs.busybox}/bin:${pkgs.go}/bin
     go_pkg_urls=(
       "github.com/Supraboy981322/d/src/d"
-      "github.com/Supraboy981322/misc-scripts/dir_size"
       "github.com/Supraboy981322/misc-scripts/strip_ansi"
       "github.com/Supraboy981322/misc-scripts/bytes_to_human"
     )
