@@ -1,8 +1,3 @@
-vim.filetype.add({
-  extensions = {
-    kbd = "clojure",
-  },
-})
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "c",
