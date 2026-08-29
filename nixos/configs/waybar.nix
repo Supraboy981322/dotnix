@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   part_1 = {
     position = "top";
