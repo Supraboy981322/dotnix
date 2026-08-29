@@ -239,7 +239,7 @@ vim.keymap.set(
 vim.keymap.set(
   { "v", "i", "n", "x" },
   "<M-f>", --think "file"
-  ":Telescope find_files<CR>",
+  "<Cmd>:Telescope find_files<CR>",
   {
     noremap = true, silent = true,
     desc = "telescope find files"
@@ -248,7 +248,7 @@ vim.keymap.set(
 vim.keymap.set(
   { "v", "i", "n", "x" },
   "<M-g>", --think "grep"
-  ":Telescope live_grep<CR>",
+  "<Cmd>:Telescope live_grep<CR>",
   {
     noremap = true, silent = true,
     desc = "telescope live grep"
@@ -257,7 +257,7 @@ vim.keymap.set(
 vim.keymap.set(
   { "v", "i", "n", "x" },
   "<M-/>",
-  ":Telescope buffers<CR>",
+  "<Cmd>:Telescope buffers<CR>",
   {
     noremap = true, silent = true,
     desc = "telescope buffers"
