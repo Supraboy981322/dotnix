@@ -18,7 +18,7 @@
  */
 
 
-{ config, pkgs, lib, inputs, options, ... }:
+{ config, pkgs, lib, inputs, options, helpers, ... }:
 let
   unstable = import <nixos-unstable> {
     config = { allowUnfree = true; };
@@ -28,6 +28,7 @@ let
   secrets = import ./secrets.nix;
   browsers = import ./browsers.nix;
 in {
+
   imports = [
     ./hardware-configuration.nix
     ./packages.nix
@@ -157,7 +158,7 @@ in {
             "i686-linux"
           ];
         in
-          lib.lists.subtractLists all_systems excluded_systems;
+          lib.lists.subtractLists excluded_systems all_systems;
     };
   };
 
