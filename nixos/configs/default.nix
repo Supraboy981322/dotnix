@@ -8,5 +8,6 @@
     ./emacs.nix
     #./fastfetch.nix # NOTE: imported by home-manager
     ./kmscon.nix
+    ./dolphin.nix
   ];
 }
