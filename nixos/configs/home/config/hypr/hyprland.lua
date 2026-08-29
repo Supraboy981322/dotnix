@@ -13,11 +13,9 @@ local otherChat = "signal-desktop";
 local alternativeBrowser = zen .. " ~/.zen/zs3f6ux8.viv";
 local anotherBrowser = zen .. " ~/.zen/x4qqcuev";
 local torBrowser = "tor-browser";
-local togWaybar = "~/scripts/toggleWaybar.sh";
 local noteProg = "obsidian";
 local people_who_dont_use_signal = "discord";
 local org_mode_is_pretty_good = "emacs";
-local restart_waybar = "~/scripts/restart_waybar.sh";
 local d_client = "alacritty -e sh -c log_tui";
 local do_not_disturb = "makoctl mode -t dnd";
 
@@ -243,12 +241,12 @@ hl.bind(
   hl.dsp.exec_cmd(org_mode_is_pretty_good)
 )
 hl.bind(
-  "SUPER + SHIFT + W",
-  hl.dsp.exec_cmd(restart_waybar)
+  "SUPER + B",
+  hl.dsp.exec_cmd("pkill -SIGUSR1 waybar")
 )
 hl.bind(
-  "SUPER + B",
-  hl.dsp.exec_cmd(togWaybar)
+  "SUPER + SHIFT + W",
+  hl.dsp.exec_cmd("pkill -SIGUSR2 waybar")
 )
 hl.bind(
   "SUPER + CTRL + E",
@@ -558,24 +556,30 @@ hl.monitor({
   transform = 3,
 })
 
-hl.env("HYPRCURSOR_THEME", "Bibata-Modern-Ice")
-hl.env("HYPRCURSOR_SIZE", "12")
-hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
-hl.env("XCURSOR_SIZE", "12")
+for key, value in pairs({
+  HYPRCURSOR_THEME =  "Bibata-Modern-Ice";
+  HYPRCURSOR_SIZE = "12";
+  XCURSOR_THEME = "Bibata-Modern-Ice";
+  XCURSOR_SIZE = "12";
+  QT_QPA_PLATFORMTHEME = "kde";
+  QT_STYLE_OVERRIDE = "kvantum";
+}) do
+  hl.env(key, value)
+end
 
 hl.window_rule({
-    -- Fix some dragging issues with XWayland
-    name  = "fix-xwayland-drags",
-    match = {
-        class      = "^$",
-        title      = "^$",
-        xwayland   = true,
-        float      = true,
-        fullscreen = false,
-        pin        = false,
-    },
+  -- Fix some dragging issues with XWayland
+  name  = "fix-xwayland-drags",
+  match = {
+    class      = "^$",
+    title      = "^$",
+    xwayland   = true,
+    float      = true,
+    fullscreen = false,
+    pin        = false,
+  },
 
-    no_focus = true,
+  no_focus = true,
 })
 
 hl.curve(
