@@ -1,0 +1,122 @@
+;;comment legend:
+;;  '<->' = swapped
+;;  '->'  = replaced (not swapped)
+
+(defsrc
+  caps lsft rsft lmet ralt del
+  1 2 3 4 5 6 7 8 9 0
+  \ ` [ ]
+  q w e r t y u i o p
+   a s d f g h j k l ; '
+    z x c v b n m , . /
+  left right up down
+)
+
+(defalias
+  ;;aliases that press shift and toggle number layer
+  lshf_num (multi lsft (layer-toggle numbers))
+
+  ;;super key
+  sup (multi lmet (layer-toggle super-layer))
+
+  rshf-mod (layer-toggle rshf-layer)
+
+  del-layer-on (layer-switch del-layer)
+  del-layer-off (layer-switch default)
+
+  ;;esc-layer (tap-hold 150 150 esc (layer-while-held esc-layer))
+)
+
+;;default layer
+;; z <-> y ;;swapped
+;; 1 <-> !
+;; 2 <-> @
+;; 3 <-> #
+;; 4 <-> $
+;; 5 <-> %
+;; 6 <-> ^
+;; 7 <-> &
+;; 8 <-> *
+;; 9 <-> (
+;; 0 <-> )
+;; [ <-> {
+;; ] <-> }
+;; \ <-> |
+;; ` <-> ~
+;; caps -> esc (layer when held)
+(deflayer default
+
+  ;;remap caps to esc and set shift and super keys to aliases
+  esc @lshf_num @rshf-mod @sup lalt @del-layer-on
+
+  ;;swap shift layer of top-row numbers
+  S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
+
+  S-\ S-` S-[ S-]
+
+  q w e r t z u i o p
+   a s d f g h j k l ; '
+    y x c v b n m , . /
+  XX XX XX XX
+)
+
+;;super key layer (undoes some of the changes in default layer)
+(deflayer super-layer
+  _ _ _ (unmod lsft) _ _
+  1 2 3 4 5 6 7 8 9 0
+  _ _ _ _
+  _ _ _ _ _ _ _ _ _ _
+   _ _ _ _ _ _ _ _ _ _ _
+    _ _ _ _ _ _ _ _ _ _
+  _ _ _ _
+)
+
+;;shift layer (undoes some of the changes in default layer)
+(deflayer numbers
+  _ _ _ _ _ _ ;;leave these untouched
+
+  ;;use unmodified key signals for anything modified
+  (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5)
+  (unmod 6) (unmod 7) (unmod 8) (unmod 9) (unmod 0)
+  (unmod \) (unmod `) (unmod [) (unmod ])
+
+  _ _ _ _ _ _ _ _ _ _
+   _ _ _ _ _ _ _ _ _ _ _
+    _ _ _ _ _ _ _ _ _ _
+  _ _ _ _
+)
+
+(deflayer rshf-layer
+  _ _ _ _ _ XX
+
+;;!  @  #  $  %  ^  &  *  (  )
+  XX XX XX XX XX XX XX XX XX XX
+
+;;|  ~  {  }
+  XX XX XX XX
+
+;;q  w    e  r  t  z  u   i  o  p
+  XX bspc XX XX XX XX XX XX XX XX
+
+;;a  s  d   f  g  h  j  k  l   ;  '
+  XX XX del XX XX XX XX XX end up right
+
+;;y  x  c  v  b  n  m  ,    .    /
+  XX XX XX XX XX XX XX home left down
+
+  XX XX XX XX
+)
+
+(deflayer del-layer
+  esc lsft rsft lmet lalt @del-layer-off
+
+  1 2 3 4 5 6 7 8 9 0
+
+  XX XX XX XX
+
+  q w e r t z u i o p
+  a s d f g h j k l up right
+  y x c v b n m XX left down
+
+  XX XX XX XX
+)

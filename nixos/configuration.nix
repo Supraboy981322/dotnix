@@ -249,74 +249,7 @@ in {
     blueman.enable = true;
     kanata = {
       enable = true;
-      keyboards.me_keyboard.config = /* clojure */ ''
-        (defsrc
-          caps lsft rsft lmet ralt
-          z y
-          1 2 3 4 5 6 7 8 9 0
-          \ ` [ ]
-          q w e r t u i o p a s d f g h j k l x c v b n m
-        )
-
-        (defalias
-          ;;aliases that press shift and toggle number layer
-          lshf_num (multi lsft (layer-toggle numbers))
-
-          ;;super key
-          sup (multi lmet (layer-toggle super-layer))
-          altgr (layer-toggle altgr-layer)
-        )
-
-        ;;default layer
-        (deflayer default
-          ;;remap caps to esc and set shift and super keys to aliases
-          esc @lshf_num @altgr @sup lalt
-
-          y z ;;qwertz
-
-          ;;swap shift layer of top-row numbers
-          S-1 S-2 S-3 S-4 S-5 S-6 S-7 S-8 S-9 S-0
-
-          S-\ ;;swap shift layer of pipe
-          S-` S-[ S-]
-          q w e r t u i o p a s d f g h j k l x c v b n m
-        )
-
-        ;;super key layer
-        (deflayer super-layer
-          _ _ _ (unmod lsft) _ _ _
-          1 2 3 4 5 6 7 8 9 0
-          _ _ _ _
-          _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-        )
-
-        ;;shift layer
-        (deflayer numbers
-          _ _ _ _ _ _ _ ;;leave these untouched
-
-          ;;use unmodified key signals for anything modified
-          (unmod 1) (unmod 2) (unmod 3) (unmod 4) (unmod 5)
-          (unmod 6) (unmod 7) (unmod 8) (unmod 9) (unmod 0)
-          (unmod \) (unmod `) (unmod [) (unmod ])
-
-          _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-        )
-
-        ;;altgr with Polish characters
-        ;; TODO: capital Polish letters
-        (deflayer altgr-layer
-          _ _ _ _ _
-          (unicode ż) (unicode ź)
-          ;;use unmodified key signals for anything modified
-          AG-1 AG-2 AG-3 AG-4 AG-5
-          AG-6 AG-7 AG-8 AG-9 AG-0
-          AG-\ AG-` AG-[ AG-]
-          AG-q AG-w (unicode ę) AG-r AG-t AG-u
-          AG-i (unicode ó) AG-p (unicode ą) (unicode ś) AG-d
-          AG-f AG-g AG-h AG-j AG-k (unicode ł)
-          AG-x (unicode ć) AG-v AG-b (unicode ń) AG-m
-        )
-      '';
+      keyboards.me_keyboard.config = builtins.readFile ./configs/kanata.kbd;
     };
     tailscale = {
       enable = true;
