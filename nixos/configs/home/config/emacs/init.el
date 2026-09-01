@@ -103,3 +103,8 @@
 ;dired mode create file
 (with-eval-after-load 'dired
 	(define-key dired-mode-map (kbd "c") 'find-file))
+
+;tetris
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)

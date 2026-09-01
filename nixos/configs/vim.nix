@@ -47,6 +47,8 @@
           " statusline (all that's *really* needed)
           set laststatus=2
           set statusline=%f%m%=%y\ %l/%L
+          set list
+          set listchars=tab:>-,eol:$,trail:~
         '';
       };
     })

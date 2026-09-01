@@ -10,6 +10,9 @@
    a s d f g h j k l ; '
     z x c v b n m , . /
   left right up down
+  home end pgup pgdn
+  enter
+  rctrl
 )
 
 (defalias
@@ -23,8 +26,7 @@
 
   del-layer-on (layer-switch del-layer)
   del-layer-off (layer-switch default)
-
-  ;;esc-layer (tap-hold 150 150 esc (layer-while-held esc-layer))
+  rshf-mod-rctrl  (layer-toggle rshf-ctrl-rctrl)
 )
 
 ;;default layer
@@ -43,7 +45,10 @@
 ;; ] <-> }
 ;; \ <-> |
 ;; ` <-> ~
-;; caps -> esc (layer when held)
+;; caps -> esc
+;; right-shift -> custom modifier (layer)
+;; super -> swaps number keys' (shift) layer
+;; delete -> layer with navigation keys instead of symbols
 (deflayer default
 
   ;;remap caps to esc and set shift and super keys to aliases
@@ -58,6 +63,9 @@
    a s d f g h j k l ; '
     y x c v b n m , . /
   XX XX XX XX
+  XX XX XX XX
+  enter
+  XX
 )
 
 ;;super key layer (undoes some of the changes in default layer)
@@ -69,6 +77,9 @@
    _ _ _ _ _ _ _ _ _ _ _
     _ _ _ _ _ _ _ _ _ _
   _ _ _ _
+  _ _ _ _
+  _
+  _
 )
 
 ;;shift layer (undoes some of the changes in default layer)
@@ -84,16 +95,28 @@
    _ _ _ _ _ _ _ _ _ _ _
     _ _ _ _ _ _ _ _ _ _
   _ _ _ _
+  _ _ _ _
+  _
+  _
 )
 
+;;a custom modifier layer
+;; w -> backspace
+;; d -> delete
+;; , -> home
+;; l -> end
+;; . -> left
+;; / -> down
+;; ; -> up
+;; ' -> right
 (deflayer rshf-layer
   _ _ _ _ _ XX
 
 ;;!  @  #  $  %  ^  &  *  (  )
   XX XX XX XX XX XX XX XX XX XX
 
-;;|  ~  {  }
-  XX XX XX XX
+;;|  ~  {    }
+  XX XX pgup pgdn
 
 ;;q  w    e  r  t  z  u   i  o  p
   XX bspc XX XX XX XX XX XX XX XX
@@ -104,9 +127,34 @@
 ;;y  x  c  v  b  n  m  ,    .    /
   XX XX XX XX XX XX XX home left down
 
+  (movemouse-left 5 5)
+  (movemouse-right 5 5)
+  (movemouse-up 5 5)
+  (movemouse-down 5 5)
   XX XX XX XX
+  mlft
+  @rshf-mod-rctrl
 )
 
+(deflayer rshf-ctrl-rctrl
+  _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _
+  _ _ _ _
+  _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _ _
+  _ _ _ _ _ _ _ _ _ _
+
+  (mwheel-left 50 120)
+  (mwheel-right 50 120)
+  (mwheel-up 50 120)
+  (mwheel-down 50 120)
+  XX XX XX mmid
+  mrgt
+  _
+)
+
+;;a layer that replaces symbols with navigation keys
+;;  (intended for switch not button hold)
 (deflayer del-layer
   esc lsft rsft lmet lalt @del-layer-off
 
@@ -119,4 +167,7 @@
   y x c v b n m XX left down
 
   XX XX XX XX
+  home end pgup pgdn
+  enter
+  XX
 )

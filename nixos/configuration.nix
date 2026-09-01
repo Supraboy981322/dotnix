@@ -250,7 +250,9 @@ in {
     blueman.enable = true;
     kanata = {
       enable = true;
-      keyboards.me_keyboard.config = builtins.readFile ./configs/kanata.kbd;
+      keyboards.me_keyboard = {
+        config = builtins.readFile ./configs/kanata.kbd;
+      };
     };
     tailscale = {
       enable = true;

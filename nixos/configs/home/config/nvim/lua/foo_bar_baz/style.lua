@@ -27,8 +27,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       TabLineSel  = { fg = "#bfbdb6", bg = "#0b0e14" },
       TabLineFill = { fg = "#bfbdb6", bg = "#000000" },
 
+      ExtraWhitespace = { bg = "#FF4343" },
+
     }) do
       vim.api.nvim_set_hl(0, name, modification)
     end
   end
 })
+
+vim.fn.matchadd("ExtraWhitespace", [[\s\+$]])

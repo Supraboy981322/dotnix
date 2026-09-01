@@ -122,6 +122,7 @@ in {
     stdenv
     gnutar
 
+    apotris
     ataripp
     libvirt
     freerdp
