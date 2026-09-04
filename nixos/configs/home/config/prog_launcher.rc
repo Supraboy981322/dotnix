@@ -1,0 +1,11 @@
+colors = {
+  bg = #0f1528ee;
+  fg = #fff;
+  bar = #ffffffac;
+  hl_bg = #afafafac;
+  hl_fg = #0f0f2fdc;
+};
+
+exec = {
+  cmd_prefix = "nixGL";
+};
