@@ -165,6 +165,7 @@ alias ll='ls -alF --'
 alias la='ls -A --'
 alias l='ls -F --'
 alias curl="curl --path-as-is"
+alias p="view_prog -D"
 
 
 

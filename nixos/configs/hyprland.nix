@@ -23,7 +23,7 @@ in {
     enable = true;
     settings.wallpaper = [{
       monitor = "";
-      path = "~/Pictures/themes/Formula_1_Tyre_Evolution_image.1.webp"; 
+      path = "~/Pictures/themes/Formula_1_Tyre_Evolution_image.1.webp";
       fit_mode = "cover";
     }];
   };
@@ -32,5 +32,8 @@ in {
     enable = true;
     extraConfig = ''--foo''; #silences a Nix warning
     configType = "lua";
+    package = pkgs.hyprland.override {
+      lua5_5 = pkgs.lua5_5.withPackages (p: [ p.lua-cjson ]);
+    };
   };
 }

@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let 
+let
 
 in {
   nixpkgs.config.packageOverrides = pkgs: rec {
@@ -11,7 +11,7 @@ in {
       tree-sitter-langs
       (treesit-grammars.with-grammars (grammars: (with grammars; [
         tree-sitter-nix #why aren't there more languages like Nix? (I know about GUIX)
-        tree-sitter-zig #great language
+        tree-sitter-zig #a bit of a butt sometimes, but it's the best we got
         tree-sitter-c
         tree-sitter-bash
         tree-sitter-go #feels like a toy
@@ -33,7 +33,7 @@ in {
         tree-sitter-elisp
         tree-sitter-cmake
         tree-sitter-yaml
-        tree-sitter-wren #a neat language
+        tree-sitter-wren
         tree-sitter-vala
         tree-sitter-toml
         tree-sitter-scss
@@ -43,13 +43,13 @@ in {
         tree-sitter-kotlin
         tree-sitter-nginx
         tree-sitter-markdown
-        tree-sitter-hyprlang #hyprland Lua update when?
+        tree-sitter-hyprlang
         tree-sitter-gitignore
         tree-sitter-gdscript #tried it briefly
         tree-sitter-c-sharp #I have to learn this soon for school
-        tree-sitter-commonlisp #Lisp curious
+        tree-sitter-commonlisp
         tree-sitter-javascript #sadly nothing else has the DOM api in a browser
-        tree-sitter-typescript #it's just JS
+        tree-sitter-typescript #it's just a more bloated and annoying JS
       ])))
     ]));
   };

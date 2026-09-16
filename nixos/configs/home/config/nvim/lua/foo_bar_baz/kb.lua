@@ -2,14 +2,13 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 vim.api.nvim_create_user_command(
-  "Reorder", --think "I just typed this, what was the 'reorder' command? oh, wait."
+  "Reorder",
   function()
     vim.cmd("BufferOrderByBufferNumber")
   end,
   { desc = "dup of :BufferOrderByBufferNumber" }
 )
 
---think "whoops, held shift for too long"
 vim.api.nvim_create_user_command(
   "Redo",
   function()
@@ -18,7 +17,6 @@ vim.api.nvim_create_user_command(
   { desc = "dup of :redo" }
 )
 
---think "whoops, held shift for too long"
 vim.api.nvim_create_user_command(
   "W",
   function()
@@ -28,7 +26,6 @@ vim.api.nvim_create_user_command(
   { desc = "dup of :w", }
 )
 
---think "whoops, held shift for too long"
 vim.api.nvim_create_user_command(
   "Q",
   function(opts)
@@ -49,18 +46,10 @@ vim.keymap.set(
   { noremap = true, silent = true }
 )
 
---`<leader>`+`e` for file tree
-vim.keymap.set(
-  "n",
-  "<leader>e", --I keep forgetting this exists, I don't use it, so I don't remember
-  ":Neotree<CR>", 
-  { silent = true }
-)
-
 --`ctrl`+`s` to save
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<C-s>", --think "save"
+  "<C-s>",
   "<Cmd>w<CR>",
   { noremap = true, silent = true }
 )
@@ -68,15 +57,15 @@ vim.keymap.set(
 --`alt`+`n` to move to next buffer
 vim.keymap.set(
   "n",
-  "<M-n>", --think "next"
-  "<Cmd>bn<CR>", 
+  "<M-n>",
+  "<Cmd>bn<CR>",
   { noremap = true, silent = true }
 )
 
 --`alt`+`b` to move to previous buffer
 vim.keymap.set(
   { "n" },
-  "<M-b>", --think "b... previous"
+  "<M-b>",
   "<Cmd>bp<CR>",
   { noremap = true, silent = true }
 )
@@ -84,7 +73,7 @@ vim.keymap.set(
 --`alt`+`del` to delete chunk after
 vim.keymap.set(
   { "i" },
-  "<M-del>", --think "more delete"
+  "<M-del>",
   '<Cmd>normal! "_dw<CR>',
   { noremap = true, silent = true }
 )
@@ -92,16 +81,16 @@ vim.keymap.set(
 --`alt`+`bs` to delete chunk before
 vim.keymap.set(
   { "i" },
-  "<M-BS>", --think "more backspace"
+  "<M-BS>",
   '<Cmd>normal! "_db<CR>',
   { noremap = true, silent = true }
 )
 
---`alt`+`;` to enter normal mode 
+--`alt`+`;` to enter normal mode
 --  (from any mode, including term)
 vim.keymap.set(
   {"v", "i", "n", "x", "t"},
-  "<M-;>", --this one comes natural, no need to think
+  "<M-;>",
   "<C-\\><C-n>",
   { noremap = true, silent = true }
 )
@@ -109,7 +98,7 @@ vim.keymap.set(
 --`alt`+`p` to center buffer
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<M-p>", --think "p... center"
+  "<M-p>",
   function()
     vim.cmd("NoNeckPain")
   end,
@@ -117,18 +106,9 @@ vim.keymap.set(
 )
 
 
---- lsp stuff ---
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<M-d>", --think "definition"
-  function()
-    vim.diagnostic.open_float()
-  end,
-  { noremap = true, silent = true }
-)
-vim.keymap.set(
-  {"v", "i", "n", "x"},
-  "<M-]>", --think "right is forward"
+  "<M-]>",
   function()
     vim.diagnostic.goto_next()
   end,
@@ -136,7 +116,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   {"v", "i", "n", "x"},
-  "<M-[>", --think "left is back"
+  "<M-[>",
   function()
     vim.diagnostic.goto_prev()
   end,
@@ -212,25 +192,25 @@ vim.keymap.set(
 -- map 'ctrl'+['h', 'j', 'k', or 'l'] to normal mode motion
 vim.keymap.set(
   {"v", "n", "s", "i"},
-  "<M-h>", --think "'h' but more"
+  "<M-h>",
   "<C-o>h",
   { noremap = true, silent = true }
 )
 vim.keymap.set(
   {"v", "n", "s", "i"},
-  "<M-j>", --think "'j' but more"
+  "<M-j>",
   "<C-o>j",
   { noremap = true, silent = true }
 )
 vim.keymap.set(
   {"v", "n", "s", "i"},
-  "<M-k>", --think "'k' but more"
+  "<M-k>",
   "<C-o>k",
   { noremap = true, silent = true }
 )
 vim.keymap.set(
   {"v", "n", "s", "i"},
-  "<M-l>", --think "'l' but more"
+  "<M-l>",
   "<C-o>l",
   { noremap = true, silent = true }
 )
@@ -238,7 +218,7 @@ vim.keymap.set(
 --telescope
 vim.keymap.set(
   { "v", "i", "n", "x" },
-  "<M-f>", --think "file"
+  "<M-f>",
   "<Cmd>:Telescope find_files<CR>",
   {
     noremap = true, silent = true,
@@ -247,7 +227,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
   { "v", "i", "n", "x" },
-  "<M-g>", --think "grep"
+  "<M-g>",
   "<Cmd>:Telescope live_grep<CR>",
   {
     noremap = true, silent = true,

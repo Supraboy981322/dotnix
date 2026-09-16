@@ -62,15 +62,6 @@ require("lazy").setup({
       config = true,
     },
     {
-      "nvim-neo-tree/neo-tree.nvim",
-      branch = "v3.x",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        "nvim-tree/nvim-web-devicons",
-      },
-      lazy = false
-    },
     {
       "xiyaowong/transparent.nvim",
       lazy = false
@@ -128,6 +119,7 @@ require("lazy").setup({
           "lua_ls",
           "ols",
           "gopls",
+          "c3_lsp",
           --"zls",
           "ts_ls",
           "tailwindcss",

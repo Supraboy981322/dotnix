@@ -5,12 +5,13 @@ local zen = "nixGL zen --profile"
 --local zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
 local terminal = "alacritty";
 local fileManager = "dolphin";
-local menu = "wofi --show drun --style ~/.config/hypr/wofi.css";
+local menu = "prog_launcher"; --"wofi --show drun --style ~/.config/hypr/wofi.css";
 local personalBrowser = "~/scripts/browser.sh";
 local schoolBrowser = zen .. " ~/.zen/schoolProfile";
 local chat = "element-desktop";
 local otherChat = "signal-desktop";
-local alternativeBrowser = zen .. " ~/.zen/zs3f6ux8.viv";
+--local alternativeBrowser = zen .. " ~/.zen/zs3f6ux8.viv";
+local alternativeBrowser = "nixGL firefox --profile ~/.config/mozilla/firefox/4tm2nkaj.default";
 local anotherBrowser = zen .. " ~/.zen/x4qqcuev";
 local torBrowser = "tor-browser";
 local noteProg = "obsidian";
@@ -19,7 +20,10 @@ local org_mode_is_pretty_good = "emacs";
 local d_client = "alacritty -e sh -c log_tui";
 local do_not_disturb = "makoctl mode -t dnd";
 
-hl.on("hyprland.start", function() hl.exec_cmd("~/scripts/start-hypr.sh") end)
+hl.on("hyprland.start", function()
+  hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+  hl.exec_cmd("~/scripts/start-hypr.sh")
+end)
 
 hl.bind(
   "SUPER + ALT + V",
@@ -386,6 +390,17 @@ hl.bind(
 )
 
 
+hl.window_rule({
+  name = "prog_launcher",
+  match = { title = "prog launcher" },
+  float = true,
+  fullscreen = false,
+  center = true,
+  stay_focused = true,
+  border_size = 0,
+  decorate = false,
+})
+
 
 hl.config({
   general = {
@@ -426,7 +441,7 @@ hl.config({
       enabled = true,
       range = 4,
       render_power = 3,
-      color = 0xee1a1a1a,
+      color = 0xEE1A1A1A,
     },
 
     -- https://wiki.hyprland.org/Configuring/Variables/#blur
@@ -467,7 +482,7 @@ hl.config({
 --
 --    # NOTE: this is now handled by kanata
 --    # kb_options = "caps:swapescape";
---  
+--
 --    follow_mouse = 1;
 --    sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
 --

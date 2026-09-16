@@ -9,7 +9,7 @@
     nixpkgs-unstable = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
-    
+
     vpn-confinement = {
       url = "github:Maroka-chan/VPN-Confinement";
     };
@@ -37,6 +37,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    view_prog = {
+      url = "github:Supraboy981322/misc-scripts?dir=view";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    prog_launcher = {
+      url = "git+https://codeberg.org/keeper/prog_launcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {
@@ -50,12 +60,14 @@
     nixpkgs-unstable,
     intInfo,
     dir_size,
+    prog_launcher,
+    view_prog,
     ...
-  }@inputs: 
+  } @ inputs:
     let
       lib = nixpkgs.lib;
 
-      system = "x86_64-linux"; 
+      system = "x86_64-linux";
 
       #zig = zig.packages.${system}.default;
 
@@ -120,9 +132,19 @@
 
           ({ pkgs, ... }: {
             nixpkgs.overlays = [
+
               (final: prev: {
                 zig = zig_overlay.packages.${system}.default;
               })
+
+              (f: p: {
+                pythonPackagesExtensions = p.pythonPackagesExtensions ++ [(p-f: p-p: {
+                  inline-snapshot = p-p.inline-snapshot.overridePythonAttrs (o: {
+                    doCheck = false;
+                  });
+                })];
+              })
+
             ];
           })
         ];

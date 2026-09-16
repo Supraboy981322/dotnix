@@ -1,11 +1,28 @@
-colors = {
-  bg = #0f1528ee;
-  fg = #fff;
-  bar = #ffffffac;
-  hl_bg = #afafafac;
-  hl_fg = #0f0f2fdc;
-};
+colorscheme (these are the default colors, but you can put whatever (valid) hex codes)
+colors
+  window color
+  bg #0f1528ee
 
-exec = {
-  cmd_prefix = "nixGL";
-};
+  primary color
+  fg #fff
+
+  input box and modeline
+  bar #ffffffac
+
+  highlighted list entry colors
+  hl_bg #afafafac
+  hl_fg #0f0f2fff
+}
+
+prefix added when executing command
+exec prefix nixGL }
+
+what type of messages are logged (defaults to everything)
+log
+  debug
+  info
+  warn
+]
+
+override startup mode (defaults to normal)
+start mode insert }

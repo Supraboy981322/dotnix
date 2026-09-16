@@ -6,6 +6,10 @@ require("foo_bar_baz.style")
 require("foo_bar_baz.treesitter")
 require("foo_bar_baz.setup")
 
+vim.filetype.add({
+  extension = { ok = "oskar" };
+})
+
 --once fully started, run fn
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()

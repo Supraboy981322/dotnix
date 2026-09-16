@@ -17,9 +17,14 @@ let
 
   # browsers preconfigured to my liking
   browsers = import ./browsers.nix;
+
+  from_inputs = name:
+    inputs."${name}".packages.${builtins.currentSystem}.default;
+  each_input = packages: pkgs.lib.forEach packages from_inputs;
 in {
   # standard packages
   environment.systemPackages = (with pkgs; [
+
     go
     gh
     sd
@@ -30,6 +35,7 @@ in {
     nh
     pv
 
+    c3c
     gdb
     bat
     tea
@@ -100,6 +106,7 @@ in {
     kitty
     nitch
     clang
+    ocaml
 
     stella
     wine64
@@ -233,6 +240,8 @@ in {
     hyprwayland-scanner
     lua52Packages.cjson
     lua51Packages.cjson
+    lua55Packages.cjson
+    luajitPackages.cjson
 
     nerd-fonts.fira-code
     lua52Packages.luasec
@@ -259,7 +268,6 @@ in {
 
     wineWow64Packages.waylandFull
 
-
     # "overrides"
     (pkgs.ffmpeg-full.override {
       withUnfree = true;
@@ -273,10 +281,12 @@ in {
   ]) ++ [
     browsers.zen.re-wrapped
     browsers.firefox.re-wrapped
-
-    inputs.intInfo.packages.${builtins.currentSystem}.default
-    inputs.dir_size.packages.${builtins.currentSystem}.default
-  ];
+  ] ++ (each_input [
+    "intInfo"
+    "dir_size"
+    "prog_launcher"
+    "view_prog"
+  ]);
 
   #services.flatpak = {
   #  enable = true;

@@ -210,6 +210,15 @@ in {
   security.rtkit.enable = true;
 
   services = {
+    openssh = {
+      enable = true;
+      ports = [ 99 ];
+      settings = {
+        AllowUsers = [ "super" ];
+        X11Forwarding = false;
+        AllowTcpForwarding = false;
+      };
+    };
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
@@ -329,11 +338,15 @@ in {
   programs = {
     ydotool.enable = true;
     hyprlock.enable = true;
+    virt-manager.enable = true;
+
     hyprland = {
       enable = true;
       xwayland.enable =  true;
+      package = pkgs.hyprland.override {
+        lua5_5 = pkgs.lua5_5.withPackages (p: [ p.lua-cjson ]);
+      };
     };
-    virt-manager.enable = true;
 
       # NOTE: may need for school again
       #  java = {
@@ -348,10 +361,6 @@ in {
       ];
     };
 
-    firefox.enable = true;
-    chromium = {
-      enable = false;
-    };
     nix-ld = {
       enable = true;
     };
@@ -493,6 +502,10 @@ in {
     shellAliases = {
       "confine" = "nixGL firejail --quiet --netns=${secrets.vpn.wg.alt.provider}";
     };
+    pathsToLink = [
+      "/share/lua"
+      "/lib/lua"
+    ];
   };
 
   system.activationScripts = import ./activation.nix { pkgs = pkgs; };
