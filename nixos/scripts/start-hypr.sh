@@ -16,7 +16,7 @@ getMonitorByDesc() (
   num=$(($(printf "${descs}" \
     | grep -n "$1")-1))
 
-  #get the name using the index 
+  #get the name using the index
   name=$(printf "${json}" \
     | jq -r ".[$num].name")
 
@@ -61,5 +61,6 @@ wayBar \
   & confDisplay \
   & startMako \
   & HyprCTL \
-  & udiskie -a -n
+  & udiskie -a -n \
+  & prog_launcher
   #& batWarn \

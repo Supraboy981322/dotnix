@@ -6,8 +6,8 @@ vim.cmd("set encoding=utf-8")        -- set encoding to UTF-8
 vim.cmd("set relativenumber")        -- show relative line numbers
 vim.cmd("set number")                -- show absolute line number for the current line
 vim.cmd("set autoindent")            -- enable auto-indentation
-vim.cmd("set tabstop=3")             -- number of spaces a tab counts for
-vim.cmd("set shiftwidth=3")          -- number of spaces to use for each step of (auto)indent
+vim.cmd("set tabstop=2")             -- number of spaces a tab counts for
+vim.cmd("set shiftwidth=2")          -- number of spaces to use for each step of (auto)indent
 vim.cmd("set expandtab")             -- use spaces instead of tabs (doesn't work for some reason)
 vim.cmd("set smartindent")           -- smart auto-indenting for C-like languages
 vim.cmd("set mouse=")                -- enable mouse support in all modes

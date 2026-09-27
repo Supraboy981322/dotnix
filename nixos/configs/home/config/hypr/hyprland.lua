@@ -5,7 +5,7 @@ local zen = "nixGL zen --profile"
 --local zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
 local terminal = "alacritty";
 local fileManager = "dolphin";
-local menu = "prog_launcher"; --"wofi --show drun --style ~/.config/hypr/wofi.css";
+local menu = "pkill prog_launcher --signal USR1";
 local personalBrowser = "~/scripts/browser.sh";
 local schoolBrowser = zen .. " ~/.zen/schoolProfile";
 local chat = "element-desktop";
@@ -21,8 +21,12 @@ local d_client = "alacritty -e sh -c log_tui";
 local do_not_disturb = "makoctl mode -t dnd";
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-  hl.exec_cmd("~/scripts/start-hypr.sh")
+   for _, cmd in ipairs({
+      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP",
+      "~/scripts/start-hypr.sh",
+   }) do
+     hl.exec_cmd(cmd)
+   end
 end)
 
 hl.bind(

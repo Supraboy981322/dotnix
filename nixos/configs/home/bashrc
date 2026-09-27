@@ -233,6 +233,10 @@ hex() {
   printf "%x" $1
 }
 
+newest() {
+  ls --sort=time --no-quotes | tail -n 1
+}
+
 
 #############################
 #        custom path        #

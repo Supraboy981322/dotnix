@@ -62,7 +62,6 @@ require("lazy").setup({
       config = true,
     },
     {
-    {
       "xiyaowong/transparent.nvim",
       lazy = false
     },

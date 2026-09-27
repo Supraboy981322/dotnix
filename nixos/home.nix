@@ -58,6 +58,43 @@ in {
           recursive = true;
           source = "${pkgs.hyprland}/share/hypr/stubs";
         };
+        ".config/prog_launcher.rc" = {
+          enable = true;
+          force = true;
+          source = pkgs.writeText "prog_launcher.rc" ''
+            colorscheme (these are the default colors, but you can put whatever (valid) hex codes)
+             colors
+              window color
+              bg #0f1528ee
+
+              primary color
+              fg #fff
+
+              input box and modeline
+              bar #ffffffac
+
+              highlighted list entry colors
+              hl_bg #afafafac
+              hl_fg #0f0f2fff
+            }
+
+            prefix added when executing command
+            exec prefix nixGL }
+
+            what type of messages are logged (defaults to everything)
+            log
+              debug
+              info
+              warn
+            ]
+
+            override startup mode (defaults to normal)
+            start mode insert }
+
+            filter for program list
+            blacklist ${builtins.concatStringsSep "\n" secrets.filters.prog_launcher} ]
+          '';
+        };
         ".local" = {
           enable = true;
           recursive = true;
