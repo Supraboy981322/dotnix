@@ -14,7 +14,6 @@ local otherChat = "signal-desktop";
 local alternativeBrowser = "nixGL firefox --profile ~/.config/mozilla/firefox/4tm2nkaj.default";
 local anotherBrowser = zen .. " ~/.zen/x4qqcuev";
 local torBrowser = "tor-browser";
-local noteProg = "obsidian";
 local people_who_dont_use_signal = "discord";
 local org_mode_is_pretty_good = "emacs";
 local d_client = "alacritty -e sh -c log_tui";
@@ -239,10 +238,6 @@ hl.bind(
 hl.bind(
   "SUPER + SHIFT + S",
   hl.dsp.exec_cmd("~/scripts/./screenshot.sh select")
-)
-hl.bind(
-  "SUPER + N",
-  hl.dsp.exec_cmd(noteProg)
 )
 hl.bind(
   "SUPER + E",
