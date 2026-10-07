@@ -40,7 +40,6 @@ in {
     bat
     tea
     gdm
-    zig
     git
     SDL
     eza
@@ -147,6 +146,7 @@ in {
     ryubing
     discord
 
+    zig_0_16
     usbutils
     qrencode
     prettier
