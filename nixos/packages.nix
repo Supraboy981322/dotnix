@@ -53,6 +53,7 @@ in {
     vlc
     mpv
     gmp
+    jpm
 
     cmus
     mame
@@ -107,6 +108,7 @@ in {
     nitch
     clang
     ocaml
+    janet
 
     stella
     wine64
