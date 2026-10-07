@@ -34,6 +34,7 @@ in {
     bc
     nh
     pv
+    m4
 
     c3c
     gdb
