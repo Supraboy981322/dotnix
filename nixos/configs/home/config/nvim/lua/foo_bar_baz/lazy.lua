@@ -18,12 +18,14 @@ vim.opt.rtp:prepend(lazypath)
 -- setup lazy.nvim
 require("lazy").setup({
   spec = {
+
     --{ --color scheme
     --  "folke/tokyonight.nvim",
     --  lazy = false,
     --  priority = 1000,
     --  opts = {},
     --},
+
     --{ --alternative color scheme
     --  "navarasu/onedark.nvim",
     --  name = "onedark",
@@ -35,12 +37,14 @@ require("lazy").setup({
     --    require('onedark').load()
     --  end
     --},
+
     { --another color scheme
       "Shatur/neovim-ayu",
       name = "ayu",
       priority = 1000,
       opts = {},
     },
+
     {
       "sphamba/smear-cursor.nvim",
       opts = {
@@ -56,15 +60,18 @@ require("lazy").setup({
         cursor_color = "#21f6bc";
       },
     },
+
     {
       "vhyrro/luarocks.nvim",
       priority = 9999, -- Very high priority is required
       config = true,
     },
+
     {
       "xiyaowong/transparent.nvim",
       lazy = false
     },
+
     {
       "vim-airline/vim-airline",
       lazy = false,
@@ -74,6 +81,7 @@ require("lazy").setup({
         {"ryanoasis/vim-devicons"},
       }
     },
+
     {
       "romgrk/barbar.nvim",
       dependencies = {
@@ -89,20 +97,24 @@ require("lazy").setup({
       },
       version = "^1.0.0",
     },
+
     {
       "nvim-treesitter/nvim-treesitter",
       branch = 'master',
       lazy = false,
       build = ":TSUpdate"
     },
+
     {
       "nvim-tree/nvim-web-devicons",
       opts = {}
     },
+
     --{
     --  "shortcuts/no-neck-pain.nvim",
     --  version = "*"
     --},
+
     {
       "mason-org/mason.nvim",
       opts = {
@@ -111,6 +123,7 @@ require("lazy").setup({
         },
       },
     },
+
     {
       "mason-org/mason-lspconfig.nvim",
       opts = {
@@ -132,6 +145,7 @@ require("lazy").setup({
         "neovim/nvim-lspconfig",
       },
     },
+
     {
       "rmagatti/auto-session",
       lazy = false,
@@ -142,11 +156,13 @@ require("lazy").setup({
         suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
       },
     },
+
     --{
     --  "folke/todo-comments.nvim",
     --  dependencies = { "nvim-lua/plenary.nvim" },
     --  opts = {},
     --},
+
     {
       "nvim-telescope/telescope.nvim", version = "*",
       dependencies = {
@@ -154,6 +170,7 @@ require("lazy").setup({
         { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       }
     },
+
     --{
     --  "nvim-orgmode/orgmode",
     --  dependencies = {
@@ -171,6 +188,7 @@ require("lazy").setup({
     --    vim.lsp.enable("org") -- TODO: do I *really* want this?
     --  end,
     --},
+
   },
   -- automatically check for plugin updates
   checker = { enabled = true },

@@ -31,7 +31,6 @@ require'nvim-treesitter.configs'.setup {
     "vala",
     "ini", --for wireguard configs
     "sql",
-    "janet",
   },
   sync_install = false,
 
