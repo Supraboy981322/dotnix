@@ -360,11 +360,11 @@
         "zig_overlay": "zig_overlay_3"
       },
       "locked": {
-        "lastModified": 1789944822,
-        "narHash": "sha256-muJ4/nvKWefi5HhzkKHF/18VX7EJH0AzjTiSLK83h64=",
+        "lastModified": 1790795348,
+        "narHash": "sha256-rQuFxLn2VKw5ebEo3J0kjXVAnTQSr+To5Q6SmYIU3uU=",
         "ref": "refs/heads/main",
-        "rev": "50de910718ea0351e99c6f731f37be896fbdcc84",
-        "revCount": 29,
+        "rev": "52c0bf9f74f1ac1c2f2f1591cbecbd59f9df4584",
+        "revCount": 30,
         "type": "git",
         "url": "https://codeberg.org/keeper/prog_launcher"
       },
