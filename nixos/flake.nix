@@ -47,6 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    random = {
+      url = "github:Supraboy981322/misc-scripts?dir=random";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {
@@ -61,6 +66,7 @@
     intInfo,
     dir_size,
     prog_launcher,
+    random,
     view_prog,
     ...
   } @ inputs:

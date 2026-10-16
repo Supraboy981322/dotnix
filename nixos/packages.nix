@@ -45,7 +45,6 @@ in {
     SDL
     eza
     wev
-    zls
     lua
     zip
     bun
@@ -55,6 +54,7 @@ in {
     gmp
     jpm
 
+    perf
     cmus
     mame
     cc65
@@ -126,6 +126,7 @@ in {
     waybar
     docker
     espeak
+    mbrola
     podman
     libX11
     stdenv
@@ -148,6 +149,7 @@ in {
     discord
 
     zig_0_16
+    zls_0_16
     usbutils
     qrencode
     prettier
@@ -207,12 +209,15 @@ in {
     libglibutil
     libXinerama
 
+    kodi-wayland
     umu-launcher
     virt-manager
     supertuxkart
     glibc.static
     wl-clipboard
     libxkbcommon
+
+    mbrola-voices
     brightnessctl
     cascadia-code
     prismlauncher
@@ -289,6 +294,7 @@ in {
     "dir_size"
     "prog_launcher"
     "view_prog"
+    "random"
   ]);
 
   #services.flatpak = {

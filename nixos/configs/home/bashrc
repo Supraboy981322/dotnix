@@ -166,6 +166,7 @@ alias la='ls -A --'
 alias l='ls -F --'
 alias curl="curl --path-as-is"
 alias p="view_prog -D"
+alias vi="vim -u NONE"
 
 
 
@@ -237,6 +238,17 @@ newest() {
   ls --sort=time --no-quotes | tail -n 1
 }
 
+killall() {
+  for p in "${@}"; do
+    pkill -9 "$p"
+  done
+}
+
+alias s="status"
+status() {
+  (exit ${?}) && espeak "success" || espeak "failed (code ${?})"
+}
+
 
 #############################
 #        custom path        #
@@ -247,6 +259,7 @@ PATH="${PATH}:${HOME}/scripts"
 PATH="${PATH}:${HOME}/.local/share/gem/ruby/3.3.0/bin"
 PATH="${PATH}:${HOME}/.local/bin"
 PATH="${PATH}:${HOME}/.npm-packages/bin"
+PATH="${PATH}:${HOME}/.fig/bin" # TODO: do I want to keep the compiler here?
 
 
 
