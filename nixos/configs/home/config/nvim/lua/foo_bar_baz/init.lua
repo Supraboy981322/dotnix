@@ -10,6 +10,10 @@ vim.filetype.add({
   extension = { ok = "oskar" };
 })
 
+vim.filetype.add({
+  extension = { ee = "ee" };
+})
+
 --once fully started, run fn
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()

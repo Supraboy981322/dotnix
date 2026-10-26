@@ -36,3 +36,13 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 })
 
 vim.fn.matchadd("ExtraWhitespace", [[\s\+$]])
+
+local ft_settings = vim.api.nvim_create_augroup("FileTypeSettings", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+  group = ft_settings,
+  pattern = { "asm" },
+  callback = function()
+    vim.opt_local.tabstop = 8
+    vim.opt_local.shiftwidth = 8
+  end,
+})

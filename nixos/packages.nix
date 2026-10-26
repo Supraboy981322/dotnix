@@ -197,6 +197,7 @@ in {
     pkg-config
     proton-vpn
 
+    libva-utils
     chatterino2
     pavucontrol
     protonup-qt
@@ -222,6 +223,7 @@ in {
     cascadia-code
     prismlauncher
 
+    #libbluray-full
     signal-desktop
     bibata-cursors
     coreutils-full
@@ -287,7 +289,6 @@ in {
     })
 
   ]) ++ [
-    browsers.zen.re-wrapped
     browsers.firefox.re-wrapped
   ] ++ (each_input [
     "intInfo"
@@ -295,6 +296,7 @@ in {
     "prog_launcher"
     "view_prog"
     "random"
+    "raddebugger"
   ]);
 
   #services.flatpak = {

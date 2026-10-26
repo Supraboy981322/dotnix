@@ -1,3 +1,5 @@
+;;; -*- lexical-binding t -*-
+
 ;me emacs config
 ;  (mostly just curiosity, at the moment)
 
@@ -11,7 +13,6 @@
   "~/.config/emacs/"
   "emacs config dir")
 
-; TODO: what the hell was this for?
 (setq custom-file
   (concat config_dir "custom.el"))
 
@@ -95,6 +96,25 @@
 	evil-maybe-remove-spaces nil)
 
 
+(global-set-key
+  (kbd "C-c +")
+  (lambda ()
+    (interactive)
+    (skip-chars-backward "0-9")
+    (if (looking-at "[0-9]+")
+      (let* ((num-str (match-string 0))
+             (num (string-to-number num-str)))
+        (replace-match (number-to-string (1+ num)))))))
+(global-set-key
+  (kbd "C-c -")
+  (lambda ()
+    (interactive)
+    (skip-chars-backward "0-9")
+    (if (looking-at "[0-9]+")
+      (let* ((num-str (match-string 0))
+             (num (string-to-number num-str)))
+        (replace-match (number-to-string (1- num)))))))
+
 ;various "modes"
 (use-package zig-ts-mode
   :vc ( :url "https://codeberg.org/meow_king/zig-ts-mode"
@@ -104,7 +124,10 @@
 (with-eval-after-load 'dired
 	(define-key dired-mode-map (kbd "c") 'find-file))
 
-;tetris
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
+
+;(delete-visual-line-mode t)
+(setq line-move-visual t)
+(add-hook 'text-mode-hook #'visual-line-mode)

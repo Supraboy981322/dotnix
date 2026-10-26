@@ -14,12 +14,6 @@
       url = "github:Maroka-chan/VPN-Confinement";
     };
 
-    # my web browser of choice is not in NixPKGs
-    zen-browser_pkg = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +46,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    raddebugger = {
+      url = "path:./flakes/raddebugger";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {
@@ -60,7 +59,6 @@
     nix-flatpak,
     zig_overlay,
     home-manager,
-    zen-browser_pkg,
     vpn-confinement,
     nixpkgs-unstable,
     intInfo,
@@ -68,6 +66,7 @@
     prog_launcher,
     random,
     view_prog,
+    raddebugger,
     ...
   } @ inputs:
     let
@@ -142,6 +141,13 @@
               (final: prev: {
                 zig = zig_overlay.packages.${system}.default;
               })
+
+              #(f: p: {
+              #  libbluray = p.libbluray.override {
+              #    withAACS = true;
+              #    withBDplus = true;
+              #  };
+              #})
 
               (f: p: {
                 pythonPackagesExtensions = p.pythonPackagesExtensions ++ [(p-f: p-p: {

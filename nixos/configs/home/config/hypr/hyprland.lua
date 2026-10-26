@@ -1,18 +1,16 @@
 local helpers = require("helpers")
 local key_scripts = require("key_scripts")
 
-local zen = "nixGL zen --profile"
 --local zen_confined = "nixGL firejail --netns=${secrets.vpn.wg.alt.provider} zen --profile";
 local terminal = "alacritty";
 local fileManager = "dolphin";
 local menu = "pkill prog_launcher --signal USR1";
 local personalBrowser = "~/scripts/browser.sh";
-local schoolBrowser = zen .. " ~/.zen/schoolProfile";
+local schoolBrowser = "nixGL firefox --profile ~/.config/mozilla/firefox/'US84ev55.Profile 2'";
 local chat = "element-desktop";
 local otherChat = "signal-desktop";
---local alternativeBrowser = zen .. " ~/.zen/zs3f6ux8.viv";
 local alternativeBrowser = "nixGL firefox --profile ~/.config/mozilla/firefox/4tm2nkaj.default";
-local anotherBrowser = zen .. " ~/.zen/x4qqcuev";
+local anotherBrowser = "firefox --profile ~/.config/mozilla/firefox/'T1pBkQtt.Profile 3'";
 local torBrowser = "tor-browser";
 local people_who_dont_use_signal = "discord";
 local org_mode_is_pretty_good = "emacs";
@@ -466,6 +464,7 @@ hl.config({
   --},
   ecosystem = {
     no_donation_nag = true,
+    no_update_news = true;
   },
 })
 
@@ -533,7 +532,7 @@ hl.monitor({
     output   = "",
     mode     = "preferred",
     position = "auto",
-    scale    = "auto",
+    scale    = 1,
 })
 hl.monitor({ --nice-ish monitor (remains at home setup)
   output = "desc:LG Electronics LG ULTRAGEAR 209NTNH3L775",
@@ -568,6 +567,12 @@ hl.monitor({
   position = "-768x300",
   scale = 1,
   transform = 3,
+})
+hl.monitor({
+  output = "desc:InfoVision Optoelectronics (Kunshan) Co.Ltd China 0x8C44";
+  mode = "preferred";
+  position = "0x1080";
+  scale = 1;
 })
 
 for key, value in pairs({

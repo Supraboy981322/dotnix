@@ -123,3 +123,11 @@ vim.lsp.config('zls', {
   },
 })
 vim.lsp.enable({ 'zls' })
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    for _, client in ipairs(vim.lsp.egt_clients()) do
+      vim.lsp.stop_client(client.id, true)
+    end
+  end,
+})

@@ -167,6 +167,7 @@ alias l='ls -F --'
 alias curl="curl --path-as-is"
 alias p="view_prog -D"
 alias vi="vim -u NONE"
+alias diff="diff --color=auto -ry --suppress-common-lines"
 
 
 
@@ -240,13 +241,14 @@ newest() {
 
 killall() {
   for p in "${@}"; do
-    pkill -9 "$p"
+    pkill -9 "$p" || echo "couldn't kill ${p}" 1>&2
   done
 }
 
 alias s="status"
 status() {
-  (exit ${?}) && espeak "success" || espeak "failed (code ${?})"
+  r=$?
+  (exit ${r}) && espeak "success" || (espeak "failed (code ${r})" ; exit $r)
 }
 
 

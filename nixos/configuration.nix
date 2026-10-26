@@ -92,6 +92,7 @@ in {
       extraPackages = (with pkgs; [
         libvdpau-va-gl
         libva-vdpau-driver
+        libva
       ]);
     };
     steam-hardware.enable = true;
@@ -333,6 +334,7 @@ in {
         Restart = "always";
       };
     };
+    tailscaled.serviceConfig.TimeoutStopSec = "1s";
   };
 
   programs = {
@@ -456,14 +458,14 @@ in {
         WLR_NO_HARDWARE_CURSORS = "1";
         AQ_NO_ATOMIC = "1";
         WLR_DRM_NO_ATOMIC = "1";
-        MOZ_WEBRENDER = "0";
+        MOZ_WEBRENDER = "1";
         MANPAGER = "less";
         XDG_DATA_DIRS = [
           "$HOME/.local/share/flatpak/exports/share"
           "/var/lib/flatpak/exports/share"
           "${pkgs.gsettings-desktop-schemas}/share/gsettigs-schemas/${pkgs.gsettings-desktop-schemas.name}"
         ];
-        MOZ_ACCELERATED = "0";
+        MOZ_ACCELERATED = "1";
 
         LD_LIBRARY_PATH = "${cc.cc}/lib/gcc/${pkgs.stdenv.hostPlatform.config}/${cc.version}";
         LIBRARY_PATH = [

@@ -85,11 +85,12 @@ let
     "extensions.ui.mlmodel.hidden" = true;
     "sidebar.visibility" = "hide-sidebar";
 
-    # WARNING: this fixes every FireFox based browser seg-faulting
-    #  (on an Nvidia system without proprietary drivers)
-    "layers.acceleration.force-enabled" = false;
-    "gfx.webrender.all" = false;
-    "widget.wayland-dmabuf-vaapi.enabled" = false;
+    #"layers.acceleration.force-enabled" = false;
+    "media.hardware-video-decoding.force-enabled" = true;
+    "widget.dmabuf.force-enabled" = true;
+    "media.rdd-ffmpeg.enabled" = true;
+    "gfx.webrender.all" = true;
+    "widget.wayland-dmabuf-vaapi.enabled" = true;
   };
 
   # list of browser extentions

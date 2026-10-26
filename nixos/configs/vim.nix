@@ -38,8 +38,8 @@
           " whitespace and linewrapping
           set expandtab
           set smarttab
-          set shiftwidth=2
-          set tabstop=2
+          set shiftwidth=3
+          set tabstop=3
           set ai "auto indenting
           set si "'smart' indenting
           set wrap

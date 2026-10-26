@@ -122,8 +122,8 @@
 ;;q   w     e   r    t   z   u   i   o   p
   XX  bspc  XX  tab  XX  XX  XX  XX  XX  XX
 
-;;a   s   d    f   g   h   j   k   l    ;   '
-  XX  XX  del  XX  XX  XX  XX  XX  end  up  right
+;;a   s          d    f   g   h   j   k   l    ;   '
+  XX  (unmod \)  del  XX  XX  XX  XX  XX  end  up  right
 
 ;;y          x   c   v   b   n   m   ,     .     /
   (unmod `)  XX  XX  XX  XX  XX  XX  home  left  down

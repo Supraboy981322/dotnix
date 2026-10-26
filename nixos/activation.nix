@@ -45,5 +45,6 @@
     ${pkgs.wget}/bin/wget -q \
       "https://raw.githubusercontent.com/rxi/json.lua/refs/heads/master/json.lua" \
       -O "$lib_dir/json.lua"
+    chown -R super:users "$lib_dir"
   '';
 }

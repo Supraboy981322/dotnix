@@ -95,17 +95,6 @@ vim.keymap.set(
   { noremap = true, silent = true }
 )
 
---`alt`+`p` to center buffer
-vim.keymap.set(
-  {"v", "i", "n", "x"},
-  "<M-p>",
-  function()
-    vim.cmd("NoNeckPain")
-  end,
-  { noremap = true, silent = true }
-)
-
-
 vim.keymap.set(
   {"v", "i", "n", "x"},
   "<M-]>",
